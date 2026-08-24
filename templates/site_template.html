@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$title$</title>
+    <link rel="stylesheet" href="$theme$">
+
+  <meta property="og:title" content="$title$" />
+  <meta property="og:url" content="$site_url$" />
+  <meta property="og:type" content="website" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js"></script>
+    </head>
+    <body>
+      <header>
+	$for(include-before)$
+	  $include-before$
+	$endfor$
+      </header>
+      <img id="bee" src="images/bee.png" style="background-color:rgba(0,0,0,0)">
+      <h1>$title$</h1>
+      <h2>Classes</h2>
+      $body$
+      <footer>
+	<sub><em>Bee free icon by <a href="https://www.flaticon.com/free-icon/bee_782372?term=robot+fly&related_id=782372">Freepik</a>.</em></sub>
+	$for(include-after)$
+	  $include-after$
+	$endfor$
+      </footer>
+      <script src="js/sketch.js"></script>
+  </body>
+</html>

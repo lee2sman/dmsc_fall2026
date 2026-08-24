@@ -1,0 +1,35 @@
+<rss version="2.0">
+<channel>
+<title>Drawing, Moving and Seeing with Code - Spring 2025</title>
+<link>https://leetusman.com/dmsc_spring2025</link>
+<description>Website for the course Drawing, Moving and Seeing with Code at Purchase College, Spring 2025</description>
+<item>
+<title>
+Week 1 - Intro to the course and Turtle Geometry
+</title>
+<link>
+https://leetusman.com/dmsc_spring2025/posts/2024-01-28-LOGO.html
+</link>
+<guid>
+https://leetusman.com/dmsc_spring2025/posts/2024-01-28-LOGO.html
+</guid>
+<pubDate>
+Mon, 24 Aug 2026 00:00:00 -0400
+</pubDate>
+<description>
+<![CDATA[
+[Turtle]
+
+Today
+
+-   Hello!
+-   Intro
+-   What will we be learning?
+-   Syllabus and our plans for the semester
+-   Turtle Geometry and Computing with LOGO
+-   Begin devlogs
+]]>
+</description>
+</item>
+</channel>
+  </rss>
