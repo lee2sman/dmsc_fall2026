@@ -11,7 +11,12 @@ Pronouns: he/him
 Contact: Lee.Tusman@purchase.edu  
 Classroom: CMFT 3031  
 Days: Mondays 2:30pm - 6:10pm  
-Office Hours: Thursdays 10:30 - 12:30, arranged via email  
+
+## Office Hours
+
+Lee: Thursdays 10:30 - 12:30, arranged via *email lee.tusman@purchase.edu*
+
+Jaiden: Wednesdays 5pm - 7pm, or via email *jaiden.kelly@purchase.edu*
 
 ## Course Description  
 
