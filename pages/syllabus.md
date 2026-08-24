@@ -9,6 +9,7 @@ title: Syllabus
 Instructor: Lee Tusman  
 Pronouns: he/him  
 Contact: Lee.Tusman@purchase.edu  
+Classroom: CMFT 3031  
 Days: Mondays 2:30pm - 6:10pm  
 Office Hours: Thursdays 10:30 - 12:30, arranged via email  
 
@@ -260,7 +261,7 @@ All of our sources will be available to read online for free, many via our libra
 
 There will be readings throughout the semester. All will be available digitally at no cost, via a web browser or via the library as an e-book or a PDF.
 
-- [The Nature Of Code](https://natureofcode.com/book/), by Daniel Shiffman. We will be referring to this book during the course. The entirety of the book is also available for reading online. Please note that the book's code is Processing but in this course I will primarily be teaching p5.js. All of the book's example code has been [ported to p5js](https://github.com/shiffman/The-Nature-of-Code-Examples-p5.js) and can be downloaded at [this](https://github.com/shiffman/The-Nature-of-Code-Examples-p5.js/archive/master.zip) URL.
+- [The Nature Of Code](https://natureofcode.com/book/), by Daniel Shiffman. We will be referring to this book during the course. The entirety of the book is also available for reading online. Please note that the book's code is p5.js and Processing but in this course I will primarily be teaching L5. All of the book's example code has been [ported to p5js](https://github.com/shiffman/The-Nature-of-Code-Examples-p5.js) and can be downloaded at [this](https://github.com/shiffman/The-Nature-of-Code-Examples-p5.js/archive/master.zip) URL.
 - [The lifebox, the seashell, and the soul : what gnarly computation taught me about ultimate reality, the meaning of life, and how to be happy](http://www.rudyrucker.com/lifebox/html/)
 - [Turtles, termites, and traffic jams explorations in massively parallel microworlds](http://search.ebscohost.com/login.aspx?direct=true&scope=site&db=nlebk&db=nlabk&AN=1998)  
 - Procedural Generation in Game Design, edited by Tanya X. Short and Tarn Adams
