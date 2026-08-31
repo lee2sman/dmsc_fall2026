@@ -202,7 +202,7 @@ Satellite video of world's biggest iceberg, A23a, breaking free
 
 ## Evan Roth's Heliographs
 
-[Heliographs](https://www.avan-roth.com/~/works/heliographs/#hemisphere=east&strand=112) by Evan Roth
+[Heliographs](https://www.evan-roth.com/~/works/heliographs/#hemisphere=east&strand=112) by Evan Roth
 
 ![The path of light on the sun, an embroidery](roth-random-walk.jpg)
 *Image from Dorothée Nilsson Gallery*
