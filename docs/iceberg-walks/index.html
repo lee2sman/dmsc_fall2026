@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta name="date" content="" />
+            <title>Week 2 - L5 Overview and A Random Walk</title>
+      <link rel="stylesheet" href="../css/../css/dmsc.css" />
+
+      <meta property="og:title" content="Week 2 - L5 Overview and A
+Random Walk" />
+                  <meta property="og:type" content="article" />
+  </head>
+  <body>
+      <header> <nav>
+  <ul>
+    <li><a href="/dmsc_fall2026/">home</a></li>
+    <li><a href="/dmsc_fall2026/about/">about</a></li>
+    <li><a href="/dmsc_fall2026/logs/">logs</a></li>
+    <li><a href="/dmsc_fall2026/syllabus/">syllabus</a></li>
+  </ul>
+</nav> </footer>
+      <h1>Week 2 - L5 Overview and A Random Walk</h1>
+            <p><em>Date: 2026-08-31</em></p>
+            <p><img src="../images/iceberg.jpg"
+            alt="An iceberg’s meandering path" /> <em>Image uploaded to
+            Are.na by Jon-Kyle Mohr</em></p>
+            <h2 id="today">Today</h2>
+            <ul>
+            <li>Randomness</li>
+            <li>Getting started with L5</li>
+            <li>Iceberg activities</li>
+            <li>HW: Devlog 2</li>
+            </ul>
+            <h2 id="lua">Lua!</h2>
+            <ul>
+            <li><a href="https://l5lua.org">L5</a> is a Lua Library</li>
+            <li>it is a reimplementation of Processing, designed to be
+            fast, small, lightweight, cross-platform and to work across
+            machines old and new</li>
+            <li>In addition to the Processing drawing commands it also
+            is a response to principles of permacomputing, including
+            running even on older machines, using less hardware
+            resources, and having documentation accessible for lower
+            bandwidth and older machines</li>
+            <li>It is very similar to Processing (Java) but there are
+            differences because it is based on Lua - see <a
+            href="https://l5lua.org/tutorials/L5-for-processingp5/">L5
+            for Processing and p5.js programmers</a></li>
+            </ul>
+            <h2 id="set-up-l5">Set up L5</h2>
+            <ul>
+            <li>Download and Install a text editor</li>
+            <li>Download and Install Love2d</li>
+            <li>Download and Open L5 Starter Folder</li>
+            </ul>
+            <h2 id="download-and-step-by-step-instructions">Download and
+            step-by-step instructions</h2>
+            <p>There are full step-by-step <a
+            href="https://l5lua.org/download/">download</a> instructions
+            for Mac, Win, Linux</p>
+            <h3 id="a-basic-l5-sketch">A basic L5
+            <code>sketch</code></h3>
+            <div class="sourceCode" id="cb1"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">--this is a comment</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> setup<span class="op">()</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  size<span class="op">(</span><span class="dv">500</span><span class="op">,</span><span class="dv">500</span><span class="op">)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> draw<span class="op">()</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">--main loop</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">--each run of draw is a frame</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+            <h3 id="variables">variables</h3>
+            <p>Lua is a <a
+            href="https://en.wikipedia.org/wiki/Dynamic_programming_language">dynamically
+            typed language</a>. Variables themselves don’t have types.
+            Instead, the values themselves do.</p>
+            <p>By default, variables are global-scoped, unless set to be
+            <code>local</code>.</p>
+            <div class="sourceCode" id="cb2"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">&#39;L5&#39;</span><span class="op">)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> setup<span class="op">()</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">x</span> <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">y</span> <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> draw<span class="op">()</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co">-- prints 0</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span><span class="op">(</span><span class="va">y</span><span class="op">)</span> <span class="co">-- nil</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+            <h3 id="event-functions">event functions</h3>
+            <p>We covered setup and draw. There are also additional
+            event functions:</p>
+            <ul>
+            <li>mouseClicked()</li>
+            <li>mouseDragged()</li>
+            <li>mouseMoved()</li>
+            <li>mousePressed()</li>
+            <li>mouseReleased</li>
+            <li>mouseWheel()</li>
+            <li>keyPressed()</li>
+            <li>keyTyped()</li>
+            <li>keyReleased()</li>
+            </ul>
+            <h3 id="working-with-media">Working with media</h3>
+            <pre><code>function setup()
+  --load media here
+  img = loadImage(&#39;assets/quality_meme.jpg&#39;)
+end</code></pre>
+            <p><a
+            href="https://l5lua.org/reference/loadImage/">Reference
+            example - loading an image</a></p>
+            <h3 id="input">Input</h3>
+            <pre><code>ellipse(mouseX,mouseY,20)</code></pre>
+            <p>Keypresses, mouse movement and clicks are examples of
+            input and interaction</p>
+            <h3 id="looping">Looping</h3>
+            <p>Similar to Processing/Java</p>
+            <div class="sourceCode" id="cb5"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="va">i</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span><span class="dv">10</span> <span class="cf">do</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span><span class="op">(</span><span class="va">i</span><span class="op">)</span>    <span class="co">-- will print 1, 2, 3...to 10 on separate lines</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+            <p>You can optionally add an increment value</p>
+            <pre><code>for bottle = 99,1,-1 do
+  print(bottle..&#39;bottles of NA beverages on the wall..&#39;)
+end</code></pre>
+            <h2 id="tables">Tables</h2>
+            <p>The main data structure in Lua is the <em>table</em>,
+            which is used to create all other needed formats.</p>
+            <p>For example…</p>
+            <h3 id="arrays">arrays</h3>
+            <p>Arrays can be described literally. <strong>They start
+            with 1.</strong></p>
+            <p>The length of an array is returned through adding a
+            <code>#</code> before the array name.</p>
+            <div class="sourceCode" id="cb7"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="va">array</span> <span class="op">=</span> <span class="op">{</span><span class="st">&#39;first&#39;</span><span class="op">,</span><span class="st">&#39;second&#39;</span><span class="op">,</span><span class="st">&#39;last&#39;</span><span class="op">}</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="va">array</span><span class="op">[</span><span class="dv">1</span><span class="op">])</span> <span class="co">-- &#39;first&#39;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(#</span><span class="va">array</span><span class="op">)</span> <span class="co">-- 3</span></span></code></pre></div>
+            <h3 id="add-to-the-end-of-an-array">Add to the end of an
+            array</h3>
+            <div class="sourceCode" id="cb8"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">numArray</span> <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">}</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table.insert</span><span class="op">(</span><span class="va">numArray</span><span class="op">,</span> <span class="dv">4</span><span class="op">}</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">table.insert</span><span class="op">(</span><span class="va">numArray</span><span class="op">,</span> <span class="dv">5</span><span class="op">}</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">--will result in [1, 2, 3, 4, 5]</span></span></code></pre></div>
+            <h3 id="remove-from-end-of-array">Remove from end of
+            array</h3>
+            <pre><code>--continuing from above
+table.remove(numArray) --will remove from end
+--will result [1, 2, 3, 4]</code></pre>
+            <h3 id="looping-through-an-array">Looping through an
+            array</h3>
+            <p>Lua has the utilities <code>pairs</code> and
+            <code>ipairs</code>. We can optionally use
+            <code>ipairs</code> when looping through an array.</p>
+            <p><strong>Without</strong> ipairs:</p>
+            <div class="sourceCode" id="cb10"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="va">i</span><span class="op">=</span><span class="dv">1</span><span class="op">,#</span><span class="va">students</span> <span class="cf">do</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span><span class="op">(</span><span class="va">students</span><span class="op">[</span><span class="va">i</span><span class="op">])</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+            <p><strong>With</strong> ipairs:</p>
+            <div class="sourceCode" id="cb11"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="va">student</span> <span class="kw">in</span> <span class="fu">ipairs</span><span class="op">(</span><span class="va">students</span><span class="op">)</span> <span class="cf">do</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span><span class="op">(</span><span class="va">student</span><span class="op">)</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+            <h2 id="debugging-and-the-console">Debugging and the
+            console</h2>
+            <h3 id="accessing-the-console">Accessing the Console</h3>
+            <p>Error messages and print messages are printed in the
+            command line.</p>
+            <p>They can also be presented onscreen through use of the
+            <code>printToScreen()</code> function added in your
+            setup.</p>
+            <h3 id="next-steps">Next steps:</h3>
+            <ul>
+            <li>Review <a
+            href="https://l5lua.org/tutorials/L5-for-processingp5/">L5
+            for Processing and p5.js programmers</a></li>
+            <li>Run L5 sketches locally with the L5lua VS Code / VS
+            Codium extension</li>
+            </ul>
+            <h2 id="icebergs-and-random-walks">Icebergs and Random
+            Walks</h2>
+            <p>Satellite video of world’s biggest iceberg, A23a,
+            breaking free</p>
+            <iframe id="jw_embed" width="600" height="338" src="https://www.npr.org/embedded-video?storyId=nx-s1-5234100&amp;mediaId=nx-s1-5234100-100&amp;jwMediaType=null" frameborder="0" scrolling="no">
+            </iframe>
+            <p><em>from <a
+            href="https://www.npr.org/2024/12/20/nx-s1-5234100/worlds-largest-iceberg-a23a-antarctica-breaks-free-floating">NPR</a></em></p>
+            <p><img src="../images/iceberg-alley.jpg"
+            alt="Iceberg A68a" /><br />
+            <em>from <a
+            href="https://scitechdaily.com/how-the-worlds-largest-iceberg-escaped-an-ocean-whirlpool/">SciTechHub</a></em></p>
+            <blockquote>
+            <p>When icebergs break away from ice shelves or large
+            glacier fronts, they become travelers in the ocean, carried
+            by currents, spinning in eddies, shifting with the tides,
+            and pushed along by the wind. Sometimes, these massive ice
+            chunks get stuck — either grounded on a shallow seafloor or
+            caught in a swirling mass of water. Iceberg A-23A
+            experienced both. While every iceberg’s journey is unique,
+            most follow the same general path. More than 90 percent of
+            bergs around Antarctica enter the clockwise-flowing current
+            of the Weddell Gyre off East Antarctica and eventually
+            escape, shooting north along the Antarctic Peninsula and
+            finally out across the Drake Passage into warmer South
+            Atlantic waters—an ocean route known as “iceberg alley.”
+            –<em>How the World’s Largest Iceberg Escaped an Ocean
+            Whirlpool, from <a
+            href="https://scitechdaily.com/how-the-worlds-largest-iceberg-escaped-an-ocean-whirlpool/">SciTechDaily</a></em></p>
+            </blockquote>
+            <h2 id="evan-roths-heliographs">Evan Roth’s Heliographs</h2>
+            <p><a
+            href="https://www.avan-roth.com/~/works/heliographs/#hemisphere=east&amp;strand=112">Heliographs</a>
+            by Evan Roth</p>
+            <p><img src="../images/roth-random-walk.jpg"
+            alt="The path of light on the sun, an embroidery" />
+            <em>Image from Dorothée Nilsson Gallery</em></p>
+            <blockquote>
+            <p>During a residency at the Astronomical Observatory of the
+            University of Namur, Belgium, Roth worked with astronomers
+            imaging the surface of the Sun through a telescope fitted
+            with an infrared camera, a lens that registers wavelengths
+            beyond human vision, revealing what remains otherwise
+            invisible to the naked eye. The camera produces greyscale
+            images, which Roth then colourises intuitively, treating
+            colour as a painterly choice. The result is a hybrid:
+            photograph, quilt, astronomical data, and painting at once.
+            These solar photographs are digitally printed onto fabric
+            and stitched with a sewing machine following a pattern known
+            as a random walk: a phenomenon in astrophysics in which a
+            photon born in the Sun’s core takes, on average, one hundred
+            thousand years to reach its surface, drifting through solar
+            plasma in a slow, unpredictable arc, before crossing the
+            distance to Earth in 8 minutes and 20 seconds. For Roth, it
+            is both concept and method: a way of reanimating the
+            photon’s journey in thread, and of enacting the wandering,
+            drifting attention that slow transformation requires.
+            <em>Exhibition Text: Evan Roth</em></p>
+            </blockquote>
+            <h2 id="perlin-noise">Perlin Noise</h2>
+            <blockquote>
+            <p>Returns random numbers that can be tuned to feel
+            organic.</p>
+            </blockquote>
+            <blockquote>
+            <p>Values returned by random() and randomGaussian() can
+            change by large amounts between function calls. By contrast,
+            values returned by noise() can be made “smooth”. Calls to
+            noise() with similar inputs will produce similar outputs.
+            noise() is used to create textures, motion, shapes,
+            terrains, and so on. Ken Perlin invented noise() while
+            animating the original Tron film in the 1980s. The version
+            of noise in L5 varies from p5.js and Processing. It returns
+            simplex noise for 1 and 2 input arguments. Simplex noise is
+            an algorithm designed in 2001 by Ken Perlin to address
+            limitations in his classic noise function, notably relating
+            to speed, complexity and higher order dimensions. noise()
+            always returns values between 0 and 1. It returns the same
+            value for a given input while a sketch is running. noise()
+            produces different results each time a sketch runs. The
+            character of the noise can be adjusted by scaling the
+            inputs. noise() interprets inputs as coordinates. The
+            sequence of noise values will be smoother when the input
+            coordinates are closer. The version of noise() with one
+            parameter computes noise values in one dimension. This
+            dimension can be thought of as space, as in noise(x), or
+            time, as in noise(t). The version of noise() with two
+            parameters computes noise values in two dimensions. These
+            dimensions can be thought of as space, as in noise(x, y), or
+            space and time, as in noise(x, t).</p>
+            </blockquote>
+            <p><strong>Important: The output of noise() might be
+            constant if only using integers as arguments. Be sure to use
+            floats to get varying return values.</strong></p>
+            <p><em>from <a
+            href="https://l5lua.org/reference/noise/">noise</a> in the
+            L5 reference</em></p>
+            <h2 id="noise-in-l5-example-code">Noise in L5: example
+            code</h2>
+            <figure>
+            <img src="../images/noise1.gif" alt="noise example 1" />
+            <figcaption aria-hidden="true">noise example 1</figcaption>
+            </figure>
+            <div class="sourceCode" id="cb12"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">&quot;L5&quot;</span><span class="op">)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> setup<span class="op">()</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  size<span class="op">(</span><span class="dv">100</span><span class="op">,</span> <span class="dv">100</span><span class="op">)</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  describe<span class="op">(</span><span class="st">&#39;A black dot moves randomly on a gray square.&#39;</span><span class="op">)</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> draw<span class="op">()</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  background<span class="op">(</span><span class="dv">200</span><span class="op">)</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Calculate the coordinates.</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">x</span> <span class="op">=</span> <span class="dv">100</span> <span class="op">*</span> noise<span class="op">(</span><span class="dv">0.005</span> <span class="op">*</span> <span class="va">frameCount</span><span class="op">)</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">y</span> <span class="op">=</span> <span class="dv">100</span> <span class="op">*</span> noise<span class="op">(</span><span class="dv">0.005</span> <span class="op">*</span> <span class="va">frameCount</span> <span class="op">+</span> <span class="dv">10000</span><span class="op">)</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Draw the point.</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  strokeWeight<span class="op">(</span><span class="dv">5</span><span class="op">)</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  point<span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="va">y</span><span class="op">)</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+            <figure>
+            <img src="../images/noise2.gif" alt="noise example 2" />
+            <figcaption aria-hidden="true">noise example 2</figcaption>
+            </figure>
+            <div class="sourceCode" id="cb13"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">&quot;L5&quot;</span><span class="op">)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> setup<span class="op">()</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  size<span class="op">(</span><span class="dv">100</span><span class="op">,</span> <span class="dv">100</span><span class="op">)</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  describe<span class="op">(</span><span class="st">&#39;A black dot moves randomly on a gray square.&#39;</span><span class="op">)</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> draw<span class="op">()</span> </span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  background<span class="op">(</span><span class="dv">200</span><span class="op">)</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Set the noise level and scale.</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">noiseLevel</span> <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">noiseScale</span> <span class="op">=</span> <span class="dv">0.005</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Scale the input coordinate.</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">nt</span> <span class="op">=</span> <span class="va">noiseScale</span> <span class="op">*</span> <span class="va">frameCount</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Compute the noise values.</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">x</span> <span class="op">=</span> <span class="va">noiseLevel</span> <span class="op">*</span> noise<span class="op">(</span><span class="va">nt</span><span class="op">)</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">y</span> <span class="op">=</span> <span class="va">noiseLevel</span> <span class="op">*</span> noise<span class="op">(</span><span class="va">nt</span> <span class="op">+</span> <span class="dv">10000</span><span class="op">);</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Draw the point.</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>  strokeWeight<span class="op">(</span><span class="dv">5</span><span class="op">)</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>  point<span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="va">y</span><span class="op">)</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+            <figure>
+            <img src="../images/noise3.webp" alt="noise example 3" />
+            <figcaption aria-hidden="true">noise example 3</figcaption>
+            </figure>
+            <div class="sourceCode" id="cb14"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">&quot;L5&quot;</span><span class="op">)</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> setup<span class="op">()</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  size<span class="op">(</span><span class="dv">100</span><span class="op">,</span> <span class="dv">100</span><span class="op">)</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  describe<span class="op">(</span><span class="st">&#39;A hilly terrain drawn in gray against a black sky.&#39;</span><span class="op">)</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> draw<span class="op">()</span> </span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Set the noise level and scale.</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">noiseLevel</span> <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">noiseScale</span> <span class="op">=</span> <span class="dv">0.02</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Scale the input coordinate.</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">x</span> <span class="op">=</span> <span class="va">frameCount</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">nx</span> <span class="op">=</span> <span class="va">noiseScale</span> <span class="op">*</span> <span class="va">x</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Compute the noise value.</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">y</span> <span class="op">=</span> <span class="va">noiseLevel</span> <span class="op">*</span> noise<span class="op">(</span><span class="va">nx</span><span class="op">)</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Draw the line.</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>  line<span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="va">x</span><span class="op">,</span> <span class="va">y</span><span class="op">)</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+            <figure>
+            <img src="../images/noise4.gif" alt="noise example 4" />
+            <figcaption aria-hidden="true">noise example 4</figcaption>
+            </figure>
+            <div class="sourceCode" id="cb15"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">&quot;L5&quot;</span><span class="op">)</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> setup<span class="op">()</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  size<span class="op">(</span><span class="dv">100</span><span class="op">,</span> <span class="dv">100</span><span class="op">)</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  describe<span class="op">(</span><span class="st">&#39;A calm sea drawn in gray against a black sky.&#39;</span><span class="op">)</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> draw<span class="op">()</span> </span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  background<span class="op">(</span><span class="dv">200</span><span class="op">)</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Set the noise level and scale.</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">noiseLevel</span> <span class="op">=</span> <span class="dv">100</span><span class="op">;</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">noiseScale</span> <span class="op">=</span> <span class="dv">0.002</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Iterate from left to right.</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="va">x</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span><span class="va">width</span> <span class="cf">do</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Scale the input coordinates.</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">nx</span> <span class="op">=</span> <span class="va">noiseScale</span> <span class="op">*</span> <span class="va">x</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">nt</span> <span class="op">=</span> <span class="va">noiseScale</span> <span class="op">*</span> <span class="va">frameCount</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Compute the noise value.</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">y</span> <span class="op">=</span> <span class="va">noiseLevel</span> <span class="op">*</span> noise<span class="op">(</span><span class="va">nx</span><span class="op">,</span> <span class="va">nt</span><span class="op">)</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Draw the line.</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>    line<span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="va">x</span><span class="op">,</span> <span class="va">y</span><span class="op">)</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+            <figure>
+            <img src="../images/noise5.webp" alt="noise example 5" />
+            <figcaption aria-hidden="true">noise example 5</figcaption>
+            </figure>
+            <div class="sourceCode" id="cb16"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">&quot;L5&quot;</span><span class="op">)</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> setup<span class="op">()</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  size<span class="op">(</span><span class="dv">100</span><span class="op">,</span> <span class="dv">100</span><span class="op">)</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  background<span class="op">(</span><span class="dv">200</span><span class="op">)</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Set the noise level and scale.</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">noiseLevel</span> <span class="op">=</span> <span class="dv">255</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">noiseScale</span> <span class="op">=</span> <span class="dv">0.01</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Iterate from top to bottom.</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="va">y</span><span class="op">=</span><span class="dv">1</span><span class="op">,</span><span class="va">height</span> <span class="cf">do</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Iterate from left to right.</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="va">x</span> <span class="op">=</span> <span class="dv">0</span><span class="op">,</span><span class="va">width</span> <span class="cf">do</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Scale the input coordinates.</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>      <span class="kw">local</span> <span class="va">nx</span> <span class="op">=</span> <span class="va">noiseScale</span> <span class="op">*</span> <span class="va">x</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>      <span class="kw">local</span> <span class="va">ny</span> <span class="op">=</span> <span class="va">noiseScale</span> <span class="op">*</span> <span class="va">y</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Compute the noise value.</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>      <span class="kw">local</span> <span class="va">c</span> <span class="op">=</span> <span class="va">noiseLevel</span> <span class="op">*</span> noise<span class="op">(</span><span class="va">nx</span><span class="op">,</span> <span class="va">ny</span><span class="op">)</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Draw the point.</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>      stroke<span class="op">(</span><span class="va">c</span><span class="op">)</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>      point<span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="va">y</span><span class="op">)</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>  describe<span class="op">(</span><span class="st">&#39;A gray cloudy pattern.&#39;</span><span class="op">)</span></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+            <figure>
+            <img src="../images/noise6.gif" alt="noise example 6" />
+            <figcaption aria-hidden="true">noise example 6</figcaption>
+            </figure>
+            <div class="sourceCode" id="cb17"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">&quot;L5&quot;</span><span class="op">)</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> setup<span class="op">()</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  size<span class="op">(</span><span class="dv">100</span><span class="op">,</span> <span class="dv">100</span><span class="op">)</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  describe<span class="op">(</span><span class="st">&#39;A gray cloudy pattern that changes.&#39;</span><span class="op">)</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> draw<span class="op">()</span> </span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Set the noise level and scale.</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">noiseLevel</span> <span class="op">=</span> <span class="dv">255</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">noiseScale</span> <span class="op">=</span> <span class="dv">0.009</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Iterate from top to bottom.</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="va">y</span><span class="op">=</span><span class="dv">1</span><span class="op">,</span><span class="va">height</span> <span class="cf">do</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Iterate from left to right.</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="va">x</span><span class="op">=</span><span class="dv">1</span><span class="op">,</span><span class="va">width</span> <span class="cf">do</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Scale the input coordinates.</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>      <span class="kw">local</span> <span class="va">nx</span> <span class="op">=</span> <span class="va">noiseScale</span> <span class="op">*</span> <span class="va">x</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>      <span class="kw">local</span> <span class="va">ny</span> <span class="op">=</span> <span class="va">noiseScale</span> <span class="op">*</span> <span class="va">y</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>      <span class="kw">local</span> <span class="va">nt</span> <span class="op">=</span> <span class="va">noiseScale</span> <span class="op">*</span> <span class="va">frameCount</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Compute the noise value.</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>      <span class="kw">local</span> <span class="va">c</span> <span class="op">=</span> <span class="va">noiseLevel</span> <span class="op">*</span> noise<span class="op">(</span><span class="va">nx</span><span class="op">,</span> <span class="va">ny</span><span class="op">,</span> <span class="va">nt</span><span class="op">)</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>      <span class="co">-- Draw the point.</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>      stroke<span class="op">(</span><span class="va">c</span><span class="op">)</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>      point<span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="va">y</span><span class="op">)</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+            <h3 id="perlin-noise-videos">Perlin noise videos</h3>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/ZoqPQ0sFo6A?si=yAsikXvi8hQ-zYTH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+            <p>How to Code Procedural Terrain with Perlin Noise
+            (JavaScript &amp; p5.js) with RachelfTech</p>
+            <p><a
+            href="https://github.com/RachelfTech/procedural-terrain-generation">link
+            to code repo</a></p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Qf4dIN99e2w?si=RI8HcaId4WIU18nI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+            <p>Perlin Noise in p5.js with The Coding Train</p>
+            <h2 id="workshop">Workshop</h2>
+            <p>There are a few approaches. Pick one, blend a few, or
+            invent your own:</p>
+            <ul>
+            <li>Landscape / terrain — noise as elevation, walkers as
+            rivers or erosion paths</li>
+            <li>Organism / growth — walkers as roots, mycelium, or vein
+            systems that branch and thicken</li>
+            <li>Typography — noise perturbing letterforms or a walker
+            “writing” unstable text</li>
+            <li>Portrait / figure — thousands of short noise-guided
+            strokes building up a recognizable image (stippling/hatching
+            approach)</li>
+            <li>Time-based — the noise field evolves and the “artwork”
+            is really a slow animation or loop</li>
+            <li>Abstract field composition — no representational goal at
+            all; the noise field’s structure is the subject</li>
+            </ul>
+            <p>Parameters:</p>
+            <p>Uses at least one of: random walk, Perlin noise, or both
+            together.</p>
+            <ul>
+            <li>Noise/randomness controls at least two distinct visual
+            properties (not just x/y position of one thing — e.g.,
+            position and color, or angle and stroke weight).</li>
+            <li>Includes at least one deliberate compositional
+            constraint — a canvas edge behavior, a color palette, a
+            stopping condition, a symmetry, something that shows you
+            made a choice rather than let the algorithm run forever
+            unattended.</li>
+            <li>Runs and resolves in a reasonable time, for example
+            stopping with <code>noLoop()</code> (if it runs forever,
+            explain the concept).</li>
+            <li>Include a short artist statement (150–250 words,
+            submitted alongside the sketch) covering:
+            <ul>
+            <li>What’s driving the generative engine, in plain
+            language</li>
+            <li>One decision you made that changed the character of the
+            piece, and why</li>
+            <li>One thing you’d try next if you had another week</li>
+            </ul></li>
+            </ul>
+            <p>Flow-field and particle-system techniques are widely
+            documented in creative-coding tutorials; you’re welcome to
+            learn from them, but your submitted piece should be your own
+            composition and combination of ideas, not a recreation of a
+            tutorial’s exact result</p>
+      <footer> <hr>
+
+<p><em><a href="https://github.com/lee2sman/dmsc_fall2026">This site</a> is built using <a href="https://tildegit.org/exquisitecorp/panblog">panblog</a>. Site design by Lee Tusman (c) 2026.</em></p>
+
+<p><em>All course content, unless otherwise credited, is by Lee Tusman (c) 2026 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">CC BY-NC-SA</a>.</em></p> </footer>
+  </body>
+</html>
