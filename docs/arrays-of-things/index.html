@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta name="date" content="" />
+            <title>Week 4 - Arrays of things and Drawing
+Machines</title>
+      <link rel="stylesheet" href="../css/../css/dmsc.css" />
+
+      <meta property="og:title" content="Week 4 - Arrays of things and
+Drawing Machines" />
+                  <meta property="og:type" content="article" />
+  </head>
+  <body>
+      <header> <nav>
+  <ul>
+    <li><a href="/dmsc_fall2026/">home</a></li>
+    <li><a href="/dmsc_fall2026/about/">about</a></li>
+    <li><a href="/dmsc_fall2026/logs/">logs</a></li>
+    <li><a href="/dmsc_fall2026/syllabus/">syllabus</a></li>
+  </ul>
+</nav> </footer>
+      <h1>Week 4 - Arrays of things and Drawing Machines</h1>
+            <p><em>Date: 2026-09-14</em></p>
+            <h2 id="today">Today</h2>
+            <ul>
+            <li>Autonomous painting machines
+            <ul>
+            <li>Harold Cohen and AARON</li>
+            <li>Samia Halaby</li>
+            </ul></li>
+            <li>Tables in Lua
+            <ul>
+            <li>Intro to Tables in Lua</li>
+            <li>Randomization, following, trails with tables</li>
+            </ul></li>
+            <li>Intro workshop: live coding music with Strudel</li>
+            </ul>
+            <h2 id="harold-cohen-and-aaron">Harold Cohen and AARON</h2>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/IPczQgCuOOc?si=EWrFXT77qlQRhptA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+            <p>Harold Cohen - The Age of Intelligent Machines - 1987
+            (Clip)</p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/MwHQx9BrHQc?si=lSYUTK2Cn--zVP-5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+            <p>Harold Cohen - Collaborations with my Other Self - 2011
+            (Interview)</p>
+            <h2 id="arrays-ordered-tables">Arrays (Ordered Tables)</h2>
+            <p>You know how to use variables, create functions, use if
+            statements, create animations, get user input, and use for
+            loops. This tutorial introduces <strong>arrays</strong>
+            (ordered tables in Lua), which let you store multiple values
+            in a single variable!</p>
+            <h2 id="the-problem">The Problem</h2>
+            <p>Let’s say you want to draw multiple circles that bounce
+            around the screen. You might start with code like this:</p>
+            <figure>
+            <img src="../images/tables/arrays-tables1.gif"
+            alt="circles bounce around the screen" />
+            <figcaption aria-hidden="true">circles bounce around the
+            screen</figcaption>
+            </figure>
+            <div class="sourceCode" id="cb1"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">&quot;L5&quot;</span><span class="op">)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">circle1X</span> <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="va">circle1Y</span> <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="va">circle1SpeedX</span> <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="va">circle1SpeedY</span> <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="va">circle2X</span> <span class="op">=</span> <span class="dv">200</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="va">circle2Y</span> <span class="op">=</span> <span class="dv">150</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="va">circle2SpeedX</span> <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="va">circle2SpeedY</span> <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="va">circle3X</span> <span class="op">=</span> <span class="dv">150</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="va">circle3Y</span> <span class="op">=</span> <span class="dv">200</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="va">circle3SpeedX</span> <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="va">circle3SpeedY</span> <span class="op">=</span> <span class="op">-</span><span class="dv">2</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> setup<span class="op">()</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  size<span class="op">(</span><span class="dv">300</span><span class="op">,</span> <span class="dv">300</span><span class="op">)</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> draw<span class="op">()</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  background<span class="op">(</span><span class="dv">220</span><span class="op">)</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Move and draw circle 1</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="va">circle1X</span> <span class="op">=</span> <span class="va">circle1X</span> <span class="op">+</span> <span class="va">circle1SpeedX</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="va">circle1Y</span> <span class="op">=</span> <span class="va">circle1Y</span> <span class="op">+</span> <span class="va">circle1SpeedY</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">circle1X</span> <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> <span class="va">circle1X</span> <span class="op">&gt;</span> <span class="va">width</span> <span class="cf">then</span> <span class="va">circle1SpeedX</span> <span class="op">=</span> <span class="va">circle1SpeedX</span> <span class="op">*</span> <span class="op">-</span><span class="dv">1</span> <span class="cf">end</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">circle1Y</span> <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> <span class="va">circle1Y</span> <span class="op">&gt;</span> <span class="va">height</span> <span class="cf">then</span> <span class="va">circle1SpeedY</span> <span class="op">=</span> <span class="va">circle1SpeedY</span> <span class="op">*</span> <span class="op">-</span><span class="dv">1</span> <span class="cf">end</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  circle<span class="op">(</span><span class="va">circle1X</span><span class="op">,</span> <span class="va">circle1Y</span><span class="op">,</span> <span class="dv">20</span><span class="op">)</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Move and draw circle 2</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="va">circle2X</span> <span class="op">=</span> <span class="va">circle2X</span> <span class="op">+</span> <span class="va">circle2SpeedX</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="va">circle2Y</span> <span class="op">=</span> <span class="va">circle2Y</span> <span class="op">+</span> <span class="va">circle2SpeedY</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">circle2X</span> <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> <span class="va">circle2X</span> <span class="op">&gt;</span> <span class="va">width</span> <span class="cf">then</span> <span class="va">circle2SpeedX</span> <span class="op">=</span> <span class="va">circle2SpeedX</span> <span class="op">*</span> <span class="op">-</span><span class="dv">1</span> <span class="cf">end</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">circle2Y</span> <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> <span class="va">circle2Y</span> <span class="op">&gt;</span> <span class="va">height</span> <span class="cf">then</span> <span class="va">circle2SpeedY</span> <span class="op">=</span> <span class="va">circle2SpeedY</span> <span class="op">*</span> <span class="op">-</span><span class="dv">1</span> <span class="cf">end</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  circle<span class="op">(</span><span class="va">circle2X</span><span class="op">,</span> <span class="va">circle2Y</span><span class="op">,</span> <span class="dv">20</span><span class="op">)</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Move and draw circle 3</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  <span class="va">circle3X</span> <span class="op">=</span> <span class="va">circle3X</span> <span class="op">+</span> <span class="va">circle3SpeedX</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  <span class="va">circle3Y</span> <span class="op">=</span> <span class="va">circle3Y</span> <span class="op">+</span> <span class="va">circle3SpeedY</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">circle3X</span> <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> <span class="va">circle3X</span> <span class="op">&gt;</span> <span class="va">width</span> <span class="cf">then</span> <span class="va">circle3SpeedX</span> <span class="op">=</span> <span class="va">circle3SpeedX</span> <span class="op">*</span> <span class="op">-</span><span class="dv">1</span> <span class="cf">end</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">circle3Y</span> <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> <span class="va">circle3Y</span> <span class="op">&gt;</span> <span class="va">height</span> <span class="cf">then</span> <span class="va">circle3SpeedY</span> <span class="op">=</span> <span class="va">circle3SpeedY</span> <span class="op">*</span> <span class="op">-</span><span class="dv">1</span> <span class="cf">end</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  circle<span class="op">(</span><span class="va">circle3X</span><span class="op">,</span> <span class="va">circle3Y</span><span class="op">,</span> <span class="dv">20</span><span class="op">)</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+            <p>This is very repetitive! And what if you wanted 10
+            circles? Or 100?</p>
+            <h2 id="arrays-ordered-tables-1">Arrays (Ordered
+            Tables)</h2>
+            <p>An <strong>array</strong> is an ordered table in Lua - a
+            table that holds multiple values in a specific sequence.</p>
+            <p>To create an ordered table in Lua, use curly brackets
+            <code>{}</code>:</p>
+            <div class="sourceCode" id="cb2"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">circleX</span> <span class="op">=</span> <span class="op">{</span><span class="dv">100</span><span class="op">,</span> <span class="dv">200</span><span class="op">,</span> <span class="dv">150</span><span class="op">}</span></span></code></pre></div>
+            <p>This creates a table named <code>circleX</code> that
+            holds three values: <code>100</code>, <code>200</code>, and
+            <code>150</code>.</p>
+            <h2 id="accessing-array-elements">Accessing Array
+            Elements</h2>
+            <p>To access an element in a table, use square brackets
+            <code>[]</code> with an index:</p>
+            <div class="sourceCode" id="cb3"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="va">circleX</span><span class="op">[</span><span class="dv">1</span><span class="op">])</span>  <span class="co">-- prints 100</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="va">circleX</span><span class="op">[</span><span class="dv">2</span><span class="op">])</span>  <span class="co">-- prints 200</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="va">circleX</span><span class="op">[</span><span class="dv">3</span><span class="op">])</span>  <span class="co">-- prints 150</span></span></code></pre></div>
+            <p><strong>Important:</strong> In Lua, arrays start at index
+            <code>1</code>, not <code>0</code>!</p>
+            <h2 id="arrays-and-loops">Arrays and Loops</h2>
+            <p>Arrays become powerful when combined with for loops.
+            Instead of writing repetitive code for each circle, you can
+            use a loop:</p>
+            <figure>
+            <img src="../images/tables/arrays-tables1.gif"
+            alt="circles bounce around the screen" />
+            <figcaption aria-hidden="true">circles bounce around the
+            screen</figcaption>
+            </figure>
+            <div class="sourceCode" id="cb4"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">&quot;L5&quot;</span><span class="op">)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">circleX</span> <span class="op">=</span> <span class="op">{</span><span class="dv">100</span><span class="op">,</span> <span class="dv">200</span><span class="op">,</span> <span class="dv">150</span><span class="op">}</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="va">circleY</span> <span class="op">=</span> <span class="op">{</span><span class="dv">100</span><span class="op">,</span> <span class="dv">150</span><span class="op">,</span> <span class="dv">200</span><span class="op">}</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="va">circleSpeedX</span> <span class="op">=</span> <span class="op">{</span><span class="dv">2</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="dv">1</span><span class="op">}</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="va">circleSpeedY</span> <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="op">-</span><span class="dv">2</span><span class="op">}</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> setup<span class="op">()</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  size<span class="op">(</span><span class="dv">300</span><span class="op">,</span> <span class="dv">300</span><span class="op">)</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> draw<span class="op">()</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  background<span class="op">(</span><span class="dv">220</span><span class="op">)</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="va">i</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">3</span> <span class="cf">do</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Move circle</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="va">circleX</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">=</span> <span class="va">circleX</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">+</span> <span class="va">circleSpeedX</span><span class="op">[</span><span class="va">i</span><span class="op">]</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="va">circleY</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">=</span> <span class="va">circleY</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">+</span> <span class="va">circleSpeedY</span><span class="op">[</span><span class="va">i</span><span class="op">]</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Bounce off edges</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">circleX</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> <span class="va">circleX</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&gt;</span> <span class="va">width</span> <span class="cf">then</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>      <span class="va">circleSpeedX</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">=</span> <span class="va">circleSpeedX</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">*</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">circleY</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> <span class="va">circleY</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&gt;</span> <span class="va">height</span> <span class="cf">then</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>      <span class="va">circleSpeedY</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">=</span> <span class="va">circleSpeedY</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">*</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Draw circle</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    circle<span class="op">(</span><span class="va">circleX</span><span class="op">[</span><span class="va">i</span><span class="op">],</span> <span class="va">circleY</span><span class="op">[</span><span class="va">i</span><span class="op">],</span> <span class="dv">20</span><span class="op">)</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+            <p>Now the code is much shorter and easier to work with!</p>
+            <h2 id="the-operator">The # Operator</h2>
+            <p>Instead of hardcoding the number of elements, you can use
+            the <code>#</code> operator to get the length of a
+            table:</p>
+            <div class="sourceCode" id="cb5"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="va">i</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="op">#</span><span class="va">circleX</span> <span class="cf">do</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- code here</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+            <p>This makes it easy to add or remove elements without
+            changing your loop!</p>
+            <h2 id="adding-elements">Adding Elements</h2>
+            <p>You can add elements to a table using
+            <code>table.insert()</code>. This takes two arguments: the
+            name of the table, and the item you want to insert at the
+            end:</p>
+            <div class="sourceCode" id="cb6"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table.insert</span><span class="op">(</span><span class="va">tableName</span><span class="op">,</span> <span class="va">value</span><span class="op">)</span>  <span class="co">-- adds to end</span></span></code></pre></div>
+            <p>Optionally, you can specify an index as the second
+            argument to insert the new element at a specific position in
+            the table:</p>
+            <div class="sourceCode" id="cb7"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table.insert</span><span class="op">(</span><span class="va">tableName</span><span class="op">,</span> <span class="va">index</span><span class="op">,</span> <span class="va">value</span><span class="op">)</span>  <span class="co">-- inserts at specific position</span></span></code></pre></div>
+            <p>Here’s an example:</p>
+            <figure>
+            <img src="../images/tables/arrays-tables2.gif"
+            alt="3 circles are drawn where the mouse cursor is pressed" />
+            <figcaption aria-hidden="true">3 circles are drawn where the
+            mouse cursor is pressed</figcaption>
+            </figure>
+            <div class="sourceCode" id="cb8"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">&quot;L5&quot;</span><span class="op">)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="va">circleX</span> <span class="op">=</span> <span class="op">{}</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="va">circleY</span> <span class="op">=</span> <span class="op">{}</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> setup<span class="op">()</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  size<span class="op">(</span><span class="dv">300</span><span class="op">,</span> <span class="dv">300</span><span class="op">)</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  background<span class="op">(</span><span class="dv">220</span><span class="op">)</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> draw<span class="op">()</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Don&#39;t clear background - leave a trail</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> mousePressed<span class="op">()</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table.insert</span><span class="op">(</span><span class="va">circleX</span><span class="op">,</span> <span class="va">mouseX</span><span class="op">)</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table.insert</span><span class="op">(</span><span class="va">circleY</span><span class="op">,</span> <span class="va">mouseY</span><span class="op">)</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Draw all circles</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="va">i</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="op">#</span><span class="va">circleX</span> <span class="cf">do</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    circle<span class="op">(</span><span class="va">circleX</span><span class="op">[</span><span class="va">i</span><span class="op">],</span> <span class="va">circleY</span><span class="op">[</span><span class="va">i</span><span class="op">],</span> <span class="dv">30</span><span class="op">)</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+            <p>This program adds a circle wherever you click!</p>
+            <h2 id="removing-elements">Removing Elements</h2>
+            <p>You can remove elements using
+            <code>table.remove()</code>. This works similarly to
+            <code>table.insert()</code> - you pass it the table name,
+            and optionally an index:</p>
+            <div class="sourceCode" id="cb9"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table.remove</span><span class="op">(</span><span class="va">tableName</span><span class="op">)</span>        <span class="co">-- removes last element</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table.remove</span><span class="op">(</span><span class="va">tableName</span><span class="op">,</span> <span class="va">index</span><span class="op">)</span> <span class="co">-- removes element at specific position</span></span></code></pre></div>
+            <p>If you don’t specify an index, it removes the last
+            element. If you do specify an index, it removes the element
+            at that position.</p>
+            <p>Here’s an example:</p>
+            <figure>
+            <img src="../images/tables/arrays-tables3.gif"
+            alt="3 circles are added to the window, then disappear in reverse order" />
+            <figcaption aria-hidden="true">3 circles are added to the
+            window, then disappear in reverse order</figcaption>
+            </figure>
+            <div class="sourceCode" id="cb10"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">&quot;L5&quot;</span><span class="op">)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="va">circleX</span> <span class="op">=</span> <span class="op">{}</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="va">circleY</span> <span class="op">=</span> <span class="op">{}</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> setup<span class="op">()</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  size<span class="op">(</span><span class="dv">300</span><span class="op">,</span> <span class="dv">300</span><span class="op">)</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> draw<span class="op">()</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  background<span class="op">(</span><span class="dv">220</span><span class="op">)</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Draw all circles</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="va">i</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="op">#</span><span class="va">circleX</span> <span class="cf">do</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    circle<span class="op">(</span><span class="va">circleX</span><span class="op">[</span><span class="va">i</span><span class="op">],</span> <span class="va">circleY</span><span class="op">[</span><span class="va">i</span><span class="op">],</span> <span class="dv">30</span><span class="op">)</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> mousePressed<span class="op">()</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Add circle at mouse position</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table.insert</span><span class="op">(</span><span class="va">circleX</span><span class="op">,</span> <span class="va">mouseX</span><span class="op">)</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table.insert</span><span class="op">(</span><span class="va">circleY</span><span class="op">,</span> <span class="va">mouseY</span><span class="op">)</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> keyPressed<span class="op">()</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Remove last circle when any key is pressed</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">#</span><span class="va">circleX</span> <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">then</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">table.remove</span><span class="op">(</span><span class="va">circleX</span><span class="op">)</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">table.remove</span><span class="op">(</span><span class="va">circleY</span><span class="op">)</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+            <p>Click to add circles, press any key to remove the last
+            one!</p>
+            <h2 id="random-initialization">Random Initialization</h2>
+            <p>You can use loops to fill arrays with random values:</p>
+            <figure>
+            <img src="../images/tables/arrays-tables4.webp"
+            alt="10 circles are spread around the window" />
+            <figcaption aria-hidden="true">10 circles are spread around
+            the window</figcaption>
+            </figure>
+            <div class="sourceCode" id="cb11"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">&quot;L5&quot;</span><span class="op">)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="va">circleX</span> <span class="op">=</span> <span class="op">{}</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="va">circleY</span> <span class="op">=</span> <span class="op">{}</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="va">circleSize</span> <span class="op">=</span> <span class="op">{}</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> setup<span class="op">()</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  size<span class="op">(</span><span class="dv">300</span><span class="op">,</span> <span class="dv">300</span><span class="op">)</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Create 10 random circles</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="va">i</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">10</span> <span class="cf">do</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">circleX</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">=</span> random<span class="op">(</span><span class="va">width</span><span class="op">)</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="va">circleY</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">=</span> random<span class="op">(</span><span class="va">height</span><span class="op">)</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="va">circleSize</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">=</span> random<span class="op">(</span><span class="dv">10</span><span class="op">,</span> <span class="dv">50</span><span class="op">)</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> draw<span class="op">()</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  background<span class="op">(</span><span class="dv">220</span><span class="op">)</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Draw all circles</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="va">i</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="op">#</span><span class="va">circleX</span> <span class="cf">do</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    circle<span class="op">(</span><span class="va">circleX</span><span class="op">[</span><span class="va">i</span><span class="op">],</span> <span class="va">circleY</span><span class="op">[</span><span class="va">i</span><span class="op">],</span> <span class="va">circleSize</span><span class="op">[</span><span class="va">i</span><span class="op">])</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+            <p>This creates 10 circles at random positions with random
+            sizes!</p>
+            <h2 id="nested-tables-2d-arrays">Nested Tables (2D
+            Arrays)</h2>
+            <p>You can create tables of tables (2D arrays) for
+            grid-based data:</p>
+            <figure>
+            <img src="../images/tables/arrays-tables5.webp"
+            alt="a grid of various grayscale squares" />
+            <figcaption aria-hidden="true">a grid of various grayscale
+            squares</figcaption>
+            </figure>
+            <div class="sourceCode" id="cb12"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">&quot;L5&quot;</span><span class="op">)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="va">grid</span> <span class="op">=</span> <span class="op">{}</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> setup<span class="op">()</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  size<span class="op">(</span><span class="dv">300</span><span class="op">,</span> <span class="dv">300</span><span class="op">)</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Create a 10x10 grid</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="va">row</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">10</span> <span class="cf">do</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="va">grid</span><span class="op">[</span><span class="va">row</span><span class="op">]</span> <span class="op">=</span> <span class="op">{}</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="va">col</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">10</span> <span class="cf">do</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>      <span class="va">grid</span><span class="op">[</span><span class="va">row</span><span class="op">][</span><span class="va">col</span><span class="op">]</span> <span class="op">=</span> random<span class="op">(</span><span class="dv">255</span><span class="op">)</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> draw<span class="op">()</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="va">row</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">10</span> <span class="cf">do</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="va">col</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">10</span> <span class="cf">do</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>      fill<span class="op">(</span><span class="va">grid</span><span class="op">[</span><span class="va">row</span><span class="op">][</span><span class="va">col</span><span class="op">])</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>      rect<span class="op">((</span><span class="va">col</span> <span class="op">-</span> <span class="dv">1</span><span class="op">)</span> <span class="op">*</span> <span class="dv">30</span><span class="op">,</span> <span class="op">(</span><span class="va">row</span> <span class="op">-</span> <span class="dv">1</span><span class="op">)</span> <span class="op">*</span> <span class="dv">30</span><span class="op">,</span> <span class="dv">30</span><span class="op">,</span> <span class="dv">30</span><span class="op">)</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+            <p>This creates a grid of randomly colored squares!</p>
+            <h2 id="example-snake-trail">Example: Snake Trail</h2>
+            <p>Here’s a complete example that creates a trail that
+            follows the mouse:</p>
+            <figure>
+            <img src="../images/tables/arrays-tables6.gif"
+            alt="a snakelike chain of circles follows the cursor" />
+            <figcaption aria-hidden="true">a snakelike chain of circles
+            follows the cursor</figcaption>
+            </figure>
+            <div class="sourceCode" id="cb13"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">&quot;L5&quot;</span><span class="op">)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="va">trailX</span> <span class="op">=</span> <span class="op">{}</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="va">trailY</span> <span class="op">=</span> <span class="op">{}</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="va">maxLength</span> <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> setup<span class="op">()</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  size<span class="op">(</span><span class="dv">300</span><span class="op">,</span> <span class="dv">300</span><span class="op">)</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> draw<span class="op">()</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  background<span class="op">(</span><span class="dv">220</span><span class="op">)</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Add current mouse position</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table.insert</span><span class="op">(</span><span class="va">trailX</span><span class="op">,</span> <span class="va">mouseX</span><span class="op">)</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table.insert</span><span class="op">(</span><span class="va">trailY</span><span class="op">,</span> <span class="va">mouseY</span><span class="op">)</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Remove oldest position if trail is too long</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">#</span><span class="va">trailX</span> <span class="op">&gt;</span> <span class="va">maxLength</span> <span class="cf">then</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">table.remove</span><span class="op">(</span><span class="va">trailX</span><span class="op">,</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">table.remove</span><span class="op">(</span><span class="va">trailY</span><span class="op">,</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Draw trail</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="va">i</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="op">#</span><span class="va">trailX</span> <span class="cf">do</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    <span class="va">size</span> <span class="op">=</span> <span class="op">(</span><span class="va">i</span> <span class="op">/</span> <span class="op">#</span><span class="va">trailX</span><span class="op">)</span> <span class="op">*</span> <span class="dv">30</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    circle<span class="op">(</span><span class="va">trailX</span><span class="op">[</span><span class="va">i</span><span class="op">],</span> <span class="va">trailY</span><span class="op">[</span><span class="va">i</span><span class="op">],</span> <span class="va">size</span><span class="op">)</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+            <p>This creates a trail that follows your mouse, with
+            circles getting bigger toward the mouse.</p>
+            <h2 id="live-coding-music-with-strudel">Live coding music
+            with Strudel</h2>
+            <ul>
+            <li>Strudel is a port of another livecoding program, Tidal
+            Cycles, for javascript. This allows it to run in the browser
+            without needing to set anything up on your computer. Despite
+            not having the typical layout one might expect from a
+            digital audio workstation, Strudel can be used to make just
+            about any genre of music with the right dedication.</li>
+            </ul>
+            <p>Getting started with strudel: There are many different
+            sounds loaded into strudel by default; listed below are the
+            ones I find myself using most frequently, however we can
+            introduce more sounds later.</p>
+            <h3 id="drums">DRUMS</h3>
+            <ul>
+            <li>bd = bass drum</li>
+            <li>sd = snare drum</li>
+            <li>rim = rimshot</li>
+            <li>hh = hihat</li>
+            <li>oh = open hihat</li>
+            <li>cp = clap</li>
+            </ul>
+            <h3 id="synths">SYNTHS</h3>
+            <ul>
+            <li>sin/sine (sine wave)</li>
+            <li>tri/triangle (triangle wave)</li>
+            <li>saw/sawtooth (sawtooth wave)</li>
+            <li>sqr/square (square wave)</li>
+            <li>supersaw</li>
+            <li>white (white noise)</li>
+            <li>piano</li>
+            </ul>
+            <h3 id="misc">MISC</h3>
+            <ul>
+            <li>jazz</li>
+            <li>metal</li>
+            <li>insect</li>
+            <li>crow</li>
+            </ul>
+            <p>Since we’re just getting started, we’re going to focus on
+            the drum sounds only while introducing the syntax for making
+            sound in Strudel:</p>
+            <ul>
+            <li>sound() (or s() as an abbreviation) allows you to play
+            different sounds
+            <ul>
+            <li><code>sound("bd rim bd cp")</code> here is a sequence
+            using some of the drums we learned before, feel free to
+            paste this into <a href="https://strudel.cc/">Strudel</a> to
+            listen to it!</li>
+            </ul></li>
+            <li>Strudel relies on “cycles” for the timing of your
+            sounds. To change the amount of cycles per minute, we can
+            use setcpm(#)</li>
+            <li>.bank() is a modifier we can use to change the soundbank
+            we are using
+            <ul>
+            <li><code>sound("bd rim bd cp").bank("akaimpc60")</code></li>
+            <li>Try adding tr707, tr808, or tr909 inside of .bank() to
+            hear the difference</li>
+            </ul></li>
+            <li>Rests can be added using - or ~, subdivisions can be
+            made with [], and sounds can alternate between different
+            cycles using &lt;&gt;
+            <ul>
+            <li><code>s("[rim bd] [rim &lt;bd oh&gt;] bd bd bd ~").bank("tr707")</code></li>
+            </ul></li>
+            <li>To condense this, we can use ! to replace repeating
+            notes
+            -<code>s("[rim bd] [rim &lt;bd oh&gt;] bd!3 ~").bank("tr707") //bd!3 plays the bass drum 3 times</code></li>
+            <li>While they seem similar, ! and * have different use
+            cases
+            <ul>
+            <li><code>s("rim hh rim bd*2") //plays bd twice in the same section of the sequence, as if using a subsequence</code></li>
+            <li><code>s("rim hh rim bd!2") //acts as if bd was placed twice in the sequence</code></li>
+            <li>These differences are easier to notice when using higher
+            values, so try changing 2 to something else if you’re still
+            confused</li>
+            </ul></li>
+            <li>To initialize a line of code in strudel, write $: at the
+            start of a line before writing in a sound. This allows you
+            to have multiple lines that will run at the same time
+            alongside each other.</li>
+            <li>To stop playing a line, use an underscore at the start
+            like this _$:</li>
+            <li>You can also comment it out as you usually would with
+            //</li>
+            <li>Other modifiers often used when working with drums are
+            .distort(), .speed(), .swing(), .crush(), and .fast(). Feel
+            free to experiment with these, or read into them on the <a
+            href="https://strudel.cc/workshop/getting-started/">strudel
+            documentation</a> to learn about how they work 🐈</li>
+            </ul>
+            <pre><code>_$: s(&quot;[rim bd] [rim &lt;bd oh&gt;]&quot;).bank(&quot;tr707&quot;) //this line isnt playing
+//$: s(&quot;~ sd&quot;).fast(2) //neither is this one
+$: s(&quot;rim hh rim bd!5&quot;) //but this line is!</code></pre>
+            <p>Activity: make drum loop with dice! 4 dice will be handed
+            out and we will make a loop with these restrictions
+            determined by the results</p>
+            <ul>
+            <li>D4
+            <ul>
+            <li>1 = default sound bank</li>
+            <li>2 = tr707</li>
+            <li>3 = tr808</li>
+            <li>4 = tr909</li>
+            </ul></li>
+            <li>D6
+            <ul>
+            <li>1 = no bass drum</li>
+            <li>2 = no rimshot</li>
+            <li>3 = no hihat</li>
+            <li>4 = no clap</li>
+            <li>5 = no snare</li>
+            <li>6 = no open hihat</li>
+            </ul></li>
+            <li>D8 (optional)
+            <ul>
+            <li>All numbers in the code (excluding cpm and soundbank)
+            must sum to resulting number</li>
+            </ul></li>
+            <li>D10
+            <ul>
+            <li><code>setcpm(result*10+80/4)</code></li>
+            </ul></li>
+            <li>Have fun!</li>
+            </ul>
+            <p>MAKING MELODIES - Using the note() function allows you to
+            write melodies using different sounds, it’s useful for using
+            synth sounds like the ones on the first page - Notes can be
+            written out in an a-g scale like when using a piano roll
+            tool in a different program, in the format of the note you
+            want along with the octave</p>
+            <pre><code>$: note(&quot;[e4 d4]!2 [a3 &lt;c4 ~&gt;]!2&quot;).s(&quot;tri&quot;)
+$: note(&quot;&lt;e3 d3 a2!2&gt;!3&quot;).s(&quot;sine&quot;).swing(2)</code></pre>
+            <ul>
+            <li>You can also write a melody with different numbers if
+            it’s harder to think of notes in a scale from a-g
+            <ul>
+            <li>`$: note(“57 58 65 58”).s(“saw”).lpf(800).trans(“&lt;0!4
+            -1!4&gt;”).fast(2).room(2)</li>
+            </ul></li>
+            <li>Try writing a melody for the drums you made before, and
+            feel free to look <a
+            href="https://strudel.cc/workshop/first-notes/">here</a> if
+            you need more help</li>
+            <li>More default synths can be found in the menu found in
+            the top right on <a href="http://strudel.cc">strudel.cc</a>
+            under the sounds tab <img
+            src="../images/0186373549d6e206ccc22b7bb285b8bd52689643.png" /></li>
+            </ul>
+            <p>Lesson by Jaiden Kelly, licensed under
+            <a href="https://creativecommons.org/licenses/by-nd/4.0/">CC
+            BY-ND
+            4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"></p>
+            <p><em>Contains material adapted from <a
+            href="https://l5lua.org/tutorials/tutorials/arrays-tables/">Arrays
+            (ordered tables)</a> by <a
+            href="https://l5lua.org">L5lua</a>, <a
+            href="https://happycoding.io/tutorials/p5js/arrays">Arrays</a>
+            by <a href="https://happycoding.io">Happy Coding</a>,
+            licensed under <a
+            href="https://creativecommons.org/licenses/by/4.0/">CC BY
+            4.0</a></em></p>
+      <footer> <hr>
+
+<p><em><a href="https://github.com/lee2sman/dmsc_fall2026">This site</a> is built using <a href="https://tildegit.org/exquisitecorp/panblog">panblog</a>. Site design by Lee Tusman (c) 2026.</em></p>
+
+<p><em>All course content, unless otherwise credited, is by Lee Tusman (c) 2026 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">CC BY-NC-SA</a>.</em></p> </footer>
+  </body>
+</html>

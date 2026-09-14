@@ -4,3 +4,6 @@
 [Week 2 - L5 Overview and A Random Walk](iceberg-walks/)  
 2026-08-31  
 
+[Week 4 - Arrays of things and Drawing Machines](arrays-of-things/)  
+2026-09-14  
+

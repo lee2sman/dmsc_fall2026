@@ -14,7 +14,7 @@ https://leetusman.com/dmsc_fall2026/posts/2024-01-28-LOGO.html
 https://leetusman.com/dmsc_fall2026/posts/2024-01-28-LOGO.html
 </guid>
 <pubDate>
-Mon, 31 Aug 2026 00:00:00 -0400
+Mon, 14 Sep 2026 00:00:00 -0400
 </pubDate>
 <description>
 <![CDATA[
@@ -42,7 +42,7 @@ https://leetusman.com/dmsc_fall2026/posts/2026-08-31-iceberg-walks.html
 https://leetusman.com/dmsc_fall2026/posts/2026-08-31-iceberg-walks.html
 </guid>
 <pubDate>
-Mon, 31 Aug 2026 00:00:00 -0400
+Mon, 14 Sep 2026 00:00:00 -0400
 </pubDate>
 <description>
 <![CDATA[
@@ -56,6 +56,33 @@ Today
 -   HW: Devlog 2
 
 Lua!
+]]>
+</description>
+</item>
+<item>
+<title>
+Week 4 - Arrays of things and Drawing Machines
+</title>
+<link>
+https://leetusman.com/dmsc_fall2026/posts/2026-09-14-arrays-of-things.html
+</link>
+<guid>
+https://leetusman.com/dmsc_fall2026/posts/2026-09-14-arrays-of-things.html
+</guid>
+<pubDate>
+Mon, 14 Sep 2026 00:00:00 -0400
+</pubDate>
+<description>
+<![CDATA[
+Today
+
+-   Autonomous painting machines
+    -   Harold Cohen and AARON
+    -   Samia Halaby
+-   Tables in Lua
+    -   Intro to Tables in Lua
+    -   Randomization, following, trails with tables
+-   Intro workshop: live coding music with Strudel
 ]]>
 </description>
 </item>
