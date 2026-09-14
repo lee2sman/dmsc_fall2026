@@ -20,6 +20,7 @@ Harold Cohen - The Age of Intelligent Machines - 1987 (Clip)
 <iframe width="560" height="315" src="https://www.youtube.com/embed/MwHQx9BrHQc?si=lSYUTK2Cn--zVP-5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>  
 Harold Cohen - Collaborations with my Other Self - 2011 (Interview)   
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/sDfIkXf3uzA?si=bfWQFBsKsGTa_LUu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Arrays (Ordered Tables)
 
