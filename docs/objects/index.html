@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta name="date" content="" />
+            <title>Week 5 - From p5.js to L5, and more Lua</title>
+      <link rel="stylesheet" href="../css/../css/dmsc.css" />
+
+      <meta property="og:title" content="Week 5 - From p5.js to L5, and
+more Lua" />
+                  <meta property="og:type" content="article" />
+  </head>
+  <body>
+      <header> <nav>
+  <ul>
+    <li><a href="/dmsc_fall2026/">home</a></li>
+    <li><a href="/dmsc_fall2026/about/">about</a></li>
+    <li><a href="/dmsc_fall2026/logs/">logs</a></li>
+    <li><a href="/dmsc_fall2026/syllabus/">syllabus</a></li>
+  </ul>
+</nav> </footer>
+      <h1>Week 5 - From p5.js to L5, and more Lua</h1>
+            <p><em>Date: 2026-09-21</em></p>
+            <p><em>Today’s music: <a
+            href="https://soundcloud.com/equovil-466535309/digital-shedding-vol-1">Digital
+            Shedding</a> by Eqovil, created with Strudel, selected by
+            Jaiden</em></p>
+            <blockquote>
+            <p>shedding is a technique that comes from jazz scenes in
+            regards to practice an endeavor in private to improve one’s
+            proficiency and build your own foundations. all of these
+            clips were made by myself using strudel.cc (as well as vcv
+            for some mels) and most have not been heard by anyone aside
+            me (not even the collaborators mentioned).</p>
+            </blockquote>
+            <h2 id="today">Today</h2>
+            <ul>
+            <li>Strudel solos</li>
+            <li>Strudel workshop II</li>
+            <li>p5.js to L5 (more fundamentals of Lua)</li>
+            <li>L5 jam</li>
+            </ul>
+            <h2 id="strudel-solos">Strudel Solos</h2>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/ZCcpWzhekEY?si=x5Nu9d25dgJ4i2EO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/7qfCeIgtllY?si=1pcOfOKPZiC114OR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+            <p>A chance to practice your live Strudel set.</p>
+            <p><em>Do you have a performance name yet?</em></p>
+            <h2 id="strudel-workshop-ii">Strudel Workshop II</h2>
+            <p><em>this section and written by Jaiden</em></p>
+            <p>Importing samples into strudel is a good way to get
+            creative with new sounds outside of what comes with the
+            program by default. There are a few different ways to import
+            sounds into strudel, including using files you have on your
+            own device, however this lesson will go over using github
+            and freesound.</p>
+            <h3 id="github">GITHUB</h3>
+            <p>Github repositories are an easy way to get a whole pack
+            of sounds from one link. This method uses the following
+            format to import the sounds</p>
+            <p><code>samples('github:user/repo')</code></p>
+            <p>Here’s an example using sounds from <a
+            href="https://github.com/tidalcycles/Dirt-Samples">this
+            pack</a>:</p>
+            <pre><code>samples(&#39;github:tidalcycles/Dirt-Samples/master/&#39;)
+setcpm(120/4)
+
+$: note(run(6)).scale(&quot;d:minor&quot;).s(&quot;hoover&quot;).speed(.5).room(2).orbit(2)
+$: s(&quot;hardkick:1 hit&quot;).fast(&quot;&lt;2!3 4&gt;&quot;).duck(2).duckatt(&quot;&lt;.25!3 0.1&gt;&quot;)
+$: s(&quot;hardcore*16&quot;).orbit(2)</code></pre>
+            <p>Some packs will allow you to access the sounds by typing
+            in the name of the folder they’re in, while others will have
+            the sound name in the strudel.json file like the examples
+            below:</p>
+            <pre><code>samples(&#39;github:switchangel/pad&#39;)
+samples(&#39;github:yaxu/clean-breaks&#39;)
+
+$: s(&quot;swpad:1&quot;).fit()
+$: s(&quot;eeloil&quot;).loopAt(2)</code></pre>
+            <p>Folders will sometimes have multiple sound files in them,
+            which can be accessed using the name of the folder, followed
+            by a colon and the index of the sound you want:</p>
+            <p>this example uses <a
+            href="https://github.com/tidalcycles/Dirt-Samples/tree/master/baa">this
+            folder</a></p>
+            <pre><code>samples(&#39;github:tidalcycles/dirt-samples&#39;)
+$: s(&quot;baa:&lt;0 1 2 3 4 5&gt;&quot;).fit()</code></pre>
+            <h3 id="freesound">FREESOUND</h3>
+            <p>The wonderful world of <a
+            href="http://freesound.org">freesound.org</a> has a vast
+            variety of sounds, from thousands of drums and synths, to <a
+            href="https://freesound.org/people/alexdarek/sounds/866304/">An
+            old electric oven with a rotisserie spit</a>. Searching for
+            samples by hand like this can be more difficult, but can be
+            rewarding when you find what you’re looking for. There are
+            two ways to import a freesound link:</p>
+            <p><code>samples({name: 'url'})</code> or
+            <code>samples({name: {key: 'url'}})</code></p>
+            <p>Both of these will work fine, but we’ll focus on the
+            first method since specifying the key only changes the pitch
+            of the sound which can be done in other ways as well. The
+            “url” space requires a CDN link which can be found manually
+            using the following steps:</p>
+            <ul>
+            <li>Open inspect element</li>
+            <li>Search HTML for “mp3”</li>
+            <li>Look for a link that starts with
+            “https://cdn.freesound.org/previews” in the inspector, and
+            copy it into strudel</li>
+            </ul>
+            <p><img
+            src="../images/d3e7df149e2fb7553deae4569edcf8ca0153b4ca.png" /></p>
+            <p>There is also a <a
+            href="https://freesound.org/forum/freesound-project/44562/">browser
+            extension</a> made for parsing a CDN link automatically if
+            you want to avoid these steps.</p>
+            <pre><code>samples({oven: &#39;https://cdn.freesound.org/previews/866/866304_10586310-lq.mp3&#39;})
+
+$: s(&quot;oven&quot;).striate(12).clip(1)
+$: note(&quot;f3 c3 a3 ~&quot;).s(&quot;sine&quot;)</code></pre>
+            <h3 id="using-samples">USING SAMPLES</h3>
+            <p>Strudel has functions that are useful when it comes to
+            sampling</p>
+            <ul>
+            <li>fit() shortens your sample to fit into one cycle,
+            loopAt() fits the sample into the specified amount of
+            cycles</li>
+            </ul>
+            <pre><code>samples(&#39;github:switchangel/pad&#39;)
+samples(&#39;github:yaxu/clean-breaks&#39;)
+
+$: s(&quot;swpad:1&quot;).fit()
+$: s(&quot;eeloil&quot;).loopAt(2)</code></pre>
+            <ul>
+            <li>splice() cuts your sample into multiple sections and
+            allows you to play each section independently:</li>
+            </ul>
+            <pre><code>samples({j: &#39;https://cdn.freesound.org/previews/865/865921_12880153-lq.mp3&#39;})
+setcpm(90/4)
+
+$: s(&quot;j&quot;).splice(16, &quot;1 2 3*&lt;1!5 4&gt; [&lt;2!3 4&gt; &lt;4 6&gt;]&quot;)
+$: s(&quot;bd ~ bd [bd*&lt;0 2&gt;]&quot;).bank(&quot;tr909&quot;).fast(2)</code></pre>
+            <ul>
+            <li>scrub() allows you to play back a specific position in
+            your audio file. It only uses values between 0 and 1, and
+            using a colon allows you to alter the speed your sample is
+            played back at. This is the most consistent way i’ve found
+            to work with long samples (especially vocals) that get sped
+            up when using the other functions</li>
+            </ul>
+            <pre><code>setcpm(120/4)
+samples(&#39;github:yaxu/clean-breaks&#39;)
+samples(&#39;github:kyrsive/ily2-sounds&#39;)
+
+$: s(&quot;sport&quot;).scrub(&quot;.75 .5!2 [.1:&lt;1 2&gt;!4]&quot;)
+$: s(&quot;ily_sing_147_Csm&quot;).scrub(&quot;.28!3 .14 .17&quot;).speed(.75)</code></pre>
+            <p>Other functions I like using to change the way my sample
+            sounds include distort(), crush(), coarse(), speed(),
+            striate(), and slow(). The <a
+            href="https://strudel.cc/workshop/getting-started/">strudel
+            documentation</a> is a good resource to read into what these
+            effects do</p>
+            <h3 id="activity-pick-a-sample-pack-out-of-a-hat">Activity:
+            Pick a sample pack out of a hat!</h3>
+            <p>Pieces of paper will be folded and put into a hat with
+            links to different github repositories. Students will pick a
+            piece of paper at random and use the given samples to make
+            something in Strudel to show off in class. Default sounds
+            may also be used in the process, but try to incorporate some
+            of the sounds your pack gives you as well 🐈</p>
+            <p>The following links will be written to choose from: - <a
+            href="https://github.com/tidalcycles/Dirt-Samples">https://github.com/tidalcycles/Dirt-Samples</a> 
+            - <a
+            href="https://github.com/yaxu/clean-breaks">https://github.com/yaxu/clean-breaks</a> 
+            - <a
+            href="https://github.com/algorave-dave/samples">https://github.com/algorave-dave/samples</a> 
+            - <a
+            href="https://github.com/switchangel/pad">https://github.com/switchangel/pad</a> 
+            - <a
+            href="https://github.com/kyrsive/ily2-sounds">https://github.com/kyrsive/ily2-sounds</a> </p>
+            <p>Please feel free to ask for help if you’re having trouble
+            importing your sound or if you need some inspiration to
+            start, good luck!</p>
+            <p><em>Lesson by Jaiden Kelly, licensed under
+            <a href="https://creativecommons.org/licenses/by-nd/4.0/">CC
+            BY-ND
+            4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"></em></p>
+            <h2
+            id="p5.js-to-l5-and-some-l5-lua-fundamentals-and-tips">p5.js
+            to L5, and some L5 Lua fundamentals and tips</h2>
+            <p>L5 stands on the shoulders of Processing and p5.js. You
+            will be able to use your previous knowledge to get started
+            right away and learn Lua in the process.</p>
+            <p>L5 was built to be fun, fast, and resource-light. It is
+            in many cases faster than Processing or p5.js programs. It
+            works cross-platform and on older machines. Lua’s syntax is
+            simpler and constrained compared to JavaScript and
+            Processing-Java. Some things are easier in L5, but some
+            things are not. L5 currently does not have 3d functionality.
+            It only supports one video format (ogg theora). It is a
+            younger and still developing language dialect compared to
+            its older siblings.</p>
+            <p>In most cases, L5 functions are similar or equivalent to
+            Processing functions. In some cases, p5.js functionality has
+            been targeted or added. For example, like in p5.js you can
+            use <a
+            href="https://en.wikipedia.org/wiki/Web_colors">HTML/CSS
+            color names or hexadecimal</a> instead of only the default
+            RGB and RGBA values from Processing.</p>
+            <h3 id="global-and-local-variables">Global and local
+            variables</h3>
+            <p><strong>Unlike in Processing (Java) and p5.js
+            (JavaScript), by default all variables in L5 (Lua) have
+            global scope unless specified as local.</strong></p>
+            <div class="sourceCode" id="cb8"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> setup<span class="op">()</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">name</span> <span class="op">=</span> <span class="st">&quot;Nina&quot;</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> draw<span class="op">()</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span><span class="op">(</span><span class="va">name</span><span class="op">)</span> <span class="co">--prints out &quot;Nina&quot;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+            <p>To create a variable with block scope, specify
+            <code>local</code>.</p>
+            <div class="sourceCode" id="cb9"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> setup<span class="op">()</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">name</span> <span class="op">=</span> <span class="st">&quot;Nina&quot;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> draw<span class="op">()</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span><span class="op">(</span><span class="va">name</span><span class="op">)</span> <span class="co">--prints out &quot;nil&quot;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+            <p>To concatenate variables together or to combine with
+            other strings, use <code>..</code></p>
+            <div class="sourceCode" id="cb10"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">name</span> <span class="op">=</span> <span class="st">&quot;Nina&quot;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="st">&quot;My name is &quot;</span><span class="op">..</span><span class="va">name</span><span class="op">)</span> <span class="co">--prints out &quot;My name is Nina&quot;</span></span></code></pre></div>
+            <h3 id="commenting">Commenting</h3>
+            <p>A comment starts with <code>--</code> instead of
+            <code>//</code></p>
+            <p>Multi-line comments can be created by surrounding them
+            with <code>--[[</code> and <code>]]--</code>.</p>
+            <h3 id="tables-all-the-way-down">Tables all the way
+            down</h3>
+            <p>The main data structure of Lua is the <em>table</em>.
+            This is used to construct arrays and objects, for
+            example.</p>
+            <div class="sourceCode" id="cb11"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="va">wu_tang_clan</span> <span class="op">=</span> <span class="op">{</span><span class="st">&quot;RZA&quot;</span><span class="op">,</span> <span class="st">&quot;GZA&quot;</span><span class="op">,</span> <span class="st">&quot;Ol&#39; Dirty Bastard&quot;</span><span class="op">,</span> <span class="st">&quot;Inspectah Deck&quot;</span><span class="op">,</span> <span class="st">&quot;Raekwon&quot;</span><span class="op">,</span> <span class="st">&quot;Ghostface Killah&quot;</span><span class="op">,</span> <span class="st">&quot;Method Man&quot;</span><span class="op">,</span> <span class="st">&quot;Masta Killa&quot;</span><span class="op">}</span></span></code></pre></div>
+            <p>And following from this…</p>
+            <h3 id="based-indexing">1-based indexing!</h3>
+            <p>You may have heard that Lua uses 1-based indexing. If you
+            haven’t, well now you’ve heard it.</p>
+            <p>In other words, the first item in an ordered array is
+            <code>1</code> where in many other C-based languages the
+            first ordered element is <code>0</code>.</p>
+            <div class="sourceCode" id="cb12"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="va">wu_tang_clan</span> <span class="op">=</span> <span class="op">{</span><span class="st">&quot;RZA&quot;</span><span class="op">,</span> <span class="st">&quot;GZA&quot;</span><span class="op">,</span> <span class="st">&quot;Ol&#39; Dirty Bastard&quot;</span><span class="op">,</span> <span class="st">&quot;Inspectah Deck&quot;</span><span class="op">,</span> <span class="st">&quot;Raekwon&quot;</span><span class="op">,</span> <span class="st">&quot;Ghostface Killah&quot;</span><span class="op">,</span> <span class="st">&quot;Method Man&quot;</span><span class="op">,</span> <span class="kw">and</span> <span class="st">&quot;Masta Killa&quot;</span><span class="op">}</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="st">&quot;First rapper up is &quot;</span><span class="op">..</span><span class="va">wu_tang_clan</span><span class="op">[</span><span class="dv">1</span><span class="op">])</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">--prints: First rapper up is RZA.</span></span></code></pre></div>
+            <p>There are some cool advantages in Lua for working with
+            ordered tables.</p>
+            <p>The <code>#</code> prepending the table name will always
+            give you its <em>length</em>.</p>
+            <div class="sourceCode" id="cb13"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="st">&quot;There are &quot;</span><span class="op">..#</span><span class="va">wu_tang_clan</span><span class="op">..</span><span class="st">&quot; members of Wu Tang Clan&quot;</span><span class="op">)</span></span></code></pre></div>
+            <p>This makes it easy to work with tables in a loop.</p>
+            <p>You can build associative tables, commonly known as a
+            <em>dictionary</em>, <em>map</em> or <em>key-value
+            pairs</em>. You can access their value through specifying a
+            named index, or through dot notation.</p>
+            <div class="sourceCode" id="cb14"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">characters</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">[</span><span class="st">&quot;Mario&quot;</span><span class="op">]</span> <span class="op">=</span> <span class="st">&quot;Plumber&quot;</span><span class="op">,</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">[</span><span class="st">&quot;Luigi&quot;</span><span class="op">]</span> <span class="op">=</span> <span class="st">&quot;Plumber&quot;</span><span class="op">,</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">[</span><span class="st">&quot;Bowser&quot;</span><span class="op">]</span> <span class="op">=</span> <span class="st">&quot;Monster&quot;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="st">&quot;Mario is a &quot;</span><span class="op">..</span><span class="va">characters</span><span class="op">[</span><span class="st">&quot;Mario&quot;</span><span class="op">])</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">--Alternatively, you could write:</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="st">&quot;Mario is a &quot;</span><span class="op">..</span><span class="va">characters</span><span class="op">.</span><span class="va">Mario</span><span class="op">)</span></span></code></pre></div>
+            <p>The brackets are optional if your parameter is a single
+            string with no spaces.</p>
+            <div class="sourceCode" id="cb15"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">characters</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">mario</span> <span class="op">=</span> <span class="st">&quot;Plumber&quot;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+            <p>You can easily add properties to a table, using bracket
+            notation or dot notation.</p>
+            <div class="sourceCode" id="cb16"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">museum</span> <span class="op">=</span> <span class="op">{}</span> <span class="co">--initializes the table</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="va">museum</span><span class="op">[</span><span class="st">&#39;location&#39;</span><span class="op">]</span> <span class="op">=</span> <span class="st">&quot;Los Angeles&quot;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="va">museum</span><span class="op">.</span><span class="va">name</span> <span class="op">=</span> <span class="st">&quot;Museum of Jurassic Technology&quot;</span></span></code></pre></div>
+            <h3 id="loops-in-lua">Loops in Lua</h3>
+            <p><em><a href="/reference/for">For</a> loops</em> have
+            simple syntax. By default the iterator increments by 1.</p>
+            <div class="sourceCode" id="cb17"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="va">i</span><span class="op">=</span><span class="dv">1</span><span class="op">,</span><span class="dv">5</span> <span class="cf">do</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+            <p>You can optionally specify to increment or decrement by a
+            different value.</p>
+            <div class="sourceCode" id="cb18"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="va">i</span><span class="op">=</span><span class="dv">100</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="op">-</span><span class="dv">2</span> <span class="cf">do</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- counts backwards from 100 to 0, decreasing by 2 each iteration</span></span></code></pre></div>
+            <p>If you want to iterate through a table of values, the
+            syntax is clear and efficient in Lua since prepending
+            <code>#</code> to a table’s name gives you its length, and
+            since tables are ordered beginning at 1, we can count up
+            from 1 to the table’s length:</p>
+            <div class="sourceCode" id="cb19"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="st">&quot;The Wu Tang Clan, starring:&quot;</span><span class="op">)</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="va">i</span><span class="op">=</span><span class="dv">1</span><span class="op">,#</span><span class="va">wu_tang_clan</span> <span class="cf">do</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span><span class="op">(</span><span class="va">wu_tang_clan</span><span class="op">[</span><span class="va">i</span><span class="op">])</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+            <p>Lua also has special functions for working with tables.
+            <code>ipairs</code> iterates through an ordered table (aka
+            an <em>array</em>). <code>pairs</code> iterates through an
+            associative table (aka <em>key-value pairs</em>).</p>
+            <div class="sourceCode" id="cb20"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="va">names</span> <span class="op">=</span> <span class="op">{</span><span class="st">&quot;John&quot;</span><span class="op">,</span><span class="st">&quot;Paul&quot;</span><span class="op">,</span><span class="st">&quot;George&quot;</span><span class="op">,</span><span class="st">&quot;Ringo&quot;</span><span class="op">,</span><span class="st">&quot;Yoko&quot;</span><span class="op">}</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="va">i</span><span class="op">,</span><span class="va">name</span> <span class="kw">in</span> <span class="fu">ipairs</span><span class="op">(</span><span class="va">names</span><span class="op">)</span> <span class="cf">do</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span><span class="op">(</span><span class="va">i</span><span class="op">,</span><span class="va">name</span><span class="op">)</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+            <p>This will produce</p>
+            <pre class="text"><code>1   John
+2   Paul
+3   George
+4   Ringo
+5   Yoko</code></pre>
+            <p>You will commonly see <code>_</code> when you don’t need
+            to print out or work with the iterator.</p>
+            <pre><code>names = {&quot;John&quot;,&quot;Paul&quot;,&quot;George&quot;,&quot;Ringo&quot;,&quot;Yoko&quot;}
+print(&quot;The Beatles:&quot;)
+for _,name in ipairs(names) do
+  print(name)
+end</code></pre>
+            <p>This will produce</p>
+            <pre class="text"><code>The Beatles:
+John
+Paul
+George
+Ringo
+Yoko</code></pre>
+            <p><code>pairs</code> is used to iterate over all key-value
+            pairs in a table.</p>
+            <div class="sourceCode" id="cb24"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">menu</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">breakfast</span> <span class="op">=</span> <span class="st">&quot;yogurt&quot;</span><span class="op">,</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">lunch</span> <span class="op">=</span> <span class="st">&quot;salad&quot;</span><span class="op">,</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="va">dinner</span> <span class="op">=</span> <span class="st">&quot;tacos&quot;</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="va">key</span><span class="op">,</span> <span class="va">value</span> <span class="kw">in</span> <span class="fu">pairs</span><span class="op">(</span><span class="va">menu</span><span class="op">)</span> <span class="cf">do</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span><span class="op">(</span><span class="st">&quot;For &quot;</span><span class="op">..</span><span class="va">key</span><span class="op">..</span><span class="st">&quot; I ate &quot;</span><span class="op">..</span><span class="va">value</span><span class="op">)</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+            <p>This will produce</p>
+            <pre class="text"><code>For breakfast I ate yogurt
+For dinner I ate tacos
+For lunch I ate salad</code></pre>
+            <p><strong>Note: In an associative table of key-value pairs
+            (rather than an ordered table array), there is no guarantee
+            that the values will be output in a specific order.</strong>
+            If you run the above code, you may find the <em>dinner</em>
+            gets printed before <em>lunch</em> even though lunch was
+            listed first in the table, but there are mechanisms to
+            specify an exact order.</p>
+            <h2 id="conditionals">Conditionals</h2>
+            <p>Lua uses <code>if</code>, <code>elseif</code> and
+            <code>else</code> to create conditionals. <code>then</code>
+            is required after your <code>if</code> and
+            <code>elseif</code> conditional.</p>
+            <div class="sourceCode" id="cb26"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">porridgeTemp</span> <span class="op">&gt;</span> <span class="dv">75</span> <span class="cf">then</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span><span class="op">(</span><span class="st">&quot;This bowl of porridge is too hot!&quot;</span><span class="op">)</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="cf">elseif</span> <span class="va">porridgeTemp</span> <span class="op">&lt;</span> <span class="dv">45</span> <span class="cf">then</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span><span class="op">(</span><span class="st">&quot;This bowl of porridge is too cold!&quot;</span><span class="op">)</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span><span class="op">(</span><span class="st">&quot;This bowl of porridge is just right.&quot;</span><span class="op">)</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div>
+            <p>Unlike Java and JavaScript, there is no switch statement
+            in Lua.</p>
+            <h2 id="other-lua-gotchas-and-tips">Other Lua Gotchas and
+            Tips</h2>
+            <ul>
+            <li>Lua is a dynamically typed language. You don’t specify
+            types (integer, floats, etc).</li>
+            <li>Functions and loops use <code>end</code> rather than
+            curly brackets <code>{ }</code> for specifying scope. Loops
+            also use <code>do</code>.</li>
+            <li><strong>There are no <code>++</code> or <code>+=</code>
+            shortcuts in Lua. To increment a variable by 1 for example,
+            you write <code>x = x + 1</code></strong></li>
+            <li>The semicolon <code>;</code> is not needed at the end of
+            lines</li>
+            </ul>
+            <h2 id="conversion-equivalences">Conversion
+            equivalences</h2>
+            <table>
+            <colgroup>
+            <col style="width: 30%" />
+            <col style="width: 33%" />
+            <col style="width: 36%" />
+            </colgroup>
+            <thead>
+            <tr>
+            <th>Lua</th>
+            <th>JavaScript</th>
+            <th>Java</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td><code>function func() ... end</code></td>
+            <td><code>function func() {...}</code></td>
+            <td><code>void func() {...}</code></td>
+            </tr>
+            <tr>
+            <td><code>true</code> and <code>false</code></td>
+            <td><code>true</code> and <code>false</code></td>
+            <td><code>true</code> and <code>false</code></td>
+            </tr>
+            <tr>
+            <td><code>a and b</code> (logical AND)</td>
+            <td><code>a &amp;&amp; b</code></td>
+            <td><code>a &amp;&amp; b</code></td>
+            </tr>
+            <tr>
+            <td><code>a or b</code> (logical OR)</td>
+            <td><code>a || b</code></td>
+            <td><code>a || b</code></td>
+            </tr>
+            <tr>
+            <td><code>not a</code></td>
+            <td><code>!a</code></td>
+            <td><code>!a</code></td>
+            </tr>
+            <tr>
+            <td><code>a ~= b</code> (not-equal)</td>
+            <td><code>a != b</code></td>
+            <td><code>a != b</code></td>
+            </tr>
+            <tr>
+            <td><code>i = i + 1</code> (increment)</td>
+            <td><code>i++</code></td>
+            <td><code>i++</code></td>
+            </tr>
+            <tr>
+            <td><code>i = i - 1</code> (decrement)</td>
+            <td><code>i--</code></td>
+            <td><code>i--</code></td>
+            </tr>
+            <tr>
+            <td><code>a &lt;= b and b &lt; c</code></td>
+            <td><code>a &lt;= b &amp;&amp; b &lt; c</code></td>
+            <td><code>a &lt;= b &amp;&amp; b &lt; c</code></td>
+            </tr>
+            <tr>
+            <td><code>for i=1, limit do ... end</code></td>
+            <td><code>for (let i=0; i&lt;limit; i++) {...}</code></td>
+            <td><code>for (int i = 0; i &lt; limit; i++) {...}</code></td>
+            </tr>
+            <tr>
+            <td><code>for i=start, limit, step do ... end</code></td>
+            <td><code>for (let i=start; i&lt;limit; i+=step) {...}</code></td>
+            <td><code>for (int i = start; i &lt; limit; i += step) {...}</code></td>
+            </tr>
+            <tr>
+            <td><code>for _, b in ipairs(table_of_balls) do ... end</code></td>
+            <td><code>for (let b of arrayOfBalls) {...}</code></td>
+            <td><code>for (Ball b : arrayOfBalls) {...}</code></td>
+            </tr>
+            <tr>
+            <td><code>local myColor = '#FFCC00'</code></td>
+            <td><code>let myColor = '#FFCC00'</code></td>
+            <td><code>String myColor = "#FFCC00";</code></td>
+            </tr>
+            </tbody>
+            </table>
+            <h2 id="object-orientation-in-lua">Object orientation in
+            Lua</h2>
+            <p>OOP is implemented in Lua using tables. For more
+            information see the <a href="/tutorials/using-objects">Using
+            Objects</a> and <a
+            href="/tutorials/data-structure-garden">Data Structure
+            Garden</a> tutorials and <a
+            href="/examples/random-robot-objects">Random Robot
+            Objects</a> example.</p>
+            <h2 id="l5-jam">L5 jam</h2>
+            <p><a href="https://itch.io/jam/l5lua-community-jam">L5
+            Community Jam on Itch</a></p>
+            <h3 id="suggestions">Suggestions</h3>
+            <ul>
+            <li>Reimagine what a digital zine could be.</li>
+            <li>Build an interactive artwork.</li>
+            <li>Create a new tool for you or a small community.</li>
+            <li>Use hand-drawn images or your own photographs.</li>
+            </ul>
+            <p>You are not required to follow a theme, but if you are
+            struggling for an idea here are some ideas to get you
+            started:</p>
+            <ul>
+            <li>Glitchy garden</li>
+            <li>Slime molds</li>
+            <li>Electroluminescent screens</li>
+            <li>Algorithmic auras</li>
+            <li>Imaginary computing</li>
+            <li>Digital zine</li>
+            </ul>
+            <p>Important: No usage of LLMs. Include a screenshot and a
+            <code>.love</code> file in the submission. Using or porting
+            existing code is allowed, but if you borrow from elsewhere,
+            check its license, and be sure to give credit.</p>
+      <footer> <hr>
+
+<p><em><a href="https://github.com/lee2sman/dmsc_fall2026">This site</a> is built using <a href="https://tildegit.org/exquisitecorp/panblog">panblog</a>. Site design by Lee Tusman (c) 2026.</em></p>
+
+<p><em>All course content, unless otherwise credited, is by Lee Tusman (c) 2026 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">CC BY-NC-SA</a>.</em></p> </footer>
+  </body>
+</html>

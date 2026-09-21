@@ -7,3 +7,6 @@
 [Week 4 - Arrays of things and Drawing Machines](arrays-of-things/)  
 2026-09-14  
 
+[Week 5 - From p5.js to L5, and more Lua](objects/)  
+2026-09-21  
+
