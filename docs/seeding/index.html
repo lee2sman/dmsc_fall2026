@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta name="date" content="" />
+            <title>Week 6 - Random Seeding</title>
+      <link rel="stylesheet" href="../css/../css/dmsc.css" />
+
+      <meta property="og:title" content="Week 6 - Random Seeding" />
+                  <meta property="og:type" content="article" />
+  </head>
+  <body>
+      <header> <nav>
+  <ul>
+    <li><a href="/dmsc_fall2026/">home</a></li>
+    <li><a href="/dmsc_fall2026/about/">about</a></li>
+    <li><a href="/dmsc_fall2026/logs/">logs</a></li>
+    <li><a href="/dmsc_fall2026/syllabus/">syllabus</a></li>
+  </ul>
+</nav> </footer>
+      <h1>Week 6 - Random Seeding</h1>
+            <p><em>Date: 2026-09-28</em></p>
+            <h2 id="today">Today</h2>
+            <ul>
+            <li>what is randomness to a computer?</li>
+            <li>Seeding Randomness</li>
+            <li>Strudel Performance practice</li>
+            <li>Studio time: L5 Community Jam project</li>
+            </ul>
+            <h2 id="computers-are-not-good-at-being-random">Computers
+            are not good at being random…</h2>
+            <h3 id="random-digits">100 Random Digits</h3>
+            <p><img src="../images/rand.jpg"
+            alt="100,000 Random Digits book open to a spread" /><br />
+            <em>A Million Random Digits with 100.000 Normal Deviates, <a
+            href="https://www.flickr.com/photos/saschapohflepp/3303921276/">Photo
+            by Sascha Pohflepp</a> on Flickr CC BY</em></p>
+            <p><a
+            href="https://en.wikipedia.org/wiki/A_Million_Random_Digits_with_100,000_Normal_Deviates">A
+            Million Random Digits with 100,000 Normal Deviates</a> on
+            Wikipedia</p>
+            <h3 id="lavarand-aka-the-wall-of-entropy">Lavarand, aka The
+            Wall of Entropy</h3>
+            <p><img src="../images/lavalamp.jpg"
+            alt="A wall of lava lamps at the offices of Cloudflare" /><br />
+            <em>A wall of lava lamps at the offices of Cloudflare, <a
+            href="https://en.wikipedia.org/wiki/Lavarand#/media/File:Lava_lamp_wall_at_Cloudflare_office_-2.jpg">Photo
+            by HaeB</a> on Wikimedia</em></p>
+            <p><a href="https://en.wikipedia.org/wiki/Lavarand">Lavarand
+            on Wikipedia</a></p>
+            <h3 id="quantum-random-number-generation-qrng">Quantum
+            Random Number Generation (QRNG)</h3>
+            <ul>
+            <li>Nuclear decay</li>
+            <li>Shot noise</li>
+            <li>optics</li>
+            </ul>
+            <p><a
+            href="https://en.wikipedia.org/wiki/Hardware_random_number_generator#Quantum-based_RNG">Quantum
+            Random Number Generation</a> on Wikipedia</p>
+            <h3
+            id="being-random-is-expensive-and-usually-not-that-important-casinos-etc">Being
+            random is expensive, and usually not that important…
+            (casinos etc)</h3>
+            <p>But you can sort of simulate randomness by using complex
+            math. Randomness is really just a word we use when two
+            things are unrelated or unpredictable in context. The
+            pattern that <em>prngs</em> (pseudo-random number
+            generators) produce is too complicated to be recognized, so
+            it feels random. The same could be said about true random,
+            but on a much larger scale, i.e. no human or computer can
+            predict the pattern.</p>
+            <h3 id="seeding-randomness">Seeding Randomness</h3>
+            <p>A <strong>seed</strong> is the starting point of this
+            psuedo random function, which continues to get complicated,
+            and ends up in a different (same) place depending on the
+            start. You’re setting the start of a path.</p>
+            <p>(nothing is random - just uncoupled from each other)</p>
+            <p><a
+            href="https://editor.p5js.org/amcc/sketches/OhUG3BtVY">Oblique
+            Strategies sketch</a> by amcc</p>
+            <p>…but constraining it to be one per day.</p>
+            <p><a
+            href="https://editor.p5js.org/jsenzel/sketches/ELgHOWOfC">Daily
+            oblique Strategies</a> by Jonah Senzel</p>
+            <p><a
+            href="https://editor.p5js.org/jsenzel/sketches/mBfGV035M">Seeds
+            example</a></p>
+            <p><img src="../images/vesper5.jpg"
+            alt="Vesper.5 Ritual - Take One Step Each Day" /><br />
+            <em><a
+            href="https://www.designoriented.net/blog/tag/vesper5/">Vesper.5</a>
+            by Michael Brough</em></p>
+            <p><img src="../images/igotup.jpg" alt="I Got Up" /><br />
+            <em>I Got Up, by On Kawara</em></p>
+            <p><a
+            href="https://www.metmuseum.org/art/collection/search/284464">I
+            got up</a> at The Metropolitan Museum of Art, NY</p>
+            <h3 id="examples-of-long-termdaily-time">Examples of long
+            term/daily time</h3>
+            <p><a href="https://en.wikipedia.org/wiki/Daily_Word">The
+            daily word</a> magazine</p>
+            <p>Wordle</p>
+            <p><a href="http://www.399d-23h-59m-59s.com/">The
+            Longing</a><br />
+            URL: http://www.399d-23h-59m-59s.com</p>
+            <p><a href="https://rogule.com/">Rogule</a></p>
+            <h2 id="strudel-performance-practice">Strudel performance
+            practice</h2>
+            <p>Practicing sets showing changing parameters.</p>
+            <h2 id="studio-time-hw">Studio time + HW</h2>
+            <p>Complete your L5 project and post it to a project page
+            and submit to the L5 Community Jam. The project should
+            have:</p>
+            <ul>
+            <li>title</li>
+            <li>screenshots</li>
+            <li>description</li>
+            <li>downloadable project code</li>
+            <li>‘edit theme’ and choose fonts, colors, etc</li>
+            <li>OPTIONAL, recommended: video screenrecording - Post to
+            Youtube, then post link to your project page. There is an
+            input box to enter it.</li>
+            </ul>
+            <h2 id="exporting-l5-projects">Exporting L5 Projects</h2>
+            <p>You have several options for sharing your L5 project:</p>
+            <ol type="1">
+            <li>You can export a .love file that anyone with LOVE
+            installed on their computer can open (EASIEST)</li>
+            <li>You can build a web application that will run in a
+            browser, using a 3rd party tool. There are a few
+            restrictions such as more limited sound options. And
+            displaying your code sketch in a browser may not render well
+            on phones/tablets. (MEDIUM DIFFICULTY)</li>
+            <li>You can create an executable application for Mac and for
+            Windows. In both cases you will need to combine your .love
+            file with a copy of the LOVE application for the operating
+            system you are targeting, and make some manual file changes.
+            (ADVANCED)</li>
+            </ol>
+            <h3
+            id="creating-a-.love-file-to-distribute-your-project">Creating
+            a .love file to distribute your project</h3>
+            <p>Since L5 uses the LOVE library under the hood you can
+            export your project as a .love file and anyone with LOVE
+            installed can run it.</p>
+      <footer> <hr>
+
+<p><em><a href="https://github.com/lee2sman/dmsc_fall2026">This site</a> is built using <a href="https://tildegit.org/exquisitecorp/panblog">panblog</a>. Site design by Lee Tusman (c) 2026.</em></p>
+
+<p><em>All course content, unless otherwise credited, is by Lee Tusman (c) 2026 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">CC BY-NC-SA</a>.</em></p> </footer>
+  </body>
+</html>

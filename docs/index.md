@@ -10,3 +10,6 @@
 [Week 5 - From p5.js to L5, and more Lua](objects/)  
 2026-09-21  
 
+[Week 6 - Random Seeding](seeding/)  
+2026-09-28  
+
