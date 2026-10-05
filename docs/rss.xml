@@ -14,7 +14,7 @@ https://leetusman.com/dmsc_fall2026/posts/2024-01-28-LOGO.html
 https://leetusman.com/dmsc_fall2026/posts/2024-01-28-LOGO.html
 </guid>
 <pubDate>
-Mon, 28 Sep 2026 00:00:00 -0400
+Mon, 05 Oct 2026 00:00:00 -0400
 </pubDate>
 <description>
 <![CDATA[
@@ -42,7 +42,7 @@ https://leetusman.com/dmsc_fall2026/posts/2026-08-31-iceberg-walks.html
 https://leetusman.com/dmsc_fall2026/posts/2026-08-31-iceberg-walks.html
 </guid>
 <pubDate>
-Mon, 28 Sep 2026 00:00:00 -0400
+Mon, 05 Oct 2026 00:00:00 -0400
 </pubDate>
 <description>
 <![CDATA[
@@ -70,7 +70,7 @@ https://leetusman.com/dmsc_fall2026/posts/2026-09-14-arrays-of-things.html
 https://leetusman.com/dmsc_fall2026/posts/2026-09-14-arrays-of-things.html
 </guid>
 <pubDate>
-Mon, 28 Sep 2026 00:00:00 -0400
+Mon, 05 Oct 2026 00:00:00 -0400
 </pubDate>
 <description>
 <![CDATA[
@@ -97,7 +97,7 @@ https://leetusman.com/dmsc_fall2026/posts/2026-09-21-objects.html
 https://leetusman.com/dmsc_fall2026/posts/2026-09-21-objects.html
 </guid>
 <pubDate>
-Mon, 28 Sep 2026 00:00:00 -0400
+Mon, 05 Oct 2026 00:00:00 -0400
 </pubDate>
 <description>
 <![CDATA[
@@ -125,7 +125,7 @@ https://leetusman.com/dmsc_fall2026/posts/2026-09-28-seeding.html
 https://leetusman.com/dmsc_fall2026/posts/2026-09-28-seeding.html
 </guid>
 <pubDate>
-Mon, 28 Sep 2026 00:00:00 -0400
+Mon, 05 Oct 2026 00:00:00 -0400
 </pubDate>
 <description>
 <![CDATA[
@@ -139,6 +139,33 @@ Today
 Computers are not good at being random…
 
 100 Random Digits
+]]>
+</description>
+</item>
+<item>
+<title>
+Week 7 - Random Robots Painting
+</title>
+<link>
+https://leetusman.com/dmsc_fall2026/posts/2026-10-05-robots-painting.html
+</link>
+<guid>
+https://leetusman.com/dmsc_fall2026/posts/2026-10-05-robots-painting.html
+</guid>
+<pubDate>
+Mon, 05 Oct 2026 00:00:00 -0400
+</pubDate>
+<description>
+<![CDATA[
+Today
+
+-   More about objects in Lua
+-   Arrays vs Objects
+-   Creating objects dynamically
+-   Random Robots
+-   Strudel practice time
+
+Review L5 Community Jam Projects
 ]]>
 </description>
 </item>

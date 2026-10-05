@@ -13,3 +13,6 @@
 [Week 6 - Random Seeding](seeding/)  
 2026-09-28  
 
+[Week 7 - Random Robots Painting](robots-painting/)  
+2026-10-05  
+

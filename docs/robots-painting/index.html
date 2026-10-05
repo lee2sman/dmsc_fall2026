@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta name="date" content="" />
+            <title>Week 7 - Random Robots Painting</title>
+      <link rel="stylesheet" href="../css/../css/dmsc.css" />
+
+      <meta property="og:title" content="Week 7 - Random Robots
+Painting" />
+                  <meta property="og:type" content="article" />
+  </head>
+  <body>
+      <header> <nav>
+  <ul>
+    <li><a href="/dmsc_fall2026/">home</a></li>
+    <li><a href="/dmsc_fall2026/about/">about</a></li>
+    <li><a href="/dmsc_fall2026/logs/">logs</a></li>
+    <li><a href="/dmsc_fall2026/syllabus/">syllabus</a></li>
+  </ul>
+</nav> </footer>
+      <h1>Week 7 - Random Robots Painting</h1>
+            <p><em>Date: 2026-10-05</em></p>
+            <h2 id="today">Today</h2>
+            <ul>
+            <li>More about objects in Lua</li>
+            <li>Arrays vs Objects</li>
+            <li>Creating objects dynamically</li>
+            <li>Random Robots</li>
+            <li>Strudel practice time</li>
+            </ul>
+            <h2 id="review-l5-community-jam-projects">Review L5
+            Community Jam Projects</h2>
+            <p><a
+            href="https://itch.io/jam/l5lua-community-jam/entries">L5
+            Community Jam</a></p>
+            <h2 id="using-objects">Using Objects</h2>
+            <p>You now know how to use arrays (ordered tables) to store
+            multiple values. <strong>objects</strong> let you group
+            related values together using named properties instead of
+            their index number.</p>
+            <h2 id="the-problem-with-multiple-arrays">The Problem with
+            Multiple Arrays</h2>
+            <p>Let’s say you used multiple arrays to store information
+            about circles:</p>
+            <div class="sourceCode" id="cb1"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">circleX</span> <span class="op">=</span> <span class="op">{</span><span class="dv">100</span><span class="op">,</span> <span class="dv">200</span><span class="op">,</span> <span class="dv">150</span><span class="op">}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">circleY</span> <span class="op">=</span> <span class="op">{</span><span class="dv">100</span><span class="op">,</span> <span class="dv">150</span><span class="op">,</span> <span class="dv">200</span><span class="op">}</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">circleSpeedX</span> <span class="op">=</span> <span class="op">{</span><span class="dv">2</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="dv">1</span><span class="op">}</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="va">circleSpeedY</span> <span class="op">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="op">-</span><span class="dv">2</span><span class="op">}</span></span></code></pre></div>
+            <p>This approach is called <strong>parallel arrays</strong>.
+            It works, but it has problems:</p>
+            <ul>
+            <li>It’s hard to keep track of which index goes with which
+            circle</li>
+            <li>If you add or remove a circle, you have to update
+            multiple arrays</li>
+            <li>The relationships between the data aren’t clear</li>
+            </ul>
+            <h2 id="objects">Objects</h2>
+            <p>An <strong>object</strong> is a table that uses named
+            properties instead of an index number. This is also called
+            an <strong>associative array</strong> - instead of accessing
+            values with numbers like <code>circleX[1]</code>, you can
+            access them with names like <code>circle.x</code>.</p>
+            <p>To create an object in Lua, use curly brackets with
+            <strong>key-value pairs</strong>. A key-value pair is a
+            property name (the key) followed by <code>=</code> and then
+            its value:</p>
+            <div class="sourceCode" id="cb2"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">ball</span> <span class="op">=</span> <span class="op">{</span><span class="va">x</span> <span class="op">=</span> <span class="dv">100</span><span class="op">,</span> <span class="va">y</span> <span class="op">=</span> <span class="dv">150</span><span class="op">,</span> <span class="va">speedX</span> <span class="op">=</span> <span class="dv">2</span><span class="op">,</span> <span class="va">speedY</span> <span class="op">=</span> <span class="dv">1</span><span class="op">}</span></span></code></pre></div>
+            <p>This creates an object named <code>ball</code> with four
+            properties: <code>x</code>, <code>y</code>,
+            <code>speedX</code>, and <code>speedY</code>.</p>
+            <h2 id="accessing-object-properties">Accessing Object
+            Properties</h2>
+            <p>You can access object properties using <strong>dot
+            notation</strong>:</p>
+            <div class="sourceCode" id="cb3"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="va">ball</span><span class="op">.</span><span class="va">x</span><span class="op">)</span>       <span class="co">-- prints 100</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="va">ball</span><span class="op">.</span><span class="va">speedX</span><span class="op">)</span>  <span class="co">-- prints 2</span></span></code></pre></div>
+            <p>You can also use <strong>bracket notation</strong> with
+            strings:</p>
+            <div class="sourceCode" id="cb4"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="va">ball</span><span class="op">[</span><span class="st">&quot;x&quot;</span><span class="op">])</span>       <span class="co">-- prints 100</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="va">ball</span><span class="op">[</span><span class="st">&quot;speedX&quot;</span><span class="op">])</span>  <span class="co">-- prints 2</span></span></code></pre></div>
+            <p>Dot notation is usually easier to read, but bracket
+            notation is useful when the property name is in a
+            variable.</p>
+            <h2 id="modifying-object-properties">Modifying Object
+            Properties</h2>
+            <p>You can change object properties just like regular
+            variables:</p>
+            <div class="sourceCode" id="cb5"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">ball</span><span class="op">.</span><span class="va">x</span> <span class="op">=</span> <span class="va">ball</span><span class="op">.</span><span class="va">x</span> <span class="op">+</span> <span class="va">ball</span><span class="op">.</span><span class="va">speedX</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">ball</span><span class="op">.</span><span class="va">y</span> <span class="op">=</span> <span class="va">ball</span><span class="op">.</span><span class="va">y</span> <span class="op">+</span> <span class="va">ball</span><span class="op">.</span><span class="va">speedY</span></span></code></pre></div>
+            <p>Here’s a complete example:</p>
+            <figure>
+            <img src="../images/animation4.gif"
+            alt="a ball bounces off the edges of the window" />
+            <figcaption aria-hidden="true">a ball bounces off the edges
+            of the window</figcaption>
+            </figure>
+            <div class="sourceCode" id="cb6"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">&quot;L5&quot;</span><span class="op">)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="va">ball</span> <span class="op">=</span> <span class="op">{</span><span class="va">x</span> <span class="op">=</span> <span class="dv">150</span><span class="op">,</span> <span class="va">y</span> <span class="op">=</span> <span class="dv">150</span><span class="op">,</span> <span class="va">speedX</span> <span class="op">=</span> <span class="dv">2</span><span class="op">,</span> <span class="va">speedY</span> <span class="op">=</span> <span class="dv">1</span><span class="op">}</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> setup<span class="op">()</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  size<span class="op">(</span><span class="dv">300</span><span class="op">,</span> <span class="dv">300</span><span class="op">)</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> draw<span class="op">()</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  background<span class="op">(</span><span class="dv">220</span><span class="op">)</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Move ball</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="va">ball</span><span class="op">.</span><span class="va">x</span> <span class="op">=</span> <span class="va">ball</span><span class="op">.</span><span class="va">x</span> <span class="op">+</span> <span class="va">ball</span><span class="op">.</span><span class="va">speedX</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="va">ball</span><span class="op">.</span><span class="va">y</span> <span class="op">=</span> <span class="va">ball</span><span class="op">.</span><span class="va">y</span> <span class="op">+</span> <span class="va">ball</span><span class="op">.</span><span class="va">speedY</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Bounce off edges</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">ball</span><span class="op">.</span><span class="va">x</span> <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> <span class="va">ball</span><span class="op">.</span><span class="va">x</span> <span class="op">&gt;</span> <span class="va">width</span> <span class="cf">then</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="va">ball</span><span class="op">.</span><span class="va">speedX</span> <span class="op">=</span> <span class="va">ball</span><span class="op">.</span><span class="va">speedX</span> <span class="op">*</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">ball</span><span class="op">.</span><span class="va">y</span> <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> <span class="va">ball</span><span class="op">.</span><span class="va">y</span> <span class="op">&gt;</span> <span class="va">height</span> <span class="cf">then</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="va">ball</span><span class="op">.</span><span class="va">speedY</span> <span class="op">=</span> <span class="va">ball</span><span class="op">.</span><span class="va">speedY</span> <span class="op">*</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Draw ball</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  circle<span class="op">(</span><span class="va">ball</span><span class="op">.</span><span class="va">x</span><span class="op">,</span> <span class="va">ball</span><span class="op">.</span><span class="va">y</span><span class="op">,</span> <span class="dv">30</span><span class="op">)</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+            <p>This is much clearer than using separate variables for
+            each property!</p>
+            <h2 id="arrays-of-objects">Arrays of Objects</h2>
+            <p>The real power of objects comes when you combine them
+            with arrays. Instead of multiple parallel arrays, you can
+            have one array of objects:</p>
+            <figure>
+            <img src="../images/using-objects2.gif"
+            alt="3 circles bounce around the screen" />
+            <figcaption aria-hidden="true">3 circles bounce around the
+            screen</figcaption>
+            </figure>
+            <div class="sourceCode" id="cb7"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">&quot;L5&quot;</span><span class="op">)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="va">circles</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span><span class="va">x</span> <span class="op">=</span> <span class="dv">100</span><span class="op">,</span> <span class="va">y</span> <span class="op">=</span> <span class="dv">100</span><span class="op">,</span> <span class="va">speedX</span> <span class="op">=</span> <span class="dv">2</span><span class="op">,</span> <span class="va">speedY</span> <span class="op">=</span> <span class="dv">1</span><span class="op">},</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span><span class="va">x</span> <span class="op">=</span> <span class="dv">200</span><span class="op">,</span> <span class="va">y</span> <span class="op">=</span> <span class="dv">150</span><span class="op">,</span> <span class="va">speedX</span> <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="va">speedY</span> <span class="op">=</span> <span class="dv">2</span><span class="op">},</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span><span class="va">x</span> <span class="op">=</span> <span class="dv">150</span><span class="op">,</span> <span class="va">y</span> <span class="op">=</span> <span class="dv">200</span><span class="op">,</span> <span class="va">speedX</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="va">speedY</span> <span class="op">=</span> <span class="op">-</span><span class="dv">2</span><span class="op">}</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> setup<span class="op">()</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  size<span class="op">(</span><span class="dv">300</span><span class="op">,</span> <span class="dv">300</span><span class="op">)</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> draw<span class="op">()</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  background<span class="op">(</span><span class="dv">220</span><span class="op">)</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="va">i</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="op">#</span><span class="va">circles</span> <span class="cf">do</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Move circle</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">x</span> <span class="op">=</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">x</span> <span class="op">+</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">speedX</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">y</span> <span class="op">=</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">y</span> <span class="op">+</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">speedY</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Bounce off edges</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">x</span> <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">x</span> <span class="op">&gt;</span> <span class="va">width</span> <span class="cf">then</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>      <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">speedX</span> <span class="op">=</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">speedX</span> <span class="op">*</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">y</span> <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">y</span> <span class="op">&gt;</span> <span class="va">height</span> <span class="cf">then</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>      <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">speedY</span> <span class="op">=</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">speedY</span> <span class="op">*</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Draw circle</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    circle<span class="op">(</span><span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">x</span><span class="op">,</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">y</span><span class="op">,</span> <span class="dv">30</span><span class="op">)</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+            <p>Now all the data for each circle is grouped together,
+            making the code easier to understand and maintain!</p>
+            <h2 id="creating-objects-dynamically">Creating Objects
+            Dynamically</h2>
+            <p>You can create new objects and add them to an array:</p>
+            <figure>
+            <img src="../images/using-objects3.gif"
+            alt="many circles bouncing around the screen" />
+            <figcaption aria-hidden="true">many circles bouncing around
+            the screen</figcaption>
+            </figure>
+            <div class="sourceCode" id="cb8"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">&quot;L5&quot;</span><span class="op">)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="va">circles</span> <span class="op">=</span> <span class="op">{}</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> setup<span class="op">()</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  size<span class="op">(</span><span class="dv">300</span><span class="op">,</span> <span class="dv">300</span><span class="op">)</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Create 10 random circles</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="va">i</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">10</span> <span class="cf">do</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="va">newCircle</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>      <span class="va">x</span> <span class="op">=</span> random<span class="op">(</span><span class="va">width</span><span class="op">),</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>      <span class="va">y</span> <span class="op">=</span> random<span class="op">(</span><span class="va">height</span><span class="op">),</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>      <span class="va">speedX</span> <span class="op">=</span> random<span class="op">(-</span><span class="dv">3</span><span class="op">,</span> <span class="dv">3</span><span class="op">),</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>      <span class="va">speedY</span> <span class="op">=</span> random<span class="op">(-</span><span class="dv">3</span><span class="op">,</span> <span class="dv">3</span><span class="op">),</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>      <span class="va">size</span> <span class="op">=</span> random<span class="op">(</span><span class="dv">10</span><span class="op">,</span> <span class="dv">40</span><span class="op">)</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">table.insert</span><span class="op">(</span><span class="va">circles</span><span class="op">,</span> <span class="va">newCircle</span><span class="op">)</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> draw<span class="op">()</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  background<span class="op">(</span><span class="dv">220</span><span class="op">)</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="va">i</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="op">#</span><span class="va">circles</span> <span class="cf">do</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Move circle</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">x</span> <span class="op">=</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">x</span> <span class="op">+</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">speedX</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">y</span> <span class="op">=</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">y</span> <span class="op">+</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">speedY</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Bounce off edges</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">x</span> <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">x</span> <span class="op">&gt;</span> <span class="va">width</span> <span class="cf">then</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>      <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">speedX</span> <span class="op">=</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">speedX</span> <span class="op">*</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">y</span> <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">y</span> <span class="op">&gt;</span> <span class="va">height</span> <span class="cf">then</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>      <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">speedY</span> <span class="op">=</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">speedY</span> <span class="op">*</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Draw circle</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>    circle<span class="op">(</span><span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">x</span><span class="op">,</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">y</span><span class="op">,</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">size</span><span class="op">)</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+            <p>Each circle now has its own size too!</p>
+            <h2 id="interactive-example-click-to-add">Interactive
+            Example: Click to Add</h2>
+            <p>Here’s an example where you can click to add new
+            circles:</p>
+            <figure>
+            <img src="../images/using-objects4.gif"
+            alt="clicking creates new colored circles that bounce around" />
+            <figcaption aria-hidden="true">clicking creates new colored
+            circles that bounce around</figcaption>
+            </figure>
+            <div class="sourceCode" id="cb9"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">&quot;L5&quot;</span><span class="op">)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="va">circles</span> <span class="op">=</span> <span class="op">{}</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> setup<span class="op">()</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  size<span class="op">(</span><span class="dv">300</span><span class="op">,</span> <span class="dv">300</span><span class="op">)</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> draw<span class="op">()</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  background<span class="op">(</span><span class="dv">220</span><span class="op">)</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="va">i</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="op">#</span><span class="va">circles</span> <span class="cf">do</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Move circle</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">x</span> <span class="op">=</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">x</span> <span class="op">+</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">speedX</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">y</span> <span class="op">=</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">y</span> <span class="op">+</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">speedY</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Bounce off edges</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">x</span> <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">x</span> <span class="op">&gt;</span> <span class="va">width</span> <span class="cf">then</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>      <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">speedX</span> <span class="op">=</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">speedX</span> <span class="op">*</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">y</span> <span class="op">&lt;</span> <span class="dv">0</span> <span class="kw">or</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">y</span> <span class="op">&gt;</span> <span class="va">height</span> <span class="cf">then</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>      <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">speedY</span> <span class="op">=</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">speedY</span> <span class="op">*</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Draw circle</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    fill<span class="op">(</span><span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">r</span><span class="op">,</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">g</span><span class="op">,</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">b</span><span class="op">)</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    circle<span class="op">(</span><span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">x</span><span class="op">,</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">y</span><span class="op">,</span> <span class="va">circles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">size</span><span class="op">)</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> mousePressed<span class="op">()</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>  <span class="va">newCircle</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    <span class="va">x</span> <span class="op">=</span> <span class="va">mouseX</span><span class="op">,</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    <span class="va">y</span> <span class="op">=</span> <span class="va">mouseY</span><span class="op">,</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    <span class="va">speedX</span> <span class="op">=</span> random<span class="op">(-</span><span class="dv">2</span><span class="op">,</span> <span class="dv">2</span><span class="op">),</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    <span class="va">speedY</span> <span class="op">=</span> random<span class="op">(-</span><span class="dv">2</span><span class="op">,</span> <span class="dv">2</span><span class="op">),</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    <span class="va">size</span> <span class="op">=</span> random<span class="op">(</span><span class="dv">20</span><span class="op">,</span> <span class="dv">50</span><span class="op">),</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    <span class="va">r</span> <span class="op">=</span> random<span class="op">(</span><span class="dv">255</span><span class="op">),</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    <span class="va">g</span> <span class="op">=</span> random<span class="op">(</span><span class="dv">255</span><span class="op">),</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    <span class="va">b</span> <span class="op">=</span> random<span class="op">(</span><span class="dv">255</span><span class="op">)</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table.insert</span><span class="op">(</span><span class="va">circles</span><span class="op">,</span> <span class="va">newCircle</span><span class="op">)</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+            <p>Click anywhere to add a new bouncing circle with a random
+            color and size!</p>
+            <h2 id="example-particles">Example: Particles</h2>
+            <p>Objects are perfect for particle systems:</p>
+            <figure>
+            <img src="../images/using-objects5.gif"
+            alt="clicking produces particle systems of balls that move up the screen" />
+            <figcaption aria-hidden="true">clicking produces particle
+            systems of balls that move up the screen</figcaption>
+            </figure>
+            <div class="sourceCode" id="cb10"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">&quot;L5&quot;</span><span class="op">)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="va">particles</span> <span class="op">=</span> <span class="op">{}</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> setup<span class="op">()</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  size<span class="op">(</span><span class="dv">300</span><span class="op">,</span> <span class="dv">300</span><span class="op">)</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> draw<span class="op">()</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  background<span class="op">(</span><span class="dv">220</span><span class="op">,</span> <span class="dv">220</span><span class="op">,</span> <span class="dv">255</span><span class="op">)</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="va">i</span> <span class="op">=</span> <span class="op">#</span><span class="va">particles</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span> <span class="cf">do</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Update particle</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="va">particles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">y</span> <span class="op">=</span> <span class="va">particles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">y</span> <span class="op">+</span> <span class="va">particles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">speedY</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="va">particles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">life</span> <span class="op">=</span> <span class="va">particles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">life</span> <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Draw particle</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    fill<span class="op">(</span><span class="dv">255</span><span class="op">,</span> <span class="dv">255</span><span class="op">,</span> <span class="dv">255</span><span class="op">,</span> <span class="va">particles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">life</span><span class="op">)</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    circle<span class="op">(</span><span class="va">particles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">x</span><span class="op">,</span> <span class="va">particles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">y</span><span class="op">,</span> <span class="va">particles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">size</span><span class="op">)</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Remove dead particles</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">particles</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">life</span> <span class="op">&lt;=</span> <span class="dv">0</span> <span class="cf">then</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">table.remove</span><span class="op">(</span><span class="va">particles</span><span class="op">,</span> <span class="va">i</span><span class="op">)</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> mousePressed<span class="op">()</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Create burst of particles</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="va">i</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">20</span> <span class="cf">do</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    <span class="va">particle</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>      <span class="va">x</span> <span class="op">=</span> <span class="va">mouseX</span><span class="op">,</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>      <span class="va">y</span> <span class="op">=</span> <span class="va">mouseY</span><span class="op">,</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>      <span class="va">speedY</span> <span class="op">=</span> random<span class="op">(-</span><span class="dv">5</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">),</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>      <span class="va">size</span> <span class="op">=</span> random<span class="op">(</span><span class="dv">5</span><span class="op">,</span> <span class="dv">15</span><span class="op">),</span></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>      <span class="va">life</span> <span class="op">=</span> <span class="dv">255</span></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">table.insert</span><span class="op">(</span><span class="va">particles</span><span class="op">,</span> <span class="va">particle</span><span class="op">)</span></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+            <p>Click to create a burst of particles that fade away!
+            Notice we loop backwards (<code>#particles, 1, -1</code>)
+            when removing items to avoid index problems.</p>
+            <h2 id="objects-vs-arrays-when-to-use-each">Objects vs
+            Arrays: When to Use Each</h2>
+            <p>Use <strong>arrays</strong> (ordered tables) when: * You
+            have a list of similar items * Order matters * You access
+            items by position</p>
+            <p>Use <strong>objects</strong> when: * You have related
+            data that belongs together * You want to access data by
+            name, not number * You’re representing a “thing” with
+            properties</p>
+            <p>Use <strong>arrays of objects</strong> when: * You have
+            multiple “things” with the same properties * Each “thing”
+            has several related values</p>
+            <h2 id="practice">Practice</h2>
+            <ul>
+            <li>Create a simple game with player and enemy objects</li>
+            <li>Build a starfield where each star is an object with
+            position, size, and twinkle speed</li>
+            <li>Make a drawing program where each stroke is stored as an
+            object</li>
+            <li>Create a simulation with objects that have different
+            behaviors</li>
+            <li>Build a simple physics engine with objects that have
+            mass and velocity</li>
+            <li>Make an interactive garden where each plant is an object
+            that grows over time</li>
+            </ul>
+            <p>The L5 reference at <a
+            href="/reference">L5lua.org/reference</a> has many more
+            functions to explore. Most importantly: keep making things
+            and have fun!</p>
+            <p><em>This section contains some text and concepts adapted
+            from <a
+            href="https://l5lua.org/tutorials/using-objects/">Using
+            Objects</a> by Lee Tusman and L5 Contributors and <a
+            href="https://happycoding.io/tutorials/p5js/using-objects">Using
+            Objects</a> by <a href="https://happycoding.io">Happy
+            Coding</a>, licensed under <a
+            href="https://creativecommons.org/licenses/by/4.0/">CC BY
+            4.0</a></em></p>
+            <h2 id="workshop-smart-robot-alfie">Workshop: Smart robot
+            Alfie</h2>
+            <figure>
+            <img src="../images/alphie.jpg" alt="Alphie the robot" />
+            <figcaption aria-hidden="true">Alphie the robot</figcaption>
+            </figure>
+            <p>Alfie is a little robot who needs to pick up all the
+            objects in the room and return them.</p>
+            <p>Create 5 random round obstructions in the center line of
+            the sketch.</p>
+            <p>Create 5 boxes on the left side of the canvas.</p>
+            <p>Alfie the robot starts on the right side. He should pick
+            up the boxes one at a time and return them back to the right
+            side of the screen for safekeeping.</p>
+            <p>OPTIONAL: Moving obstacles.</p>
+            <h2 id="strudel-practice-time">Strudel practice time</h2>
+      <footer> <hr>
+
+<p><em><a href="https://github.com/lee2sman/dmsc_fall2026">This site</a> is built using <a href="https://tildegit.org/exquisitecorp/panblog">panblog</a>. Site design by Lee Tusman (c) 2026.</em></p>
+
+<p><em>All course content, unless otherwise credited, is by Lee Tusman (c) 2026 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">CC BY-NC-SA</a>.</em></p> </footer>
+  </body>
+</html>
