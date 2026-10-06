@@ -10,6 +10,10 @@ title: Week 7 - Random Robots Painting
 * Random Robots
 * Strudel practice time
 
+## Slime mold!
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/40f7_93NIgA?si=1AlcN3OCCu8uCkzC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## Review L5 Community Jam Projects
 
 [L5 Community Jam](https://itch.io/jam/l5lua-community-jam/entries)
