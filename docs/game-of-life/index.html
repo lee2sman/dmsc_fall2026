@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta name="date" content="" />
+            <title>Week 8 - Cellular Automata and the Game of
+Life</title>
+      <link rel="stylesheet" href="../css/../css/dmsc.css" />
+
+      <meta property="og:title" content="Week 8 - Cellular Automata and
+the Game of Life" />
+                  <meta property="og:type" content="article" />
+  </head>
+  <body>
+      <header> <nav>
+  <ul>
+    <li><a href="/dmsc_fall2026/">home</a></li>
+    <li><a href="/dmsc_fall2026/about/">about</a></li>
+    <li><a href="/dmsc_fall2026/logs/">logs</a></li>
+    <li><a href="/dmsc_fall2026/syllabus/">syllabus</a></li>
+  </ul>
+</nav> </footer>
+      <h1>Week 8 - Cellular Automata and the Game of Life</h1>
+            <p><em>Date: 2026-10-12</em></p>
+            <h2 id="a-life">A-life</h2>
+            <blockquote>
+            <p>New media art self-consciously reworks technology into
+            culture, and rereads technology as culture. What’s more, it
+            does so in a concrete, applied way; it manipulates the
+            technology itself, with a nonindustrial latitude that admits
+            misapplication and adaptation, rewiring and hacking,
+            pseudofunctionality and accident. <em>p.5,
+            Metacreation</em></p>
+            </blockquote>
+            <blockquote>
+            <p>A-life begins with a notion of life that is wholly
+            materialistic, involving no soul, vital force, or essence.
+            In the words of the convenor of the first artificial life
+            workshop, Christopher Langton, ‘Living organisms are nothing
+            more that complex biochemical machines.’ Langton contends
+            that rather than being any special substance or force, life
+            is ‘a property of the organization of matter.’ Further, this
+            organization is not simply a complex structure but a dynamic
+            structure, a system active in real time: for a-life, life is
+            most importantly manifest in behavior. <em>p.7,
+            Metacreation</em></p>
+            </blockquote>
+            <h3 id="tenets-of-this-approach">Tenets of this
+            approach:</h3>
+            <ul>
+            <li>no central organizer/intelligence</li>
+            <li>bottom-up structure</li>
+            <li>emergence produces lifelike systems</li>
+            <li>as opposed to the study of AI, A-life does not focus on
+            intelligence but on behaviors and is not top-down,
+            procedural</li>
+            </ul>
+            <h3 id="systems">Systems:</h3>
+            <ul>
+            <li>genetic algorithms
+            <ul>
+            <li>separate beings (genotypes) with behaviors
+            (phenotypes)</li>
+            </ul></li>
+            <li>agent-based systems
+            <ul>
+            <li>models individuals in an artifical world</li>
+            </ul></li>
+            <li>cellular automata
+            <ul>
+            <li>an array of individual cells computed with a set of
+            simple rules governing a cell’s future state, as affected by
+            the current state of its neighbor cells</li>
+            </ul></li>
+            </ul>
+            <blockquote>
+            <p>We are no longer creating a work, we are creating
+            creation…We are able to bring forth…results…which go beyond
+            the intentions of their originators, and this in infinite
+            number. – Nicholas Schöffer <em>p.16, Metacreation</em></p>
+            </blockquote>
+            <h2 id="random-robot-objects">Random Robot Objects</h2>
+            <p>This object-oriented programming example demonstrates two
+            different Lua patterns - classes with metatables (Robot) and
+            simple tables with methods (box). It consists of a Robot
+            class definition and simple box object.</p>
+            <p>The box object demonstrates a simpler object-oriented
+            structure of a table with methods. Lua’s power of <a
+            href="https://softwarepatternslexicon.com/lua/lua-programming-fundamentals/first-class-functions-and-closures/">first-class
+            functions</a> is represented here.</p>
+            <p>A first-class function means they can be:</p>
+            <ul>
+            <li>Stored in tables (like in the <code>box</code>
+            table)</li>
+            <li>Assigned to variables (like
+            <code>display = function(self) ... end</code>)</li>
+            <li>Passed as arguments to other functions</li>
+            <li>Returned from functions</li>
+            </ul>
+            <p>The <code>box</code> object demonstrates this with
+            <code>display</code> and <code>move</code> functions stored
+            as values in the box, just like <code>x</code>,
+            <code>y</code> and <code>size</code> are numbers.</p>
+            <p>The Robot demonstrates uses of <a
+            href="https://www.tutorialspoint.com/lua/lua_metatables.htm">metatables</a>.</p>
+            <ul>
+            <li><code>Robot.__index = Robot</code> sets up the
+            metatable</li>
+            <li><code>setmetatable(robot, Robot)</code> links each
+            instance to the Robot table</li>
+            <li>This enables <a
+            href="https://cyevgeniy.github.io/luadocs/02_basic_concepts/ch04.html">method
+            lookup</a> - when you call <code>robot:move()</code>, Lua
+            looks in the Robot table to find the <code>move</code>
+            function</li>
+            </ul>
+            <p>Advanced ways to extend the program:</p>
+            <ul>
+            <li>add more robot behaviors - make robots change colors
+            when they collide with each other</li>
+            <li>score counter - count how many times the box teleports
+            to robots</li>
+            <li>different robot types - a FastRobot that moves twice as
+            fast as the others</li>
+            <li>mouse interaction - Create new robots at the mouse
+            position when clicked</li>
+            <li>Box trail - a line showing the box’s history</li>
+            <li>Chase - make robots chase the box</li>
+            <li>power-ups - add collectible items that change robot
+            speed, size or behavior</li>
+            <li>animated sprites - multiple images to animate
+            movement</li>
+            </ul>
+            <figure>
+            <img src="../images/random-robot-objects.gif"
+            title="Random robot objects roam around the screen. One robot grabs the yellow box, but it is again stolen several times by other robots."
+            alt="Random robots moving around the screen. One robot grabs the yellow box, but it is stolen again several times by other robots" />
+            <figcaption aria-hidden="true">Random robots moving around
+            the screen. One robot grabs the yellow box, but it is stolen
+            again several times by other robots</figcaption>
+            </figure>
+            <div class="sourceCode" id="cb1"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">&quot;L5&quot;</span><span class="op">)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- Note: The Robot class definition below could be moved to a separate file robot.lua</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- and then loaded with: local Robot = require(&quot;robot&quot;)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="va">Robot</span> <span class="op">=</span> <span class="op">{}</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="va">Robot</span><span class="op">.</span><span class="va">__index</span> <span class="op">=</span> <span class="va">Robot</span> <span class="co">-- Tells Lua to use Robot&#39;s metatable to find methods</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- Global vars</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="va">robots</span> <span class="op">=</span> <span class="op">{}</span>  <span class="co">-- Table to hold all robot instances</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="va">robotImg</span> <span class="op">=</span> <span class="kw">nil</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> setup<span class="op">()</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  size<span class="op">(</span><span class="dv">800</span><span class="op">,</span> <span class="dv">600</span><span class="op">)</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  windowTitle<span class="op">(</span><span class="st">&quot;Robots OOP example&quot;</span><span class="op">)</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="va">robotImg</span> <span class="op">=</span> loadImage<span class="op">(</span><span class="st">&quot;assets/robot.png&quot;</span><span class="op">)</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  imageMode<span class="op">(</span><span class="cn">CENTER</span><span class="op">)</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  rectMode<span class="op">(</span><span class="cn">CENTER</span><span class="op">)</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  strokeWeight<span class="op">(</span><span class="dv">3</span><span class="op">)</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  fill<span class="op">(</span><span class="st">&quot;gold&quot;</span><span class="op">)</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  stroke<span class="op">(</span><span class="st">&quot;goldenrod&quot;</span><span class="op">)</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Initialize box position</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="va">box</span><span class="op">.</span><span class="va">x</span> <span class="op">=</span> random<span class="op">(</span><span class="va">width</span><span class="op">)</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="va">box</span><span class="op">.</span><span class="va">y</span> <span class="op">=</span> random<span class="op">(</span><span class="va">height</span><span class="op">)</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Create 10 robots</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="va">i</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">10</span> <span class="cf">do</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">table.insert</span><span class="op">(</span><span class="va">robots</span><span class="op">,</span> <span class="va">Robot</span><span class="op">:</span>new<span class="op">())</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  describe<span class="op">(</span><span class="st">&#39;Random robots moving around the screen. They steal the yellow box when they overlap with it.&#39;</span><span class="op">)</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> draw<span class="op">()</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  background<span class="op">(</span><span class="st">&quot;lightblue&quot;</span><span class="op">)</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Update and draw box</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="va">box</span><span class="op">:</span><span class="fu">move</span><span class="op">()</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  <span class="va">box</span><span class="op">:</span>display<span class="op">()</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Update and draw all robots</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="va">i</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="op">#</span><span class="va">robots</span> <span class="cf">do</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="va">robots</span><span class="op">[</span><span class="va">i</span><span class="op">]:</span><span class="fu">move</span><span class="op">()</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="va">robots</span><span class="op">[</span><span class="va">i</span><span class="op">]:</span>display<span class="op">()</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="co">-- Robot class definition</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="va">Robot</span><span class="op">:</span>new<span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="va">y</span><span class="op">,</span> <span class="va">w</span><span class="op">,</span> <span class="va">h</span><span class="op">)</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">robot</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    <span class="va">x</span> <span class="op">=</span> <span class="va">x</span> <span class="kw">or</span> random<span class="op">(</span><span class="va">width</span><span class="op">),</span> </span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    <span class="va">y</span> <span class="op">=</span> <span class="va">y</span> <span class="kw">or</span> random<span class="op">(</span><span class="va">height</span><span class="op">),</span> </span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    <span class="va">w</span> <span class="op">=</span> <span class="va">w</span> <span class="kw">or</span> <span class="dv">70</span><span class="op">,</span> </span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    <span class="va">h</span> <span class="op">=</span> <span class="va">h</span> <span class="kw">or</span> <span class="dv">70</span><span class="op">,</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="va">xspeed</span> <span class="op">=</span> random<span class="op">(-</span><span class="dv">2</span><span class="op">,</span> <span class="dv">2</span><span class="op">),</span> </span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    <span class="va">yspeed</span> <span class="op">=</span> random<span class="op">(-</span><span class="dv">2</span><span class="op">,</span> <span class="dv">2</span><span class="op">)</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setmetatable</span><span class="op">(</span><span class="va">robot</span><span class="op">,</span> <span class="va">Robot</span><span class="op">)</span>  <span class="co">-- Links the instance to Robot class</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="va">robot</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="va">Robot</span><span class="op">:</span><span class="fu">move</span><span class="op">()</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>  <span class="va">self</span><span class="op">.</span><span class="va">x</span> <span class="op">=</span> <span class="va">self</span><span class="op">.</span><span class="va">x</span> <span class="op">+</span> <span class="va">self</span><span class="op">.</span><span class="va">xspeed</span> </span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>  <span class="va">self</span><span class="op">.</span><span class="va">y</span> <span class="op">=</span> <span class="va">self</span><span class="op">.</span><span class="va">y</span> <span class="op">+</span> <span class="va">self</span><span class="op">.</span><span class="va">yspeed</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- Bounce off walls</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">self</span><span class="op">.</span><span class="va">y</span> <span class="op">&gt;</span> <span class="va">height</span> <span class="kw">or</span> <span class="va">self</span><span class="op">.</span><span class="va">y</span> <span class="op">&lt;</span> <span class="dv">0</span> <span class="cf">then</span> </span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span><span class="op">.</span><span class="va">yspeed</span> <span class="op">=</span> <span class="va">self</span><span class="op">.</span><span class="va">yspeed</span> <span class="op">*</span> <span class="op">-</span><span class="dv">1</span> </span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="va">self</span><span class="op">.</span><span class="va">x</span> <span class="op">&gt;</span> <span class="va">width</span> <span class="kw">or</span> <span class="va">self</span><span class="op">.</span><span class="va">x</span> <span class="op">&lt;</span> <span class="dv">0</span> <span class="cf">then</span> </span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span><span class="op">.</span><span class="va">xspeed</span> <span class="op">=</span> <span class="va">self</span><span class="op">.</span><span class="va">xspeed</span> <span class="op">*</span> <span class="op">-</span><span class="dv">1</span> </span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="va">Robot</span><span class="op">:</span>display<span class="op">()</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>  image<span class="op">(</span><span class="va">robotImg</span><span class="op">,</span> <span class="va">self</span><span class="op">.</span><span class="va">x</span><span class="op">,</span> <span class="va">self</span><span class="op">.</span><span class="va">y</span><span class="op">,</span> <span class="va">self</span><span class="op">.</span><span class="va">w</span><span class="op">,</span> <span class="va">self</span><span class="op">.</span><span class="va">h</span><span class="op">)</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="co">-- Box object using simple table with methods</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="co">-- Demonstrates first-class functions stored as table values</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="va">box</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>  <span class="va">x</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span>  <span class="co">-- Initialized in setup() after random() is seeded</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>  <span class="va">y</span> <span class="op">=</span> <span class="kw">nil</span><span class="op">,</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>  <span class="va">size</span> <span class="op">=</span> <span class="dv">40</span><span class="op">,</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>  <span class="va">display</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">self</span><span class="op">)</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>    square<span class="op">(</span><span class="va">self</span><span class="op">.</span><span class="va">x</span><span class="op">,</span> <span class="va">self</span><span class="op">.</span><span class="va">y</span><span class="op">,</span> <span class="va">self</span><span class="op">.</span><span class="va">size</span><span class="op">)</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span><span class="op">,</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">move</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">self</span><span class="op">)</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Teleport to nearest robot if close enough</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="va">i</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="op">#</span><span class="va">robots</span> <span class="cf">do</span></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> dist<span class="op">(</span><span class="va">self</span><span class="op">.</span><span class="va">x</span><span class="op">,</span> <span class="va">self</span><span class="op">.</span><span class="va">y</span><span class="op">,</span> <span class="va">robots</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">x</span><span class="op">,</span> <span class="va">robots</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">y</span><span class="op">)</span> <span class="op">&lt;</span> <span class="va">self</span><span class="op">.</span><span class="va">size</span> <span class="cf">then</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span><span class="op">.</span><span class="va">x</span> <span class="op">=</span> <span class="va">robots</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">x</span>    </span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span><span class="op">.</span><span class="va">y</span> <span class="op">=</span> <span class="va">robots</span><span class="op">[</span><span class="va">i</span><span class="op">].</span><span class="va">y</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>      <span class="cf">end</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>  <span class="kw">end</span></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+            <h3 id="inventing-the-game-of-life">Inventing the Game of
+            Life</h3>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/CgOcEZinQ2I?si=ehwiIGNFEr20iLyP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+            <p>Stephen Hawkings The Meaning of Life (John Conway’s Game
+            of Life segment)</p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/R9Plq-D1gEk?si=CWqqyvlNInP593eb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+            <p>Inventing Game of Life (John Conway) - Numberphile</p>
+            <h2 id="cellular-automata-in-p5.js">Cellular Automata in
+            p5.js</h2>
+            <iframe src="https://editor.p5js.org/2sman/full/JWOk0UdFI">
+            </iframe>
+            <p><em>from <a
+            href="https://p5js.org/examples/math-and-physics-game-of-life/">p5.js
+            examples - Game of Life</a></em></p>
+            <h3 id="cellular-automata-in-minecraft">Cellular Automata in
+            Minecraft</h3>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/wNypW-aSCmE?si=5EApUlR0_HmKfjG3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+            <h3 id="multiple-neighborhood-cellular-automata">Multiple
+            Neighborhood Cellular Automata</h3>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/5zY7AemnJpM?si=yish1mSzC8M_JLpS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/mha8eq2NLo8?si=c3uddAU7rUPE-H0c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+            <p><a
+            href="https://softologyblog.wordpress.com/2018/03/31/more-explorations-with-multiple-neighborhood-cellular-automata/">More
+            explorations with Multiple Neighborhoods Cellular
+            Automata</a> by softology</p>
+            <h3
+            id="procedural-level-design-in-brogue-and-beyond">Procedural
+            Level Design in Brogue and Beyond</h3>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Uo9-IcHhq_w?si=GVeWUN_w7VTOJu6f" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+            <h2 id="resources">Resources</h2>
+            <ul>
+            <li><a
+            href="https://tann.fun/article/cellular-automata">cellular
+            automata</a> post by Tann</li>
+            <li><a href="https://www.wolframscience.com/nks/">A New Kind
+            of Science</a> book (online) by Stephen Wolfram</li>
+            <li><a
+            href="https://softologyblog.wordpress.com/2020/03/17/a-new-kind-of-science/">blog
+            post</a> about it by Softology</li>
+            </ul>
+            <h2 id="inkspot">Inkspot</h2>
+            <pre><code>require &#39;L5&#39;
+
+local block = 10
+local chance = 0.01
+local dead = &#39;black&#39;
+local alive = 170 
+function setup()
+  --fullscreen(2)
+  gridwidth = floor(width/block)
+  gridheight = floor(height/block)
+  createGrid()
+  textAlign(LEFT,TOP)
+
+  --initial grid draw
+  for y=1,gridheight do
+    for x=1,gridwidth do
+      if grid[y][x] == 1 then
+        fill(alive)
+      else
+        fill(dead)
+      end
+      square(x*block-block,y*block-block,block)
+    end
+  end
+
+  createNewGrid()
+
+  --frameRate(15)
+
+  windowTitle(&#39;Inkblot&#39;)
+  describe(&#39;an inkblot algorithm, like a simpler Game of Life. Cells replicate like ever-expanding ink.&#39;)
+end
+
+function draw()
+  background(dead)
+  --new grid
+  for y=1,gridheight do
+    for x=1,gridwidth do
+      if newGrid[y][x] == 1 then
+        fill(0,alive+random(-10,10),0)
+       -- fill(0,alive,0)
+
+        square(x*block-block,y*block-block,block)
+      else
+        fill(dead)
+      end
+     -- square(x*block-block,y*block-block,block)
+    end
+  end
+  grid = newGrid
+  createNewGrid()
+end
+
+function createGrid()
+  grid = {}
+  for y=1,gridheight do
+    grid[y] = {}
+    for x=1,gridwidth do
+      --grid[y][x] = floor(random(2))
+      if random() &lt; chance then
+        grid[y][x] = 1
+      else
+        grid[y][x] = 0
+      end
+    end
+  end
+end
+
+function createNewGrid()
+  newGrid = {}
+  for y=1,gridheight do
+    newGrid[y] = {}
+     for x=1,gridwidth do
+       local neighbors = 0
+       if checkNeighbor(y-1,x-1) then neighbors = neighbors + 1 end
+       if checkNeighbor(y-1,x) then neighbors = neighbors + 1 end
+       if checkNeighbor(y-1,x+1) then neighbors = neighbors + 1 end
+       if checkNeighbor(y,x-1) then neighbors = neighbors + 1 end
+       if checkNeighbor(y,x) then neighbors = neighbors + 1 end
+       if checkNeighbor(y,x+1) then neighbors = neighbors + 1 end
+       if checkNeighbor(y+1,x-1) then neighbors = neighbors + 1 end
+       if checkNeighbor(y+1,x) then neighbors = neighbors + 1 end
+       if checkNeighbor(y+1,x+1) then neighbors = neighbors + 1 end
+
+       if neighbors == 3 or checkNeighbor(y,x) then
+         newGrid[y][x] = 1
+         --print(x..&#39; &#39;..y)
+       end
+     end
+  end
+end
+
+function checkNeighbor(_y,_x)
+  if grid[_y] ~= nil and grid[_y][_x] ~= nil then
+    if grid[_y][_x] == 1 then
+      return true
+    else
+      return false
+    end
+  else
+    return false
+  end
+end
+
+function mouseMoved()
+  local cx = ceil(mouseX/block)
+  local cy = ceil(mouseY/block)
+  if cy &lt; 1 then cy = 1 end
+  newGrid[cy][cx] = 1
+end
+
+function mousePressed()
+  createGrid()
+  createNewGrid()
+end</code></pre>
+            <h2 id="conways-game-of-life">Conway’s Game of Life</h2>
+            <p>This example implements the famous <a
+            href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Game
+            of Life</a> devised by British mathematician <a
+            href="https://en.wikipedia.org/wiki/John_Horton_Conway">John
+            Conway</a>.</p>
+            <p>It is an example of a <em>zero-player game</em>, where
+            after setting initial rules the simulation plays out
+            algorithmically on its own without need for human
+            intervention.</p>
+            <p>The original game as devised by Conway was for pen and
+            gridded paper. Starting with any combination of cells in the
+            grid either filled in (alive) or not (dead), the following
+            rules were applied:</p>
+            <ol type="1">
+            <li>Any live cell with 2-3 neighbors survives</li>
+            <li>Any dead cell with exactly 3 neighbors becomes
+            alive</li>
+            <li>All other cells die or stay dead</li>
+            </ol>
+            <p>There are now hundreds of implementations in many
+            programming languages. The game of life is an example of <a
+            href="https://en.wikipedia.org/wiki/Cellular_automaton">cellular
+            automata</a>. Techniques are explored in a variety of
+            applicatons including game design, studying <a
+            href="https://en.wikipedia.org/wiki/Cellular_automaton#Biology">biology</a>,
+            chemistry, physics, music, and computer science.</p>
+            <p>This program implements a basic version of the
+            simulation. Press space bar to begin. You can click on
+            individual cells to toggle their state, or draw directly on
+            the grid. Pressing ‘r’ resets and pauses the game.</p>
+            <figure>
+            <img src="../images/conways-life.gif"
+            alt="Conways game of life running" />
+            <figcaption aria-hidden="true">Conways game of life
+            running</figcaption>
+            </figure>
+            <div class="sourceCode" id="cb3"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">&quot;L5&quot;</span><span class="op">)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- Conway&#39;s Game of Life in L5</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- Click to toggle cells, press SPACE to pause/unpause, press R to reset</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">cols</span><span class="op">,</span> <span class="va">rows</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">cellSize</span> <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">grid</span> <span class="op">=</span> <span class="op">{}</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">nextGrid</span> <span class="op">=</span> <span class="op">{}</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">paused</span> <span class="op">=</span> <span class="kw">true</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> setup<span class="op">()</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    size<span class="op">(</span><span class="dv">800</span><span class="op">,</span> <span class="dv">600</span><span class="op">)</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    windowTitle<span class="op">(</span><span class="st">&quot;Conway&#39;s Game of Life&quot;</span><span class="op">)</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    frameRate<span class="op">(</span><span class="dv">10</span><span class="op">)</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Calculate grid dimensions</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="va">cols</span> <span class="op">=</span> floor<span class="op">(</span><span class="va">width</span> <span class="op">/</span> <span class="va">cellSize</span><span class="op">)</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="va">rows</span> <span class="op">=</span> floor<span class="op">(</span><span class="va">height</span> <span class="op">/</span> <span class="va">cellSize</span><span class="op">)</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Initialize grids</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    initGrid<span class="op">()</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    describe<span class="op">(</span><span class="st">&quot;Conway&#39;s Game of Life. Click to toggle cells. Press SPACE to start/pause. Press R to reset.&quot;</span><span class="op">)</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> initGrid<span class="op">()</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Create empty grids</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="va">i</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="va">cols</span> <span class="cf">do</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>        <span class="va">grid</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">=</span> <span class="op">{}</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>        <span class="va">nextGrid</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">=</span> <span class="op">{}</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="va">j</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="va">rows</span> <span class="cf">do</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>            <span class="va">grid</span><span class="op">[</span><span class="va">i</span><span class="op">][</span><span class="va">j</span><span class="op">]</span> <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>            <span class="va">nextGrid</span><span class="op">[</span><span class="va">i</span><span class="op">][</span><span class="va">j</span><span class="op">]</span> <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Add initial random cells</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="va">i</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="va">cols</span> <span class="cf">do</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="va">j</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="va">rows</span> <span class="cf">do</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> random<span class="op">(</span><span class="dv">1</span><span class="op">)</span> <span class="op">&lt;</span> <span class="dv">0.2</span> <span class="cf">then</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>                <span class="va">grid</span><span class="op">[</span><span class="va">i</span><span class="op">][</span><span class="va">j</span><span class="op">]</span> <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>            <span class="cf">end</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> draw<span class="op">()</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    background<span class="op">(</span><span class="dv">20</span><span class="op">)</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Draw grid</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="va">i</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="va">cols</span> <span class="cf">do</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="va">j</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="va">rows</span> <span class="cf">do</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>            <span class="kw">local</span> <span class="va">x</span> <span class="op">=</span> <span class="op">(</span><span class="va">i</span> <span class="op">-</span> <span class="dv">1</span><span class="op">)</span> <span class="op">*</span> <span class="va">cellSize</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>            <span class="kw">local</span> <span class="va">y</span> <span class="op">=</span> <span class="op">(</span><span class="va">j</span> <span class="op">-</span> <span class="dv">1</span><span class="op">)</span> <span class="op">*</span> <span class="va">cellSize</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="va">grid</span><span class="op">[</span><span class="va">i</span><span class="op">][</span><span class="va">j</span><span class="op">]</span> <span class="op">==</span> <span class="dv">1</span> <span class="cf">then</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>                fill<span class="op">(</span><span class="dv">255</span><span class="op">)</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>                fill<span class="op">(</span><span class="dv">50</span><span class="op">)</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>            <span class="cf">end</span></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>            stroke<span class="op">(</span><span class="dv">30</span><span class="op">)</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>            strokeWeight<span class="op">(</span><span class="dv">1</span><span class="op">)</span></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>            rect<span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="va">y</span><span class="op">,</span> <span class="va">cellSize</span><span class="op">,</span> <span class="va">cellSize</span><span class="op">)</span></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Update grid if not paused</span></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="va">paused</span> <span class="cf">then</span></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>        computeNextGeneration<span class="op">()</span></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Draw status text</span></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>    fill<span class="op">(</span><span class="dv">255</span><span class="op">)</span></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>    noStroke<span class="op">()</span></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>    textSize<span class="op">(</span><span class="dv">16</span><span class="op">)</span></span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>    textAlign<span class="op">(</span><span class="cn">LEFT</span><span class="op">,</span> <span class="cn">TOP</span><span class="op">)</span></span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">status</span> <span class="op">=</span> <span class="va">paused</span> <span class="kw">and</span> <span class="st">&quot;PAUSED - Press SPACE to start&quot;</span> <span class="kw">or</span> <span class="st">&quot;RUNNING - Press SPACE to pause&quot;</span></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>    text<span class="op">(</span><span class="va">status</span><span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">10</span><span class="op">)</span></span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>    text<span class="op">(</span><span class="st">&quot;Click to toggle cells | Press R to reset&quot;</span><span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">30</span><span class="op">)</span></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> keyPressed<span class="op">()</span></span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Toggle pause with spacebar</span></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">key</span> <span class="op">==</span> <span class="st">&#39;space&#39;</span> <span class="cf">then</span></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>        <span class="va">paused</span> <span class="op">=</span> <span class="kw">not</span> <span class="va">paused</span></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Reset with R</span></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">key</span> <span class="op">==</span> <span class="st">&#39;r&#39;</span> <span class="cf">then</span></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>        initGrid<span class="op">()</span></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>        <span class="va">paused</span> <span class="op">=</span> <span class="kw">true</span></span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> computeNextGeneration<span class="op">()</span></span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Calculate next generation</span></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="va">i</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="va">cols</span> <span class="cf">do</span></span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="va">j</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="va">rows</span> <span class="cf">do</span></span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>            <span class="kw">local</span> <span class="va">neighbors</span> <span class="op">=</span> countNeighbors<span class="op">(</span><span class="va">i</span><span class="op">,</span> <span class="va">j</span><span class="op">)</span></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>            <span class="co">-- Conway&#39;s rules:</span></span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>            <span class="co">-- 1. Any live cell with 2-3 neighbors survives</span></span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>            <span class="co">-- 2. Any dead cell with exactly 3 neighbors becomes alive</span></span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>            <span class="co">-- 3. All other cells die or stay dead</span></span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="va">grid</span><span class="op">[</span><span class="va">i</span><span class="op">][</span><span class="va">j</span><span class="op">]</span> <span class="op">==</span> <span class="dv">1</span> <span class="cf">then</span></span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>                <span class="co">-- Cell is alive</span></span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="va">neighbors</span> <span class="op">==</span> <span class="dv">2</span> <span class="kw">or</span> <span class="va">neighbors</span> <span class="op">==</span> <span class="dv">3</span> <span class="cf">then</span></span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>                    <span class="va">nextGrid</span><span class="op">[</span><span class="va">i</span><span class="op">][</span><span class="va">j</span><span class="op">]</span> <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>                <span class="cf">else</span></span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>                    <span class="va">nextGrid</span><span class="op">[</span><span class="va">i</span><span class="op">][</span><span class="va">j</span><span class="op">]</span> <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>                <span class="cf">end</span></span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span></span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>                <span class="co">-- Cell is dead</span></span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="va">neighbors</span> <span class="op">==</span> <span class="dv">3</span> <span class="cf">then</span></span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>                    <span class="va">nextGrid</span><span class="op">[</span><span class="va">i</span><span class="op">][</span><span class="va">j</span><span class="op">]</span> <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>                <span class="cf">else</span></span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>                    <span class="va">nextGrid</span><span class="op">[</span><span class="va">i</span><span class="op">][</span><span class="va">j</span><span class="op">]</span> <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>                <span class="cf">end</span></span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>            <span class="cf">end</span></span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Copy next generation to current grid</span></span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="va">i</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="va">cols</span> <span class="cf">do</span></span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="va">j</span> <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="va">rows</span> <span class="cf">do</span></span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>            <span class="va">grid</span><span class="op">[</span><span class="va">i</span><span class="op">][</span><span class="va">j</span><span class="op">]</span> <span class="op">=</span> <span class="va">nextGrid</span><span class="op">[</span><span class="va">i</span><span class="op">][</span><span class="va">j</span><span class="op">]</span></span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> countNeighbors<span class="op">(</span><span class="va">x</span><span class="op">,</span> <span class="va">y</span><span class="op">)</span></span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">count</span> <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Check all 8 neighbors</span></span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="va">i</span> <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="dv">1</span> <span class="cf">do</span></span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="va">j</span> <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="dv">1</span> <span class="cf">do</span></span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a>            <span class="co">-- Skip the center cell</span></span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="kw">not</span> <span class="op">(</span><span class="va">i</span> <span class="op">==</span> <span class="dv">0</span> <span class="kw">and</span> <span class="va">j</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="cf">then</span></span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a>                <span class="co">-- Wrap around edges (toroidal topology)</span></span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a>                <span class="kw">local</span> <span class="va">col</span> <span class="op">=</span> <span class="op">((</span><span class="va">x</span> <span class="op">-</span> <span class="dv">1</span> <span class="op">+</span> <span class="va">i</span><span class="op">)</span> <span class="op">%</span> <span class="va">cols</span><span class="op">)</span> <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a>                <span class="kw">local</span> <span class="va">row</span> <span class="op">=</span> <span class="op">((</span><span class="va">y</span> <span class="op">-</span> <span class="dv">1</span> <span class="op">+</span> <span class="va">j</span><span class="op">)</span> <span class="op">%</span> <span class="va">rows</span><span class="op">)</span> <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a>                <span class="va">count</span> <span class="op">=</span> <span class="va">count</span> <span class="op">+</span> <span class="va">grid</span><span class="op">[</span><span class="va">col</span><span class="op">][</span><span class="va">row</span><span class="op">]</span></span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>            <span class="cf">end</span></span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">count</span></span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> mousePressed<span class="op">()</span></span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Toggle cell on click</span></span>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">col</span> <span class="op">=</span> floor<span class="op">(</span><span class="va">mouseX</span> <span class="op">/</span> <span class="va">cellSize</span><span class="op">)</span> <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">row</span> <span class="op">=</span> floor<span class="op">(</span><span class="va">mouseY</span> <span class="op">/</span> <span class="va">cellSize</span><span class="op">)</span> <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">col</span> <span class="op">&gt;=</span> <span class="dv">1</span> <span class="kw">and</span> <span class="va">col</span> <span class="op">&lt;=</span> <span class="va">cols</span> <span class="kw">and</span> <span class="va">row</span> <span class="op">&gt;=</span> <span class="dv">1</span> <span class="kw">and</span> <span class="va">row</span> <span class="op">&lt;=</span> <span class="va">rows</span> <span class="cf">then</span></span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">grid</span><span class="op">[</span><span class="va">col</span><span class="op">][</span><span class="va">row</span><span class="op">]</span> <span class="op">==</span> <span class="dv">0</span> <span class="cf">then</span></span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a>            <span class="va">grid</span><span class="op">[</span><span class="va">col</span><span class="op">][</span><span class="va">row</span><span class="op">]</span> <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span></span>
+<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a>            <span class="va">grid</span><span class="op">[</span><span class="va">col</span><span class="op">][</span><span class="va">row</span><span class="op">]</span> <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> mouseDragged<span class="op">()</span></span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- Allow drawing by dragging</span></span>
+<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">col</span> <span class="op">=</span> floor<span class="op">(</span><span class="va">mouseX</span> <span class="op">/</span> <span class="va">cellSize</span><span class="op">)</span> <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="va">row</span> <span class="op">=</span> floor<span class="op">(</span><span class="va">mouseY</span> <span class="op">/</span> <span class="va">cellSize</span><span class="op">)</span> <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">col</span> <span class="op">&gt;=</span> <span class="dv">1</span> <span class="kw">and</span> <span class="va">col</span> <span class="op">&lt;=</span> <span class="va">cols</span> <span class="kw">and</span> <span class="va">row</span> <span class="op">&gt;=</span> <span class="dv">1</span> <span class="kw">and</span> <span class="va">row</span> <span class="op">&lt;=</span> <span class="va">rows</span> <span class="cf">then</span></span>
+<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a>        <span class="va">grid</span><span class="op">[</span><span class="va">col</span><span class="op">][</span><span class="va">row</span><span class="op">]</span> <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+            <h2 id="related-examples">Related Examples</h2>
+            <ul>
+            <li><a
+            href="https://l5lua.org/examples/10print.md">10print</a> -
+            An implementaton of the famous 1980s one-liner maze-drawing
+            program</li>
+            <li><a
+            href="https://l5lua.org/examples/animation-and-variables-animation-with-events.md">Animation
+            with Events</a> - Pause and resume animation.</li>
+            <li><a href="https://l5lua.org/examples/basic-pong.md">Basic
+            Pong</a> - A simple program demonstrating a basic
+            implementation of pong with enemy AI player</li>
+            <li><a
+            href="https://l5lua.org/examples/min-span-tree.md">Minimum
+            Spanning Tree</a> - An example of implmenting Prim’s
+            algorithm for finding the shortest lengths to connect all
+            randomly placed dots</li>
+            <li><a
+            href="https://l5lua.org/examples/walking-lines.md">Walking
+            lines</a> - Visualizes randomly drawn lines bouncing around
+            a box with their intersecting points highlighted</li>
+            </ul>
+            <h2 id="ecosystem-project">Ecosystem Project</h2>
+            <ul>
+            <li>Read section 2 from <a
+            href="https://natureofcode.com/forces/">The Nature of
+            Code</a> focusing on Air/Fluid Resistance</li>
+            <li>Can you add mud? water? goo? that will slow down and
+            affect your creature?</li>
+            <li>Read section 2.9 on Attraction. This will let us make
+            organisms that move around and follow things, run away from
+            them (or eat them!). Can you add cheese that attracts your
+            mouse? or pheromones that attract a critter? or honey that
+            attracts a bear?</li>
+            <li>See examples 2.5 and 2.6 <a
+            href="https://github.com/nature-of-code/noc-examples-p5.js/tree/master/chp02_forces">here</a>
+            for starter p5.js code adapted from The Nature of Code</li>
+            <li>optional: Watch Dan Shiffman’s <a
+            href="https://www.youtube.com/watch?v=II1A3bBo6gM&amp;list=PLRqwX-V7Uu6ZRrqLcQ5BkBKmBLiGD8n4O">tutorials</a>
+            on forces if you’d like a review or alternate instruction
+            model</li>
+            <li>Your project should consist of at least one Class. Your
+            environment should have forces. This could be gravity, wind.
+            Add an attraction force. Make sure to replace your primitive
+            shapes with images at this point. You should have a metaphor
+            or situation in mind for what you are creating, not just
+            “these circles want to eat these other circles” but a
+            specific system you are trying to build.</li>
+            </ul>
+      <footer> <hr>
+
+<p><em><a href="https://github.com/lee2sman/dmsc_fall2026">This site</a> is built using <a href="https://tildegit.org/exquisitecorp/panblog">panblog</a>. Site design by Lee Tusman (c) 2026.</em></p>
+
+<p><em>All course content, unless otherwise credited, is by Lee Tusman (c) 2026 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">CC BY-NC-SA</a>.</em></p> </footer>
+  </body>
+</html>

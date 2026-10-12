@@ -16,3 +16,6 @@
 [Week 7 - Random Robots Painting](robots-painting/)  
 2026-10-05  
 
+[Week 8 - Cellular Automata and the Game of Life](game-of-life/)  
+2026-10-12  
+
