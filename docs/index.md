@@ -19,3 +19,6 @@
 [Week 8 - Cellular Automata and the Game of Life](game-of-life/)  
 2026-10-12  
 
+[Week 9 - Fluxus and algorithmic art and simulations](fluxus/)  
+2026-10-19  
+

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta name="date" content="" />
+            <title>Week 9 - Fluxus and algorithmic art and
+simulations</title>
+      <link rel="stylesheet" href="../css/../css/dmsc.css" />
+
+      <meta property="og:title" content="Week 9 - Fluxus and algorithmic
+art and simulations" />
+                  <meta property="og:type" content="article" />
+  </head>
+  <body>
+      <header> <nav>
+  <ul>
+    <li><a href="/dmsc_fall2026/">home</a></li>
+    <li><a href="/dmsc_fall2026/about/">about</a></li>
+    <li><a href="/dmsc_fall2026/logs/">logs</a></li>
+    <li><a href="/dmsc_fall2026/syllabus/">syllabus</a></li>
+  </ul>
+</nav> </footer>
+      <h1>Week 9 - Fluxus and algorithmic art and simulations</h1>
+            <p><em>Date: 2026-10-19</em></p>
+            <ul>
+            <li>fluxus</li>
+            <li>algorithmic art</li>
+            <li>Hydra</li>
+            </ul>
+            <h2
+            id="fluxus-and-an-introduction-to-procedural-generation">Fluxus
+            and an Introduction to Procedural Generation</h2>
+            <p><em>From Some Instructions:</em></p>
+            <blockquote>
+            <p>George Brecht was a man of many trades in the
+            mid-twentieth century: a World War II soldier, chemist,
+            tampon designer, and Fluxus artist. Brecht is credited with
+            creating the ‘event score’, a written form of performance
+            art. His inspiration was drawn from his friend, the
+            self-proclaimed un-artist Allan Kaprow, whose pieces icame
+            in the form of live performance piecs or ‘happenings.’
+            Kaprow would give performers his elaborate instructions to
+            enact within his gallery space.</p>
+            </blockquote>
+            <blockquote>
+            <p>While intrigued by Kaprow’s ‘happenings.’ Brecht became
+            bored by didactic, overly specific instructions. Brecht’s
+            approach to the event score was less detailed, more oblique,
+            and open to intrepretation. For example:</p>
+            </blockquote>
+            <p>Three Chair Event</p>
+            <ul>
+            <li>Sitting on a black chair. Occurrence.</li>
+            <li>Yellow chair. (Occurence.)</li>
+            <li>On (or near) a white chair. Occurence,</li>
+            </ul>
+            <p>–Spring 1961</p>
+            <blockquote>
+            <p>A wide variety of artists acquainted with the Fluxus
+            movement wrote event scores, among them Yoko Ono and La
+            Monte Young. At times the scores were performed live at
+            festivals; other times they were read as texts. Keeping
+            accessibilyt in mind, these scores were cheaply printed on
+            notecards and distributed through the mail. This served to
+            skip the ‘gallery space’ step altogether, countering the
+            notion of the physical art object.</p>
+            </blockquote>
+            <blockquote>
+            <p>….Each contribution is open to your creative
+            interpretation. You’re urged to perform these instructions
+            private, publicly, or ‘negative’ (i.e. not at all). You can
+            decide to simply read the instrucitons - alone, in front of
+            your cat, or before a stadium full of spectators. You can
+            float these instructions on the surface of a nearby lake.
+            You can post your favorite peroframnec on YouTube and tag
+            it’ skywalkers’ gangnam style star wars lego.’ The choice is
+            yours. You’re the artist.</p>
+            </blockquote>
+            <h3 id="event-scores-instruction-pieces">Event scores /
+            “Instruction” Pieces</h3>
+            <p>Concert #1<br />
+            Robert Bozzi, 1966</p>
+            <pre><code>On Signal form the conductors, each section of the orchestra performs one of the following actions in unison.
+
+* tie or untie neckties
+* unbutton or button up shirt sleeves
+* roll up or roll down sleeves
+* comb hair
+* brush clothes
+
+Each movement should accelerate in tempo and stop suddently.</code></pre>
+            <p>Everything Comes to Make You Move Forward<br />
+            Dawn Kasper, 2014</p>
+            <pre><code>First, take a self-portrait. Then locate a comfortable, quiet place to sit. Close your eyes. Clear your mind. Breathe in through your nose and exhale through your mouth. Repeat this ten to twenty times. Focus entirely on your own breathing. Let go. Relax. Once you are finished, take another self-portrait.</code></pre>
+            <p>Instruction<br />
+            George Brecht, 1961</p>
+            <pre><code>Turn on a radio. At the first sound, turn it off.</code></pre>
+            <p>Saxophone Solo, Fluxversion 1<br />
+            George Brecht, 1962</p>
+            <pre><code>The piece is announced. Performer enters stage with an instrument case, places it on a stand, opens it and pulls out a trumpet, realizes the mistake, puts it quickly back in the case and exits.</code></pre>
+            <p>Piece for any number of Vocalists<br />
+            Alison Knowles, 1963</p>
+            <pre><code>Each thinks beforehand of a song, and on a signal from the conductor, sings it through.</code></pre>
+            <p>Time Piece<br />
+            Luke Fischbeck, 2014</p>
+            <pre><code>make a series of paintings showing all of the possible ways two straigth lines can touch one another. hang one of teh paintings in every place where you might need to know the time - in the kitchen, in the bedroom, in the car, in a classroom, in the reecption area of an office. wait until the painting becomes a clock.</code></pre>
+            <p>Painting to be stepped on<br />
+            Yoko Ono, 1960</p>
+            <pre><code>Leave a piece of canvas or finished painting on the floor or in the street.</code></pre>
+            <p>Smile<br />
+            Ben Vautier, 1961</p>
+            <pre><code>5 performers walk about smiling.</code></pre>
+            <p>Out of the Blue<br />
+            Sarah Rara, 2014</p>
+            <pre><code>REPLY TO AN EMAIL OR LETTER RECEIVED AT LEAST TWO YEARS AGO. INSERT THE WORD &#39;BLUE&#39; WITHIN THE TEXT. REKINDLE THE FLAME OR PUT IT OUT. BLUE.</code></pre>
+            <p><em>Fluxus works from Fluxus Performance Workbook, edited
+            by Ken Friedman, Owen Smith and Lauren Sawchyn, and Some
+            Instructions which I picked up somewhere but cannot remember
+            where and it doesn’t list who edited or published
+            it.</em></p>
+            <h2 id="algorithmic-art">Algorithmic Art</h2>
+            <p><span class="image placeholder"
+            data-original-image-src="http://4.bp.blogspot.com/-kKuMZ-_C69A/UeOLucwRa9I/AAAAAAAAQ4s/P1hn5bNmiHE/s1600/grapefruit-1964_dbehl-yoko-ono-768x1024.jpg"
+            data-original-image-title="">Yoko Ono
+            Grapefruit</span><br />
+            Yoko Ono, Grapefruit</p>
+            <figure>
+            <img src="../images/lewitt-wall-drawing-dia-beacon.jpg"
+            alt="Sol Lewitt drawing" />
+            <figcaption aria-hidden="true">Sol Lewitt
+            drawing</figcaption>
+            </figure>
+            <figure>
+            <img src="../images/sfma.jpg"
+            alt="Sol Lewitt wall drawing" />
+            <figcaption aria-hidden="true">Sol Lewitt wall
+            drawing</figcaption>
+            </figure>
+            <p><img src="../images/programmed.jpg"
+            alt="Programmed Wall Drawing" /><br />
+            <em>Sol LeWitt, 4th wall: 24 lines from the center, 12 lines
+            from the midpoint of each of the sides, 12 lines from each
+            corner, 1976, from Wall Drawing #289 (installation view,
+            Programmed: Rules, Codes, and Choreographies in Art,
+            1965-2018, Whitney Museum of American Art, New York,
+            September 28, 2018-April 14, 2019</em></p>
+            <p>Sol LeWitt’s Wall Drawings series</p>
+            <p><img src="../images/truckenbrod.jpg"
+            alt="Joan Truckenbrod" /><br />
+            Joan Truckenbrod</p>
+            <p><a
+            href="https://joantruckenbrodart.com/algorithmic-art-videos.html">video</a></p>
+            <p><img src="../images/enigma.png"
+            alt="Lillian Schwartz ENIGMA" /><br />
+            Lillian Schwartz, ENIGMA</p>
+            <p><a
+            href="https://www.youtube.com/watch?v=qFrllYImrxg">video</a></p>
+            <p>The Artist and The Computer, 1976 <a
+            href="https://www.youtube.com/watch?v=GRFPV9smRyg">video</a></p>
+            <p>Do It Exhibiiton - curated by Hans Ulrich Obrist</p>
+            <p><a
+            href="https://www.dropbox.com/s/emzc1e7f0lq2j7i/ICI_DO%20IT%20HOME.pdf?dl=0">Do
+            It (home)</a> Part 1<br />
+            <a
+            href="https://www.dropbox.com/s/g0993guraoqd6qo/ICI_DO%20IT%20HOME%20PART%202%20LR.pdf?dl=0">Do
+            It (home)</a> Part 2</p>
+            <p><a
+            href="https://curatorsintl.org/events/11753-do-it-short">video</a></p>
+            <p>Peter Burr, Dirtscraper <a
+            href="https://www.youtube.com/watch?v=VuHHUTTDmLM">video</a></p>
+            <p><a
+            href="https://www.youtube.com/watch?v=wt9nUjN7pK8">Opus
+            1</a></p>
+            <p>Chelsea Thompto, Landmarks Cloud Consensus Portraits - <a
+            href="https://landmarks.cloud/machine.html">site</a></p>
+            <p>Sol Lewitt, Wall Drawings</p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/c4cgB4vJ2XY?si=lWn9O4F8bSo7rd4m" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+            <p>Brent Watanabe, San Andreas Streaming Deer Cam, 2015 -
+            2016</p>
+            <div style="padding:56.25% 0 0 0;position:relative;">
+            <iframe src="https://player.vimeo.com/video/153319249?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="MacDowell 2016: GTA Deer Prototype/Benevolent and Vengeful">
+            </iframe>
+            </div>
+            <script src="https://player.vimeo.com/api/player.js"></script>
+            <h2
+            id="francesco-mariotti-chullachaqui-inteligencia-artificial-1981---1987">Francesco
+            Mariotti, CHULLACHAQUI – INTELIGENCIA ARTIFICIAL, 1981 -
+            1987</h2>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/YAiJqE2IwV8?si=6qL521YGr3W4D7Da" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/bvhfzvURKYc?si=RfgtnNWbtUZrxQZ5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+            <p>The text in the following section was translated via
+            Google Translate, January 2025.</p>
+            <p>Chullachaqui 5: the ‘color’ of thelema</p>
+            <p>No information processing can take place without a
+            program and a computer. For “Pappagallo 2,” Mariotti
+            developed “Chullachaqui 5.” Chullachanqui is a word in
+            Quechua that defines beings that seem alive but are invented
+            by witches and therefore can be considered as small demons,
+            however, the Chullachaqui seeks to befriend human beings.
+            Mariotti’s work linked to the Chullachaquis dates back to
+            1981 in the series of engravings from the book “The Three
+            Halves of Ino-Moxo and Other Witches of the Amazon” by the
+            Peruvian poet Cesar Calvo, where Mariotti combines Ashaninka
+            graphics with electronic circuits (Bendayán 2006).</p>
+            <p>“Chullachaqui 5” was developed by Manolo Rodríguez and
+            programmed in BASIC 2.0 on a Commodore C64, which was the
+            same machine used during its presentation in installation
+            format. The “Pappagallo 2” setup included, in addition to
+            the computer, a 5 ¼ floppy disk drive for reading the
+            program (the classic Commodore model 1541) and a
+            “dot-matrix” printer (model MPS 803) that allowed the public
+            to take home a printed sheet with the processed texts.</p>
+            <p>The Commodore C64, produced at the end of 1982, was one
+            of the first low-cost personal computers, and unlike other
+            competing machines of the time, such as the Apple II, IBM PC
+            or Atari 800, it was launched at an aggressive price and
+            with distribution in department stores to encourage its
+            domestic use, even beating European competitors such as the
+            English Sinclair. The Commodore used the MOS
+            Technology-developed 6510 8-bit processor, with 64 kilobytes
+            of RAM and a sound processor that provided some
+            sophisticated advantages in sound processing for that time
+            despite having only 3 programmable filter channels (MOS
+            Technology 6581/8580 SID). An additional advantage of using
+            the Commodore C64 was its composite video output which, as
+            in the case of video game consoles of the time, allowed the
+            use of conventional TV monitors. The Commodore C64 was one
+            of the longest-lived machine models in history, being
+            produced for over 12 years.</p>
+            <p>“Chullachaqui 5” allowed the generation of random stanzas
+            from any text. There was a certain level of sophistication
+            in relation to this randomness, for example, it not only
+            meant that the order varied, but also that the number of
+            stanzas in the poems played by the machine was modified. The
+            result is interesting, explains Mariotti: “On the one hand,
+            randomness allows us to see how the order of a poem is often
+            an attempt by many to prefix a meaning, but there are many
+            other meanings.” Perhaps one of the most emblematic works in
+            the field of random poetry is Raymond Queneau’s “Cent mille
+            milliards de poemes” (Queneau 1961), a book composed of
+            stanzas divided by breaks in the pages that allow readers to
+            combine stanzas from different pages to generate new
+            compositions and meanings.</p>
+            <p>Tribute to syntactic thinking</p>
+            <p>The effects of randomness, especially some of its most
+            surprising results, increased enthusiasm for artificial
+            intelligence. “Papagayo 2” coincided with one of the final
+            stages of the first great boom in artificial intelligence,
+            which had begun in the seventies with semantic networks and
+            continued in the eighties with meanings generated from
+            perception (Steels 2006). Artificial intelligence was not
+            only perceived as a solution to the problems of
+            post-industrial automation, but also, from a philosophical
+            perspective, it was linked to improving the quality of human
+            life.</p>
+            <p>However, since computers are syntactic machines
+            (Kallinikos 2002), they are only sensitive to the form of
+            specification given by the data entered, but not to the
+            meaning (Dreyfus 1992; Dreyfus 2001). This syntactical
+            thought can also lead to new meanings, to ways of thinking
+            that we would never have imagined. The random sense produced
+            by works of art often tells us things that we do not
+            imagine. Beyond the automation of the machine and its
+            logical-deterministic purpose, the randomness that is
+            produced can also give rise to singular results. Many
+            artists have worked with some kind of randomness to generate
+            new forms of visualization that have resulted from complex
+            genetic algorithms and evolutionary programming (Sims 1991;
+            Maeda 1999; Maeda and Burns 2004).</p>
+            <p>There is a fundamental aspect attached to the principle
+            of randomness, which is the mixing of different contents to
+            create hybrid results. Although this is a field that may
+            have reminiscences in collage, today it is used more
+            frequently due to the excess of available information (Lyman
+            and Varian 2003) and its level of interoperability. What is
+            commonly known today as mashups, a term that initially comes
+            from the ‘mix’ that DJs make of different musical extracts
+            to generate new rhythms, can be seen as the result of media
+            content associated with functionalities that are not
+            predefined and therefore function as symbolic processors
+            (Dietrich 2000). Much of the failure of artificial
+            intelligence has today led to the generation of collective
+            or social intelligences that come from new forms of
+            information interoperability (O’Reilly 2005).</p>
+            <p>Is there then an intelligence in random thinking? Many of
+            the combinations that are generated are surprising, but many
+            others are disappointing and lack meaning. A chaotic poetic
+            work like Toti’s obeys an order and a search for meaning in
+            nonsense. Therefore, when listening to or reading the
+            statements generated by “Pappagallo 2” one is not entirely
+            surprised, and the computer seems to become a natural
+            component of the full exercise of Toti’s poetry. Mariotti’s
+            “Pappagallo 2” and the regenerated Totian poems show that,
+            beyond a semantic search, poetry is still the space where
+            decontextualizations can produce an order that only human
+            beings can understand and feel.</p>
+            <figure>
+            <img src="../images/watanabe02.png"
+            alt="San Andreas Deer Cam" />
+            <figcaption aria-hidden="true">San Andreas Deer
+            Cam</figcaption>
+            </figure>
+            <p><a
+            href="https://bwatanabe.com/GTA_V_WanderingDeer.html">Deer
+            cam project page</a></p>
+            <p>Theo Trian, TL;DR [the shape of the internet (orgy)],
+            2015</p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/iRIRYPy-r4c?si=6Zq7AXXJJauV6yyh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+            <p>Theo Trian, Radicalization Pipeline, 2021</p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/20AGYYogxZ4?si=lnXsiN_mJPB62pZP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+            <p>David O’Reilly, Mountain, 2014</p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/GMyOTRrM9jg?si=YWm_z51eTe18KDYV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+            <h2 id="reading">Reading</h2>
+            <p><a
+            href="https://www.amygoodchild.com/blog/emergence">Emergence</a>
+            by Amy Goodchild (25 - 30 minute read, overview)</p>
+            <p>Read <em>Chapter 3 - Cybernature</em> of Mitchel
+            Whitelaw’s Metacreation on Artificial Life - <a
+            href="https://ia800604.us.archive.org/19/items/MicheleWhiteTheBodyAndTheScreen/Metacreation_Art_and_Artificial_Life.pdf">link
+            to PDF</a>. In the PDF this this starts on the 75th page and
+            continues to the 114th page, on the early and recent history
+            of algorithmic art and ecosystems. Page 75 has a picture of
+            “Interactive Plant Growing” and the section ends after a
+            description of Natalie Jeremijenko’s A-life art. About 35 -
+            40 minutes reading.</p>
+            <h2 id="hydra">Hydra</h2>
+            <p><a href="https://hydra.ojack.xyz">Hydra</a> is by coder
+            and artist Olivia Jack. It’s a livecoding tool for networked
+            visuals. It is influenced by oldschool modular video
+            synthesizers, and has been reimagined as a distributed
+            (multi-computer/multi-person) tool for performance.</p>
+            <p>Rutt-Etra video synthesizer demo - 1974 - <a
+            href="https://www.youtube.com/watch?v=PExbk6RgOo4">video</a></p>
+            <p>It is built in Javascript and can be integrated with
+            other Javascript projects for the web.</p>
+            <blockquote>
+            <p>Built using WebRTC (peer-to-peer web streaming) and
+            WebGL, hydra allows each connected browser/device/person to
+            output a video signal or stream, and receive and modify
+            streams from other browsers/devices/people. The API is
+            inspired by analog modular synthesis, in which multiple
+            visual sources (oscillators, cameras, application windows,
+            other connected windows) can be transformed, modulated, and
+            composited via combining sequences of functions.</p>
+            </blockquote>
+            <h3 id="sites">Sites</h3>
+            <ul>
+            <li><a href="flok.clic.cf">flok</a> for mulitple people on
+            shared screen</li>
+            </ul>
+            <h2 id="opening-hydra">Opening Hydra</h2>
+            <p>Go to <a href="http://hydra.ojack.xyz">Hydra</a>.</p>
+            <p>Close the welcome screen. A random program will be
+            running. Try changing the numbers. Click the shuffle icon in
+            the top right to load a different starting program. Click
+            the dice icon to shuffle numbers (variables) in the current
+            program.</p>
+            <h2
+            id="creating-an-oscillator-connecting-to-output">Creating an
+            Oscillator, Connecting to Output</h2>
+            <p>Erase all the code on your screen.</p>
+            <p>Let’s create an oscillator.</p>
+            <p>The code we are writing are functions. This program is
+            inspired by analog video synthesizers. In a synthesizer you
+            connect a source to an output.</p>
+            <p>In our Hydra code we have to connect our oscillator to an
+            output to see anything.</p>
+            <pre><code>osc().out();</code></pre>
+            <p>Press Control-Enter (might be Command-Enter on Macs?) to
+            run the code.</p>
+            <h2 id="input">Input</h2>
+            <p>We can try entering some numbers as input. These are
+            called parameters.</p>
+            <pre><code>osc(10, 0, 0.9).out();</code></pre>
+            <p>To run our program we press Control-Shift-Enter to run
+            all of our code. If we ever want to run just a single line
+            of code we can press Control-Enter.</p>
+            <p>In an analog synth you can route a signal through various
+            modules until finally plugging into an output. In Hydra, we
+            can add more functions in a chain until connecting to our
+            output. Let’s add a rotate() function.</p>
+            <p>We can also use parameters. The first parameter for
+            rotate is the amount of rotation, and the second number is
+            the speed of rotation.</p>
+            <pre><code>osc(10, 0, 0.9).rotate(0.2, 0.4).out();</code></pre>
+            <h2 id="undo-forward-back">Undo (forward / back)</h2>
+            <p>To undo / go back one step, press your browser’s back
+            button. You can also use the forward button. This is how to
+            navigate back and forth in time in your code.</p>
+            <h2 id="more-functions">More functions</h2>
+            <p>Let’s do a repeat effect.</p>
+            <pre><code>osc(10, 0, 0.9).rotate(0.2, 0.4).repeat().out();</code></pre>
+            <p>By default it repeats the image 3 times in a row. We can
+            enter a parameter to change the amount.</p>
+            <pre><code>osc(10, 0, 0.9).rotate(0.2, 0.4).repeat(2).out();</code></pre>
+            <p>Kaleidoscope</p>
+            <pre><code>osc(10, 0, 0.9).rotate(0.2, 0.4).kaleid().repeat(2).out();</code></pre>
+            <p>Try changing the order of functions.</p>
+            <pre><code>osc(10, 0, 0.9).kaleid().rotate(0.2, 0.4).repeat(2).out();</code></pre>
+            <h2 id="other-sources">Other sources</h2>
+            <p>Oscillator is a source. We can start with other
+            sources.</p>
+            <p>For example, we can start with a shape.</p>
+            <pre><code>shape().out();</code></pre>
+            <p>By default, shape is a triangle with 3 sides.</p>
+            <pre><code>shape(5).out();</code></pre>
+            <p>A pentagon. The parameter specifies number of side.s</p>
+            <p>We can add many more to get something like a circle.</p>
+            <pre><code>shape(50).out();</code></pre>
+            <p>Another source is a solid color.</p>
+            <pre><code>solid(2, 3).out();</code></pre>
+            <h2 id="list-of-functions">List of functions</h2>
+            <p>To find out about more possible sources and other
+            functions, you can click the ? (question) icon in the top
+            right of Hydra, and then scroll down the intro and click to
+            <a href="https://ojack.xyz/hydra-functions/">a list of hydra
+            functions</a>. You may want to open in a new window.</p>
+            <p>At the top of that page are possible sources. The first
+            listed one is noise.</p>
+            <pre><code>noise().out();</code></pre>
+            <p>We can enter 1 parameter for how noisy it is. This noise
+            is the Perlin noise we’ve been using in p5.js as well.</p>
+            <pre><code>noise(3).out();</code></pre>
+            <p>A second parameter is the rate of change.</p>
+            <pre><code>noise(3, 8).out();</code></pre>
+            <p>Voronoi pattern is another source. This is a new noise
+            source for us.</p>
+            <pre><code>voronoi(7, 1).out();</code></pre>
+            <p>These can all be combined with the functions we covered
+            earlier like repeat(), kaleid(), color(), rotate().</p>
+            <pre><code>voronoi(3, 1).color(1, -1).out();</code></pre>
+            <p><strong>Unlike L5, you can run a single line. If you
+            press Control-Enter, it will run just the line you’re
+            on.</strong></p>
+            <h3 id="using-a-website-or-screen-as-input">Using a website
+            or screen as input</h3>
+            <pre><code>s0.initScreen()
+
+src(s0).hue().out()</code></pre>
+            <h3 id="resources">Resources</h3>
+            <ul>
+            <li><a
+            href="https://www.youtube.com/watch?list=PLrpQhDxe6xjQIHyvRc1H1__opbgDOdusK&amp;v=7KwFchuio6U&amp;feature=emb_logo">Video
+            playlist</a> of Intro to Hydra with Olivia Jack, creator of
+            Hydra</li>
+            <li><a
+            href="https://github.com/ojack/hydra#Getting-Started">Getting
+            Started</a></li>
+            <li><a
+            href="https://github.com/ojack/hydra/blob/main/examples/README.md">Hydra
+            examples and info</a></li>
+            <li><a href="https://hydra-book.naotohieda.com/#/">Hydra
+            book</a> by Naoto Hieda</li>
+            <li>Collaboratively livecode in Hydra together in <a
+            href="http://pixeljam.glitch.me/">PixelJam</a></li>
+            </ul>
+            <h1 id="homework">Homework</h1>
+            <h3 id="read">Read</h3>
+            <ul>
+            <li>Read The Guy Behind Garbage Pail Kids Has Been
+            Cartooning With Code for 20 Years - <a
+            href="https://www.wired.com/2014/08/code-cartooning/">article</a>
+            in Wired</li>
+            </ul>
+            <h3 id="code">Code</h3>
+            <ul>
+            <li>Practice with Hydra</li>
+            <li>Make sure you also try using different forms of input (a
+            web browser window, your entire computer, or a specific
+            image as input)</li>
+            </ul>
+            <h3 id="write-a-devlog-post">Write a devlog post</h3>
+            <ul>
+            <li>Take screenshots of at least two different
+            visualizations you create in Hydra. Write about the
+            experience of using them. What kinds of things are you
+            making? Is the language intuitive? What are your thoughts on
+            Hydra versus L5? What kinds of work can you make with
+            Hydra?</li>
+            </ul>
+            <h2 id="intro-to-ecosystem-project">Intro to Ecosystem
+            project</h2>
+            <p>Creating a single, cohesive ecosystem of various
+            entitites interacting in a digitel simulation. These should
+            consist of various objects, respond to forces, and produce
+            novel output each time it is run, throughout its run.</p>
+            <blockquote>
+            <p>A-life begins with a notion of life that is wholly
+            materialistic, involving no soul, vital force, or essence.
+            In the words of the convenor of the first artificial life
+            workshop, Christopher Langton, ‘Living organisms are nothing
+            more that complex biochemical machines.’ Langton contends
+            that rather than being any special substance or force, life
+            is ‘a property of the organization of matter.’ Further, this
+            organization is not simply a complex structure but a dynamic
+            structure, a system active in real time: for a-life, life is
+            most importantly manifest in behavior.</p>
+            </blockquote>
+            <ul>
+            <li>Your project should consist of class and objects, and
+            the environment should have forces. This could be gravity,
+            wind. Create attraction forces, and create images or
+            animations that fit your ecosystem concept.</li>
+            </ul>
+      <footer> <hr>
+
+<p><em><a href="https://github.com/lee2sman/dmsc_fall2026">This site</a> is built using <a href="https://tildegit.org/exquisitecorp/panblog">panblog</a>. Site design by Lee Tusman (c) 2026.</em></p>
+
+<p><em>All course content, unless otherwise credited, is by Lee Tusman (c) 2026 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">CC BY-NC-SA</a>.</em></p> </footer>
+  </body>
+</html>
