@@ -22,3 +22,6 @@
 [Week 9 - Fluxus and algorithmic art and simulations](fluxus/)  
 2026-10-19  
 
+[Week 10 - Game Simulations ](game-simulations/)  
+2026-10-26  
+

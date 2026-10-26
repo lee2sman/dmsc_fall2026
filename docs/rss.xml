@@ -14,7 +14,7 @@ https://leetusman.com/dmsc_fall2026/posts/2024-01-28-LOGO.html
 https://leetusman.com/dmsc_fall2026/posts/2024-01-28-LOGO.html
 </guid>
 <pubDate>
-Tue, 20 Oct 2026 00:00:00 -0400
+Mon, 26 Oct 2026 00:00:00 -0400
 </pubDate>
 <description>
 <![CDATA[
@@ -42,7 +42,7 @@ https://leetusman.com/dmsc_fall2026/posts/2026-08-31-iceberg-walks.html
 https://leetusman.com/dmsc_fall2026/posts/2026-08-31-iceberg-walks.html
 </guid>
 <pubDate>
-Tue, 20 Oct 2026 00:00:00 -0400
+Mon, 26 Oct 2026 00:00:00 -0400
 </pubDate>
 <description>
 <![CDATA[
@@ -70,7 +70,7 @@ https://leetusman.com/dmsc_fall2026/posts/2026-09-14-arrays-of-things.html
 https://leetusman.com/dmsc_fall2026/posts/2026-09-14-arrays-of-things.html
 </guid>
 <pubDate>
-Tue, 20 Oct 2026 00:00:00 -0400
+Mon, 26 Oct 2026 00:00:00 -0400
 </pubDate>
 <description>
 <![CDATA[
@@ -97,7 +97,7 @@ https://leetusman.com/dmsc_fall2026/posts/2026-09-21-objects.html
 https://leetusman.com/dmsc_fall2026/posts/2026-09-21-objects.html
 </guid>
 <pubDate>
-Tue, 20 Oct 2026 00:00:00 -0400
+Mon, 26 Oct 2026 00:00:00 -0400
 </pubDate>
 <description>
 <![CDATA[
@@ -125,7 +125,7 @@ https://leetusman.com/dmsc_fall2026/posts/2026-09-28-seeding.html
 https://leetusman.com/dmsc_fall2026/posts/2026-09-28-seeding.html
 </guid>
 <pubDate>
-Tue, 20 Oct 2026 00:00:00 -0400
+Mon, 26 Oct 2026 00:00:00 -0400
 </pubDate>
 <description>
 <![CDATA[
@@ -153,7 +153,7 @@ https://leetusman.com/dmsc_fall2026/posts/2026-10-05-robots-painting.html
 https://leetusman.com/dmsc_fall2026/posts/2026-10-05-robots-painting.html
 </guid>
 <pubDate>
-Tue, 20 Oct 2026 00:00:00 -0400
+Mon, 26 Oct 2026 00:00:00 -0400
 </pubDate>
 <description>
 <![CDATA[
@@ -180,7 +180,7 @@ https://leetusman.com/dmsc_fall2026/posts/2026-10-12-game-of-life.html
 https://leetusman.com/dmsc_fall2026/posts/2026-10-12-game-of-life.html
 </guid>
 <pubDate>
-Tue, 20 Oct 2026 00:00:00 -0400
+Mon, 26 Oct 2026 00:00:00 -0400
 </pubDate>
 <description>
 <![CDATA[
@@ -208,7 +208,7 @@ https://leetusman.com/dmsc_fall2026/posts/2026-10-19-fluxus.html
 https://leetusman.com/dmsc_fall2026/posts/2026-10-19-fluxus.html
 </guid>
 <pubDate>
-Tue, 20 Oct 2026 00:00:00 -0400
+Mon, 26 Oct 2026 00:00:00 -0400
 </pubDate>
 <description>
 <![CDATA[
@@ -222,6 +222,34 @@ From Some Instructions:
 
   George Brecht was a man of many trades in the mid-twentieth century: a
   World War II soldier, chemist, tampon designer, and Fluxus artist.
+]]>
+</description>
+</item>
+<item>
+<title>
+Week 10 - Game Simulations
+</title>
+<link>
+https://leetusman.com/dmsc_fall2026/posts/2026-10-26-game-simulations.html
+</link>
+<guid>
+https://leetusman.com/dmsc_fall2026/posts/2026-10-26-game-simulations.html
+</guid>
+<pubDate>
+Mon, 26 Oct 2026 00:00:00 -0400
+</pubDate>
+<description>
+<![CDATA[
+today:
+
+-   Data Structure Gardens
+-   Little performances
+-   Coding challenge: Squirrel Eat Squirrel
+
+Data Structure Garden
+
+This is a review of building up arrays of objects, complete with their
+own lifespan.
 ]]>
 </description>
 </item>
