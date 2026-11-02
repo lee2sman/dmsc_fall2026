@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta name="date" content="" />
+            <title>Week 11 - Procedural Text Generation</title>
+      <link rel="stylesheet" href="../css/../css/dmsc.css" />
+
+      <meta property="og:title" content="Week 11 - Procedural Text
+Generation" />
+                  <meta property="og:type" content="article" />
+  </head>
+  <body>
+      <header> <nav>
+  <ul>
+    <li><a href="/dmsc_fall2026/">home</a></li>
+    <li><a href="/dmsc_fall2026/about/">about</a></li>
+    <li><a href="/dmsc_fall2026/logs/">logs</a></li>
+    <li><a href="/dmsc_fall2026/syllabus/">syllabus</a></li>
+  </ul>
+</nav> </footer>
+      <h1>Week 11 - Procedural Text Generation</h1>
+            <p><em>Date: 2026-11-02</em></p>
+            <ul>
+            <li>Live coding practice</li>
+            <li>Markov</li>
+            <li>5 Card Nancy</li>
+            <li>Generative text grammars</li>
+            <li>Tracery</li>
+            <li>Generative dungeons?</li>
+            </ul>
+            <h2 id="live-coding-practice">Live coding practice</h2>
+            <p>Solos and duos with <a
+            href="https://strudel.cc">Strudel</a>, <a
+            href="https://hydra.ojack.xyz">Hydra</a> and <a
+            href="https://flok.cc">Flok</a>.</p>
+            <h2 id="markov">Markov</h2>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/63HHmjlh794?si=-AhsJxE6q9bvhYYF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+            <blockquote>
+            <p>In the hands of metereologists, ecologists, computer
+            scientists, financial engineers and other people who need to
+            model big phenomena, Markov chains can get to be quite large
+            and powerful. For example, the algorithm Google uses to
+            determine the order of search results, called PageRank, is a
+            type of Markov chain. –Victor Powell and Dr. Lewis Lehe,
+            setosa.io</p>
+            </blockquote>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/sUjW5zlgeoQ?si=kpPn7Ff3K0O6fLP5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+            <p><em>Note: take a look at the comments (don’t make me
+            regret this!) to see some complaints from people about the
+            use of Markov text generation.</em></p>
+            <blockquote>
+            <p><em>Yeah, it is funny and all, but it totally ruins
+            immersion. For some players it isn’t a big deal: some are
+            playing for “intellectual challenge”, some just having fun
+            with procedural stuff, but lots of players care very much
+            about overall consistency and atmosphere.. This feature
+            would ruin game for them.</em></p>
+            </blockquote>
+            <h3 id="card-nancy">5 Card Nancy</h3>
+            <blockquote>
+            <p><em>A dadaist card game using panels from Ernie
+            Bushmiller’s 20th Century comic strip Nancy.–<a
+            href="https://www.scottmccloud.com/4-inventions/nancy/index.html">Scott
+            McCloud</a></em></p>
+            </blockquote>
+            <figure>
+            <img src="../images/nancy.jpg"
+            alt="image from Austin Kleon, original Nancy panels by Ernie Bushmiller" />
+            <figcaption aria-hidden="true">image from Austin Kleon,
+            original Nancy panels by Ernie Bushmiller</figcaption>
+            </figure>
+            <p><a
+            href="https://web.archive.org/web/20120607063651/http://www.7415comics.com/nancy/index.shtml">5
+            Card Nancy</a> from 741.5 Comics via the Wayback Machine</p>
+            <h3 id="generative-text">Generative Text</h3>
+            <p>Tracery is a generative grammar system / text replacement
+            tool created by scholar Kate Compton. It is a
+            javascript-based library where text expands with filled-in
+            replacement words, and also includes affordances such as
+            capitalization, a/an, and the like. It has been ported to
+            many other languages.</p>
+            <p><a href="https://github.com/lee2sman/L5-tracery">Port of
+            tracery-lua for L5</a></p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/isB82kORimk?si=cE9pMaXG0p3YZpCZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+            <p>starter code <strong>(requires downloading tracery.lua
+            into your directory)</strong>:</p>
+            <div class="sourceCode" id="cb1"><pre
+            class="sourceCode lua"><code class="sourceCode lua"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span><span class="op">(</span><span class="st">&#39;L5&#39;</span><span class="op">)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">tracery</span> <span class="op">=</span> <span class="fu">require</span> <span class="st">&quot;tracery&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="va">ourText</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">greeting</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Hello!&quot;</span><span class="op">,</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Top of the morning to ya!&quot;</span><span class="op">,</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;The best part of waking up is Folger&#39;s in your cup,&quot;</span><span class="op">,</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="op">},</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="va">person</span> <span class="op">=</span> <span class="op">{</span><span class="st">&quot;stranger, sailor&quot;</span><span class="op">,</span> <span class="st">&quot;mom&quot;</span><span class="op">},</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="va">occurrence</span> <span class="op">=</span> <span class="op">{</span><span class="st">&quot;talking to a #person#&quot;</span><span class="op">},</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="va">origin</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;#greeting# #person.capitalize#. I couldn&#39;t help but notice you #occurrence#.&quot;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> setup<span class="op">()</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">--start up Tracery</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">grammar</span> <span class="op">=</span> <span class="va">tracery</span><span class="op">.</span>createGrammar<span class="op">(</span><span class="va">ourText</span><span class="op">)</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="co">--add modifiers</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="va">grammar</span><span class="op">:</span>addModifiers<span class="op">(</span><span class="va">tracery</span><span class="op">.</span><span class="va">baseEngModifiers</span><span class="op">)</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="co">--save output as a string</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> <span class="va">text</span><span class="op">,</span> <span class="va">data</span> <span class="op">=</span> <span class="va">grammar</span><span class="op">:</span>flatten<span class="op">(</span><span class="st">&quot;#origin#&quot;</span><span class="op">)</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span><span class="op">(</span><span class="va">text</span><span class="op">)</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+            <h3 id="resources">Resources</h3>
+            <ul>
+            <li><a
+            href="https://www.youtube.com/watch?v=isB82kORimk">Practical
+            Low Effort Procedural Generation: Tracery and data oriented
+            PCG authoring</a> - Kate Compton, 31 minutes</li>
+            <li><a
+            href="https://medium.com/datasociety-points/bots-a-definition-and-some-historical-threads-47738c8ab1ce">Bots:
+            A Definition and Some Historical Precedents</a> by Allison
+            Parrish for Data &amp; Society: Points</li>
+            <li><a
+            href="https://leetusman.com/nosebook/tracery">Generating
+            Text with Tracery on a website</a> tutorial by Lee
+            Tusman</li>
+            <li><a href="https://www.galaxykate.com/">Kate Compton’s
+            website</a></li>
+            <li><a
+            href="https://www.youtube.com/watch?v=zDTQM0Ipiz4">Markov by
+            Candlelight</a> - Jason Grinblat - 27 minutes (Jason is a
+            co-creator of Caves of Qud)</li>
+            </ul>
+            <h2 id="read">Read</h2>
+            <p>Ethical Procedural Generation - Mike Cook, from
+            Procedural Generation in Game Design</p>
+            <p>Try Cook’s <a
+            href="https://illomens.itch.io/a-long-walk">A Long
+            Walk</a></p>
+            <h2
+            id="play-a-game-that-makes-significant-use-of-procedural-generation">Play
+            a game that makes significant use of procedural
+            generation</h2>
+            <p>Recommendations:</p>
+            <p><a href="https://www.reignsgame.com/reigns">Reigns</a> -
+            A free online or iOS/Android game. Flip through cards to
+            make decisions and see how your games turns out playing as a
+            king or queen of a rough middle ages empire.</p>
+            <p>Games from Michael Brough such as Zaga-88, 868-Hack or P1
+            Select - online at smestorp.com or on iOS, for download and
+            on iOS. These small grid games are procedurally generated
+            abstract puzzle games. Free or a few bucks.</p>
+            <p><a href="https://illomens.itch.io/a-long-walk">A Long
+            Walk</a> - short experience, very simple but beautiful (i
+            think), about walking past dedicated benches on a pier. Also
+            see <a href="https://illomens.itch.io/">other games by
+            Cook</a>.</p>
+            <p><a href="https://www.bay12games.com/dwarves/">Dwarf
+            Fortress</a> - Both free and commercial versions available.
+            Difficult to get started though new tutorials help. This is
+            considered the largest procedurally generated worlds in any
+            game, though has ‘simple’ 2d top down graphics.</p>
+            <p>Caves of Qud - a similar style of game. A generated world
+            of mutants and broken technologies and the ruins of
+            civilizations. 2d ‘simple’ top down graphics.</p>
+            <p>Hades - commercial game, contemporary style procedurally
+            generated RPG battles</p>
+            <p>Signs of the Sojourner - Commercial game but really cool
+            procedurally generated magical realist story. Playing an
+            alternate version of Dominos/matching game changes the story
+            as the game progresses.</p>
+      <footer> <hr>
+
+<p><em><a href="https://github.com/lee2sman/dmsc_fall2026">This site</a> is built using <a href="https://tildegit.org/exquisitecorp/panblog">panblog</a>. Site design by Lee Tusman (c) 2026.</em></p>
+
+<p><em>All course content, unless otherwise credited, is by Lee Tusman (c) 2026 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">CC BY-NC-SA</a>.</em></p> </footer>
+  </body>
+</html>

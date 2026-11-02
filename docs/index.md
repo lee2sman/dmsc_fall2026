@@ -25,3 +25,6 @@
 [Week 10 - Game Simulations ](game-simulations/)  
 2026-10-26  
 
+[Week 11 - Procedural Text Generation](procedural-generation/)  
+2026-11-02  
+
