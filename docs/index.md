@@ -28,3 +28,6 @@
 [Week 11 - Procedural Text Generation](procedural-generation/)  
 2026-11-02  
 
+[Week 12 - Computational artworks](nanogenmo/)  
+2026-11-09  
+
