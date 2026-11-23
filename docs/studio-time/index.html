@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta name="date" content="" />
+            <title>Week 14 - Studio Time</title>
+      <link rel="stylesheet" href="../css/../css/dmsc.css" />
+
+      <meta property="og:title" content="Week 14 - Studio Time" />
+                  <meta property="og:type" content="article" />
+  </head>
+  <body>
+      <header> <nav>
+  <ul>
+    <li><a href="/dmsc_fall2026/">home</a></li>
+    <li><a href="/dmsc_fall2026/about/">about</a></li>
+    <li><a href="/dmsc_fall2026/logs/">logs</a></li>
+    <li><a href="/dmsc_fall2026/syllabus/">syllabus</a></li>
+  </ul>
+</nav> </footer>
+      <h1>Week 14 - Studio Time</h1>
+            <p><em>Date: 2026-11-22</em></p>
+            <ul>
+            <li>Group live coding music</li>
+            <li>“Low res” - procedural generation in games</li>
+            <li>Permacomputing</li>
+            <li>Procedural Generation in Games</li>
+            <li>Studio time</li>
+            </ul>
+            <h3 id="on-the-nature-of-awe">On the Nature of Awe</h3>
+            <p>by Brian Ellis, for the Flash Laptop And Phone
+            Orchestra</p>
+            <p>Today we will be performing Brian’s piece <a
+            href="https://go.brianellissound.com/FLAPO/On_The_Nature_Of_Awe2/">On
+            the Nature of Awe</a></p>
+            <p><em><a href="https://brianellissound.com/">Brian
+            Ellis</a> is a creative coder, composer, and
+            multi-instrumentalist. His artistic drive lies in using code
+            to democratize creative expression. He founded the Brooklyn
+            Motion Capture Dance Ensemble to explore this concept
+            through the medium of dance, and to expand the possibilities
+            of movement-based musical interfaces. He also built and
+            maintains <a
+            href="motion-into-midi.com">motion-into-midi.com</a>, an
+            open-source tool that lets anyone do motion capture on their
+            laptop. Brian maintains many performance practices,
+            incorporating classical guitar, mountain dulcimer, live
+            electronics, and no-input-mixing into his solo practice, and
+            he is an active ensemble member and improviser with many
+            groups.</em></p>
+            <h2 id="permacomputing">Permacomputing</h2>
+            <p>The L5 creative coding library is specifically built with
+            principles aligned with the concept of permacomputing.
+            Permacomputing is a concept and community of practice
+            concerned with issues of sustainability in computing,
+            inspired by the concept and community around permaculture.
+            Permacomputing concerns itself with the computer and
+            surrounding technology’s impact on the environment.</p>
+            <p>Permacomputing is both a concept and a growing community
+            or movement encompassing many approaches and ideas, from
+            considering lifecycles of computing machinery to the culture
+            of who builds software and how it is made and
+            maintained.</p>
+            <p>There are various ways to ‘get started’ with
+            permacomputing on the <a
+            href="https://permacomputing.net">permacomputing wiki</a>,
+            such as helping a school work with recycled computers,
+            researching how to provide less resource-intensive tools and
+            systems for one’s lab or workspace, and helping artists
+            interested to engage with ecological topics using tools and
+            media in line with this intention. L5 attempts to work
+            within these areas, as well as engage intentionally in
+            permacomputing as concept and with its implementation.</p>
+            <p>L5’s software stack was selected based on goals of being
+            longevity, lightweight and minimal.</p>
+            <h3 id="why-l5-is-built-with-lua">Why L5 is built with
+            Lua</h3>
+            <p>To address sustainability, we must consider the impact of
+            consumption on computing technology, and the especially
+            disposable nature of of our computing devices. As built-in
+            planned obsolescence for phones, tablets and even computers
+            is part of the overall silicon valley strategy, L5 was built
+            with goals of longevity in mind. Code written in L5 should
+            work as long as pobbile and on as wide a spctrum of
+            ocmputing devices as possible. This supports the mission of
+            supporting creative coding that doesn’t require the constant
+            upgrade cycle of new computers, GPUs, and devices. This also
+            supports those with limited access to resources, including
+            older computers.</p>
+            <p>Lua is a programming language originating in Brazil in
+            1993, built outside of the culture and industry of Silicon
+            Valley, and still maintained by professors at a university
+            there. Lua is a ‘lightweight’, versatile programming
+            language, known for its simplicity and efficiency.</p>
+            <p>Where Java undergoes regular major updates and JavaScript
+            is a fast-evolving and changing language, Lua is a slow and
+            intentionally developed language. For this reason, Lua
+            programs have a high chance of running for years, ideally
+            with little or no changes.</p>
+            <h3
+            id="some-features-of-l5-as-a-permacomputing-inspired-library">Some
+            features of L5 as a permacomputing-inspired library</h3>
+            <ul>
+            <li><strong>Fast</strong>: Scripts, images, and audio load
+            near-instantly</li>
+            <li><strong>Minimal footprint</strong>: L5 (~6MB, from
+            Love2d ~4.5MB + LuaJIT ~1.5MB) vs Processing (~500MB) vs
+            p5.js (~1-4MB + browser ~250-355MB)</li>
+            <li><strong>Lighter impact</strong>: Runs on older hardware
+            and devices.</li>
+            <li><strong>Cross-platform</strong>: Runs on Windows, macOS,
+            Linux, iOS, Android, Raspberry Pi</li>
+            <li><strong>Offline, Low-bandwidth</strong>: Optimized for
+            installations and standalone applications. Website
+            documentation designed for lower bandwidth and offline
+            use.</li>
+            <li><strong>Resiliency</strong>: Underlying Lua language and
+            Love2d frameworks change much slower than equivalent
+            languages like JavaScript and Java</li>
+            </ul>
+            <h2 id="more-procedural-generation-in-games">More procedural
+            generation in games</h2>
+            <p>Some games and automata from the recent Low Rez Jam</p>
+            <figure>
+            <img
+            src="../images/966a1209905067607fdae4f3c81db8a7ce88a7df.png"
+            alt="Libryinth" />
+            <figcaption aria-hidden="true">Libryinth</figcaption>
+            </figure>
+            <p><a href="https://munro.itch.io/libryinth">Libryinth by
+            Munro</a></p>
+            <figure>
+            <img
+            src="../images/6c435ca294c515d8d8f4231215ccd5c470a73822.gif"
+            alt="Border Gore low res map automata" />
+            <figcaption aria-hidden="true">Border Gore low res map
+            automata</figcaption>
+            </figure>
+            <p><a href="https://jackoatley.itch.io/border-gore">Border
+            Gore</a> by Jack Oatley</p>
+            <figure>
+            <img
+            src="../images/db7123a6589d5a39ab23f5fb5667002cce21744d.gif"
+            alt="RC Mower low res graphics" />
+            <figcaption aria-hidden="true">RC Mower low res
+            graphics</figcaption>
+            </figure>
+            <p><a href="https://passages.itch.io/rc-mower">RC
+            Mower</a></p>
+            <h2 id="talks-from-roguelike-celebration">Talks from
+            Roguelike Celebration</h2>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/-xrcmY7LNPI?si=V3c5t7RKxsE-7TRO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+            <p>Chelsea Thompto - Spaces for Contemplation: Procedural
+            Generation in Nonlinear Narrative in Art</p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/9yFferxbrBU?si=wHSOUU9bm7pyawaf&amp;start=13" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+            <p>Elliot Trinidad- Tuning the Blaseball Name Generator</p>
+            <h2 id="final-project-guidelines">Final Project
+            guidelines</h2>
+            <p>Your final project is a project that makes use of
+            procedural generation. It can be a procedurally-generated
+            game, story, art toy or other digital media.</p>
+            <p>It is permitted to include ‘hand-crafted’ content as well
+            as procedurally-generated content.</p>
+            <p>The final project should be a compelling work that is
+            complete on its own and produces different meaningful
+            results each time it is run.</p>
+            <p>Write a proposal for your final project. Includes
+            screenshots of other media that has influenced your
+            thinking, and any thoughts, techniques for building, or
+            questions that you have at this time.</p>
+            <p>High level idea: You are worldbuilding, creating an
+            ecosystem of characters, a world with varied terrain or
+            environment, and procedurally generated objects in that
+            world and text.</p>
+            <p>Deliverables: * a character that a player can play *
+            procedurally generate a terrain or environment *
+            procedurally generate characters in the world * procedurally
+            generate text that meaningfully flavors the world, its
+            characters or environment</p>
+            <p>Optional: * procedurally generated music * playable with
+            win/lose states</p>
+            <h2 id="bonus">BONUS</h2>
+            <h3 id="pathfinding">PATHFINDING</h3>
+            <h3 id="weird-chess-algorithms-elo-world">30 Weird Chess
+            Algorithms: Elo World</h3>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/DpXy041BIlA?si=BfLYFhrnR-hgbLTt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+            <p>By Tom7 (Suckerpinch) bonus.md</p>
+      <footer> <hr>
+
+<p><em><a href="https://github.com/lee2sman/dmsc_fall2026">This site</a> is built using <a href="https://tildegit.org/exquisitecorp/panblog">panblog</a>. Site design by Lee Tusman (c) 2026.</em></p>
+
+<p><em>All course content, unless otherwise credited, is by Lee Tusman (c) 2026 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">CC BY-NC-SA</a>.</em></p> </footer>
+  </body>
+</html>

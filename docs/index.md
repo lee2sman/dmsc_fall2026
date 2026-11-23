@@ -31,6 +31,9 @@
 [Week 12 - Computational artworks](nanogenmo/)  
 2026-11-09  
 
+[Week 14 - Studio Time](studio-time/)  
+2026-11-22  
+
 [Week 13 - Zero Player Games](zero-player/)  
 zero-playe  
 
